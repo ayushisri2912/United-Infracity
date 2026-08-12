@@ -21,6 +21,7 @@ import EnquiryModal from './components/EnquiryModal';
 import SearchModal from './components/SearchModal';
 import UserModal from './components/UserModal';
 import Footer from './components/Footer';
+import Launch from './components/Launch';
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -31,13 +32,22 @@ export default function App() {
   const [activeProjectFilter, setActiveProjectFilter] = useState('All');
   const [selectedCity, setSelectedCity] = useState('All');
   const [selectedConfig, setSelectedConfig] = useState('All');
+  console.log(currentPage)
 
   const handleExplore = () => {
     setShowSplash(false);
-    setCurrentPage('home');
+    // setCurrentPage('home');
+    setCurrentPage('launch');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleHomePage = () =>{
+    setShowSplash(false);
+    setCurrentPage('launch');
+    // setCurrentPage('home');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  
   const handleSelectSection = (sectionId, filterCategory) => {
     if (showSplash) {
       setShowSplash(false);
@@ -95,6 +105,12 @@ export default function App() {
       return;
     }
 
+    if (sectionId === 'launch') {
+      setCurrentPage('launch');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     // Switch back to home view for any home section
     setCurrentPage('home');
     
@@ -114,7 +130,15 @@ export default function App() {
       {showSplash ? (
         /* 1. INITIAL LANDING VIEW (Splash / Intro Screen) */
         <SplashView onExplore={handleExplore} />
-      ) : (
+      ) : currentPage === 'launch' ? (
+            /* DEDICATED GOVERNMENT PROJECTS PAGE VIEW */
+            <div className="flex-grow">
+              <Launch handleHome={handleHomePage}
+                // onOpenEnquire={() => setIsEnquireModalOpen(true)}
+                // onNavigateHome={() => handleSelectSection('hero')}
+              />
+            </div>
+          ) : (
         /* MAIN APPLICATION FLOW */
         <div className="animate-in fade-in duration-500 flex flex-col min-h-screen">
           
@@ -236,6 +260,7 @@ export default function App() {
                 <MediaSection />
               </main>
             </div>
+            
           )}
 
           {/* FOOTER */}
