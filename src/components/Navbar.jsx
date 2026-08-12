@@ -116,42 +116,46 @@ export default function Navbar({ onOpenSearch, onOpenUserModal, onSelectSection 
             ))}
           </div>
 
-          {/* Right Action Items: Circular Search & Circular User Icons */}
+          {/* Right Action Items: Circular Search & Circular User Icons with Premium Gold Hover Effects */}
           <div className="hidden sm:flex items-center gap-3">
+            {/* Search Icon Button */}
             <button
               onClick={onOpenSearch}
-              className="w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 text-gray-800 transition-colors shadow-sm cursor-pointer"
+              className="group w-10 h-10 bg-white border border-stone-300 rounded-full flex items-center justify-center text-stone-700 hover:bg-gradient-to-r hover:from-[#D4AF37] hover:to-[#B38F24] hover:border-[#D4AF37] hover:text-white hover:shadow-md hover:shadow-[#D4AF37]/30 hover:scale-105 transition-all duration-300 cursor-pointer"
               title="Search Projects"
             >
-              <Search className="w-4 h-4 text-gray-800" />
+              <Search className="w-4 h-4 text-stone-700 group-hover:text-white transition-colors duration-300 group-hover:scale-110" />
             </button>
 
+            {/* User Profile / Account Icon Button */}
             <button
               onClick={onOpenUserModal}
-              className="w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 text-gray-800 transition-colors shadow-sm cursor-pointer"
+              className="group w-10 h-10 bg-white border border-stone-300 rounded-full flex items-center justify-center text-stone-700 hover:bg-gradient-to-r hover:from-[#D4AF37] hover:to-[#B38F24] hover:border-[#D4AF37] hover:text-white hover:shadow-md hover:shadow-[#D4AF37]/30 hover:scale-105 transition-all duration-300 cursor-pointer"
               title="User Account & Enquiry Portal"
             >
-              <User className="w-4 h-4 text-gray-800" />
+              <User className="w-4 h-4 text-stone-700 group-hover:text-white transition-colors duration-300 group-hover:scale-110" />
             </button>
           </div>
 
-          {/* Mobile Menu Toggle Button */}
+          {/* Mobile Menu Toggle & Action Buttons */}
           <div className="flex lg:hidden items-center gap-2">
             <button
               onClick={onOpenSearch}
-              className="w-9 h-9 border border-gray-300 rounded-full flex items-center justify-center text-gray-800 hover:bg-gray-100"
+              className="group w-9 h-9 bg-white border border-stone-300 rounded-full flex items-center justify-center text-stone-700 hover:bg-[#D4AF37] hover:border-[#D4AF37] hover:text-white transition-all duration-300"
+              title="Search Projects"
             >
-              <Search className="w-4 h-4" />
+              <Search className="w-4 h-4 text-stone-700 group-hover:text-white transition-colors" />
             </button>
             <button
               onClick={onOpenUserModal}
-              className="w-9 h-9 border border-gray-300 rounded-full flex items-center justify-center text-gray-800 hover:bg-gray-100"
+              className="group w-9 h-9 bg-white border border-stone-300 rounded-full flex items-center justify-center text-stone-700 hover:bg-[#D4AF37] hover:border-[#D4AF37] hover:text-white transition-all duration-300"
+              title="User Account & Enquiry Portal"
             >
-              <User className="w-4 h-4" />
+              <User className="w-4 h-4 text-stone-700 group-hover:text-white transition-colors" />
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-stone-800 hover:bg-stone-100 rounded-lg"
+              className="p-2 text-stone-800 hover:bg-stone-100 rounded-lg transition-colors"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>

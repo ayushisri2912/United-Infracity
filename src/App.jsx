@@ -23,7 +23,7 @@ import UserModal from './components/UserModal';
 import Footer from './components/Footer';
 
 export default function App() {
-  const [showSplash, setShowSplash] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
   const [currentPage, setCurrentPage] = useState('home');
   const [isEnquireModalOpen, setIsEnquireModalOpen] = useState(false);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
@@ -243,17 +243,6 @@ export default function App() {
             onSelectSection={handleSelectSection}
             onOpenEnquire={() => setIsEnquireModalOpen(true)}
           />
-
-          {/* Floating Back to Intro View Toggle */}
-          <div className="fixed bottom-6 right-6 z-40">
-            <button
-              onClick={() => setShowSplash(true)}
-              className="px-4 py-2 bg-[#1A1A1A]/80 hover:bg-[#1A1A1A] backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/40 rounded-full text-xs font-semibold shadow-2xl hover:scale-105 transition-all cursor-pointer"
-              title="Return to Splash Screen"
-            >
-              ✦ Splash View
-            </button>
-          </div>
 
         </div>
       )}
