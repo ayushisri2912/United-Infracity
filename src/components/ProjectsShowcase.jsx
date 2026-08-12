@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { MapPin, ArrowUpRight, BedDouble, Maximize2, ShieldCheck, Sparkles, Building2 } from 'lucide-react';
 
-export default function ProjectsShowcase({ onOpenEnquire, activeFilter, setActiveFilter }) {
+export default function ProjectsShowcase({
+  onOpenEnquire,
+  activeFilter = 'All',
+  setActiveFilter,
+  selectedCity = 'All',
+  selectedConfig = 'All'
+}) {
   const [selectedProjectModal, setSelectedProjectModal] = useState(null);
 
   const filterTabs = [
@@ -100,37 +106,40 @@ export default function ProjectsShowcase({ onOpenEnquire, activeFilter, setActiv
     }
   ];
 
-  const filteredProjects = activeFilter === 'All'
-    ? projectsData
-    : projectsData.filter(p => p.category === activeFilter);
+  const filteredProjects = projectsData.filter((p) => {
+    const matchCategory = activeFilter === 'All' || p.category === activeFilter;
+    const matchCity = selectedCity === 'All' || p.location.toLowerCase().includes(selectedCity.toLowerCase());
+    const matchConfig = selectedConfig === 'All' || p.specs.toLowerCase().includes(selectedConfig.toLowerCase());
+    return matchCategory && matchCity && matchConfig;
+  });
 
   return (
-    <section id="projects" className="py-20 lg:py-28 bg-[#FDFBF7] relative border-t border-amber-900/10">
+    <section id="projects" className="py-10 lg:py-14 bg-[#FDFBF7] relative border-t border-[#D4AF37]/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#D4AF37]/10 text-[#997B20] text-xs font-bold uppercase tracking-widest">
+        <div className="text-center max-w-3xl mx-auto space-y-2.5 mb-8">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#D4AF37]/10 text-[#997B20] text-xs font-bold uppercase tracking-widest">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Featured Portfolio</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#1A1A1A]">
+          <h2 className="font-serif text-2xl sm:text-4xl font-bold text-[#1A1A1A]">
             Architectural Excellence in <span className="text-[#D4AF37] italic font-serif">Every Square Foot</span>
           </h2>
-          <p className="text-stone-600 text-sm sm:text-base font-light">
+          <p className="text-stone-600 text-xs sm:text-sm font-light">
             Explore our portfolio of ongoing residential sanctuaries, Grade-A commercial hubs, and mega township developments.
           </p>
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-4 mb-12 scrollbar-none">
+        <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-2 mb-8 scrollbar-none">
           {filterTabs.map((tab) => (
             <button
               key={tab.value}
               onClick={() => setActiveFilter(tab.value)}
-              className={`px-5 py-2.5 text-xs font-semibold uppercase tracking-wider rounded-full whitespace-nowrap transition-all duration-300 ${
+              className={`px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-full whitespace-nowrap transition-all duration-300 ${
                 activeFilter === tab.value
-                  ? 'bg-[#1A1A1A] text-[#D4AF37] shadow-lg scale-105'
+                  ? 'bg-[#1A1A1A] text-[#D4AF37] shadow-md scale-105'
                   : 'bg-white text-stone-600 border border-stone-200 hover:border-[#D4AF37] hover:text-[#D4AF37]'
               }`}
             >
@@ -140,76 +149,76 @@ export default function ProjectsShowcase({ onOpenEnquire, activeFilter, setActiv
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="group bg-white rounded-2xl overflow-hidden border border-[#D4AF37]/20 shadow-md hover:shadow-2xl hover:border-[#D4AF37] transition-all duration-500 flex flex-col justify-between"
+              className="group bg-white rounded-2xl overflow-hidden border border-[#D4AF37]/20 shadow-sm hover:shadow-xl hover:border-[#D4AF37] transition-all duration-300 flex flex-col justify-between"
             >
               {/* Card Image Header */}
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-52 overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 
                 {/* Badges */}
-                <div className="absolute top-4 left-4 flex gap-2">
-                  <span className="px-3 py-1 bg-[#1A1A1A]/80 backdrop-blur-md text-[#D4AF37] font-bold text-[10px] uppercase tracking-wider rounded-full border border-[#D4AF37]/30">
+                <div className="absolute top-3 left-3 flex gap-2">
+                  <span className="px-2.5 py-0.5 bg-[#1A1A1A]/80 backdrop-blur-md text-[#D4AF37] font-bold text-[9px] uppercase tracking-wider rounded-full border border-[#D4AF37]/30">
                     {project.tag}
                   </span>
                 </div>
 
-                <div className="absolute top-4 right-4">
-                  <span className="px-3 py-1 bg-white/90 backdrop-blur-md text-stone-800 font-semibold text-[10px] uppercase tracking-wider rounded-full shadow-sm">
+                <div className="absolute top-3 right-3">
+                  <span className="px-2.5 py-0.5 bg-white/90 backdrop-blur-md text-stone-800 font-semibold text-[9px] uppercase tracking-wider rounded-full shadow-sm">
                     {project.status}
                   </span>
                 </div>
 
-                <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <div className="flex items-center gap-1.5 text-xs text-stone-300 mb-1">
-                    <MapPin className="w-3.5 h-3.5 text-[#D4AF37]" />
+                <div className="absolute bottom-3 left-3 right-3 text-white">
+                  <div className="flex items-center gap-1 text-[11px] text-stone-300 mb-0.5">
+                    <MapPin className="w-3 h-3 text-[#D4AF37]" />
                     <span>{project.location}</span>
                   </div>
-                  <h3 className="font-serif font-bold text-xl text-white group-hover:text-[#D4AF37] transition-colors">
+                  <h3 className="font-serif font-bold text-lg text-white group-hover:text-[#D4AF37] transition-colors">
                     {project.title}
                   </h3>
                 </div>
               </div>
 
               {/* Card Body */}
-              <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
+              <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
                 <p className="text-xs text-stone-600 line-clamp-2 leading-relaxed">
                   {project.description}
                 </p>
 
-                <div className="grid grid-cols-2 gap-3 py-3 border-y border-stone-100 text-xs">
+                <div className="grid grid-cols-2 gap-2 py-2 border-y border-stone-100 text-xs">
                   <div>
-                    <span className="text-stone-400 block text-[10px] uppercase tracking-wider">Type</span>
-                    <span className="font-semibold text-stone-800">{project.specs}</span>
+                    <span className="text-stone-400 block text-[9px] uppercase tracking-wider">Type</span>
+                    <span className="font-semibold text-stone-800 text-[11px]">{project.specs}</span>
                   </div>
                   <div>
-                    <span className="text-stone-400 block text-[10px] uppercase tracking-wider">Area</span>
-                    <span className="font-semibold text-stone-800">{project.area}</span>
+                    <span className="text-stone-400 block text-[9px] uppercase tracking-wider">Area</span>
+                    <span className="font-semibold text-stone-800 text-[11px]">{project.area}</span>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-2">
+                <div className="flex items-center justify-between pt-1">
                   <div>
-                    <span className="text-[10px] text-stone-400 uppercase tracking-widest block">Investment</span>
-                    <span className="font-serif font-bold text-base text-[#D4AF37]">
+                    <span className="text-[9px] text-stone-400 uppercase tracking-widest block">Investment</span>
+                    <span className="font-serif font-bold text-sm text-[#D4AF37]">
                       {project.price}
                     </span>
                   </div>
 
                   <button
                     onClick={() => setSelectedProjectModal(project)}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#FDFBF7] hover:bg-[#D4AF37] text-[#1A1A1A] hover:text-white border border-[#D4AF37]/30 rounded-lg text-xs font-semibold transition-all duration-300"
+                    className="inline-flex items-center gap-1 px-3 py-1.5 bg-[#FDFBF7] hover:bg-[#D4AF37] text-[#1A1A1A] hover:text-white border border-[#D4AF37]/30 rounded-lg text-xs font-semibold transition-all duration-300"
                   >
                     <span>View Details</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
+                    <ArrowUpRight className="w-3 h-3" />
                   </button>
                 </div>
 

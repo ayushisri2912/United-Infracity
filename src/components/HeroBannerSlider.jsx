@@ -41,7 +41,7 @@ export default function HeroBannerSlider({ onSelectSection }) {
   const activeSlide = slides[currentSlide];
 
   return (
-    <section className="relative w-full h-[75vh] min-h-[500px] max-h-[750px] overflow-hidden bg-black selection:bg-amber-500 selection:text-black">
+    <section className="relative w-full h-[52vh] sm:h-[58vh] min-h-[380px] max-h-[520px] overflow-hidden bg-black selection:bg-amber-500 selection:text-black">
       
       {/* Background Slides */}
       {slides.map((slide, idx) => (
@@ -57,37 +57,37 @@ export default function HeroBannerSlider({ onSelectSection }) {
             className="w-full h-full object-cover object-center scale-105 animate-pulse-slow"
           />
           {/* Left Dark Gradient Overlay for optimal legibility */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
         </div>
       ))}
 
-      {/* Floating Content Overlay */}
-      <div className="relative z-20 max-w-7xl mx-auto h-full px-6 sm:px-8 lg:px-12 flex flex-col justify-center text-left">
-        <div className="max-w-2xl space-y-4 animate-in fade-in slide-in-from-left duration-700">
+      {/* Floating Content Overlay: Unified max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 */}
+      <div className="relative z-20 max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex flex-col justify-center text-left">
+        <div className="max-w-2xl space-y-3 animate-in fade-in slide-in-from-left duration-700">
           
           {/* Top Tagline with decorative gold lines */}
-          <div className="text-amber-400 text-xs tracking-[0.25em] uppercase font-semibold flex items-center gap-3">
-            <span className="w-8 h-[2px] bg-amber-400/80 inline-block" />
+          <div className="text-[#D4AF37] text-xs tracking-[0.25em] uppercase font-semibold flex items-center gap-3">
+            <span className="w-6 h-[2px] bg-[#D4AF37] inline-block" />
             <span>{activeSlide.tagline}</span>
-            <span className="w-8 h-[2px] bg-amber-400/80 inline-block" />
+            <span className="w-6 h-[2px] bg-[#D4AF37] inline-block" />
           </div>
 
           {/* Main Title */}
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-serif text-white tracking-wide leading-none font-bold">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif text-white tracking-tight leading-tight font-bold">
             {activeSlide.title}
           </h1>
 
           {/* Subtitle */}
-          <p className="text-amber-400 text-xs sm:text-sm md:text-base tracking-[0.2em] font-semibold">
+          <p className="text-[#D4AF37]/90 text-xs sm:text-sm tracking-[0.2em] font-semibold">
             {activeSlide.subtitle}
           </p>
 
           {/* Action Button: EXPLORE MORE → */}
-          <div className="pt-4">
+          <div className="pt-2">
             <button
               onClick={() => onSelectSection('projects', activeSlide.category)}
-              className="inline-flex items-center gap-3 bg-amber-600 hover:bg-amber-700 text-black font-bold px-7 py-3.5 text-xs tracking-[0.2em] uppercase rounded-md shadow-2xl transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-3 bg-[#D4AF37] hover:bg-[#B38F24] text-stone-950 font-bold px-6 py-2.5 text-xs tracking-[0.2em] uppercase rounded-lg shadow-xl transition-all duration-300 hover:scale-105"
             >
               <span>EXPLORE MORE</span>
               <span className="font-serif text-sm">→</span>
@@ -98,24 +98,24 @@ export default function HeroBannerSlider({ onSelectSection }) {
       </div>
 
       {/* Slider Controls & Dot Indicators at Bottom-Right */}
-      <div className="absolute bottom-8 right-8 z-30 flex items-center gap-4 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
+      <div className="absolute bottom-6 right-6 sm:right-8 z-30 flex items-center gap-3 bg-black/50 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15 shadow-xl">
         
         {/* Prev / Next Arrows */}
         <button
           onClick={() => setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1))}
-          className="p-1 text-white/70 hover:text-amber-400 transition-colors"
+          className="p-1 text-white/70 hover:text-[#D4AF37] transition-colors"
         >
-          <ChevronLeft className="w-5 h-5" />
+          <ChevronLeft className="w-4 h-4" />
         </button>
 
         {/* Dots */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5">
           {slides.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setCurrentSlide(idx)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                idx === currentSlide ? 'w-8 bg-amber-400' : 'w-2 bg-white/50 hover:bg-white'
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                idx === currentSlide ? 'w-6 bg-[#D4AF37]' : 'w-1.5 bg-white/40 hover:bg-white'
               }`}
             />
           ))}
@@ -123,9 +123,9 @@ export default function HeroBannerSlider({ onSelectSection }) {
 
         <button
           onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
-          className="p-1 text-white/70 hover:text-amber-400 transition-colors"
+          className="p-1 text-white/70 hover:text-[#D4AF37] transition-colors"
         >
-          <ChevronRight className="w-5 h-5" />
+          <ChevronRight className="w-4 h-4" />
         </button>
 
       </div>

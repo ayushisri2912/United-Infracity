@@ -36,40 +36,40 @@ export default function AmenitiesSection() {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-stone-900 text-white relative overflow-hidden">
+    <section className="py-10 lg:py-14 bg-stone-900 text-white relative overflow-hidden">
       {/* Background Decorative Gold Orbs */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-[#D4AF37]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#D4AF37]/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/40 text-[#D4AF37] text-xs font-bold uppercase tracking-widest">
+        <div className="text-center max-w-3xl mx-auto space-y-2.5 mb-8">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/40 text-[#D4AF37] text-xs font-bold uppercase tracking-widest">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Unmatched Lifestyle</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-white">
+          <h2 className="font-serif text-2xl sm:text-4xl font-bold text-white">
             Curated Amenities for <span className="text-[#D4AF37] italic font-serif">Bespoke Urban Living</span>
           </h2>
-          <p className="text-stone-400 text-sm sm:text-base font-light">
+          <p className="text-stone-400 text-xs sm:text-sm font-light">
             Every United Infracity project is designed with world-class infrastructure to elevate everyday living into an extraordinary experience.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {amenities.map((item, idx) => {
             const IconComponent = item.icon;
             return (
               <div
                 key={idx}
-                className="p-8 rounded-2xl bg-stone-800/80 border border-stone-700 hover:border-[#D4AF37] shadow-xl hover:shadow-2xl transition-all duration-300 group"
+                className="p-5 sm:p-6 rounded-2xl bg-stone-800/80 border border-stone-700 hover:border-[#D4AF37] shadow-lg hover:shadow-xl transition-all duration-300 group"
               >
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#D4AF37] to-[#806214] p-0.5 mb-6 group-hover:scale-110 transition-transform">
+                <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#D4AF37] to-[#806214] p-0.5 mb-4 group-hover:scale-105 transition-transform">
                   <div className="w-full h-full bg-stone-900 rounded-[10px] flex items-center justify-center">
-                    <IconComponent className="w-7 h-7 text-[#D4AF37]" />
+                    <IconComponent className="w-5 h-5 text-[#D4AF37]" />
                   </div>
                 </div>
-                <h3 className="font-serif font-bold text-xl text-white group-hover:text-[#D4AF37] transition-colors mb-3">
+                <h3 className="font-serif font-bold text-lg text-white group-hover:text-[#D4AF37] transition-colors mb-2">
                   {item.title}
                 </h3>
                 <p className="text-stone-400 text-xs sm:text-sm leading-relaxed font-light">

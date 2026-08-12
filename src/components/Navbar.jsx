@@ -10,21 +10,23 @@ export default function Navbar({ onOpenSearch, onOpenUserModal, onSelectSection 
     {
       name: 'About Us',
       id: 'about',
+      dropdownOnly: true,
       submenu: [
-        { name: 'Brand', id: 'about' },
-        { name: 'Our Mentor', id: 'about' },
-        { name: 'Management', id: 'about' }
+        { name: 'Brand', id: 'brand' },
+        { name: 'Our Mentor', id: 'mentor' },
+        { name: 'Management', id: 'management' }
       ]
     },
     {
       name: 'Projects',
       id: 'projects',
+      dropdownOnly: true,
       submenu: [
-        { name: 'Ongoing Residential', id: 'projects', filter: 'Residential' },
-        { name: 'Ongoing Commercial', id: 'projects', filter: 'Commercial' },
-        { name: 'United Township', id: 'projects', filter: 'Township' },
-        { name: 'Completed Projects', id: 'projects', filter: 'Completed' },
-        { name: 'Government Projects', id: 'projects', filter: 'Government' }
+        { name: 'Ongoing Residential', id: 'projects-residential' },
+        { name: 'Ongoing Commercial', id: 'projects-commercial' },
+        { name: 'United Township', id: 'projects-township' },
+        { name: 'Completed Projects', id: 'projects-completed' },
+        { name: 'Government Projects', id: 'projects-government' }
       ]
     },
     { name: 'Testimonials', id: 'testimonials' },
@@ -40,7 +42,14 @@ export default function Navbar({ onOpenSearch, onOpenUserModal, onSelectSection 
     { name: 'Contact Us', id: 'footer' }
   ];
 
-  const handleNavClick = (sectionId, filter) => {
+  const handleNavClick = (item, filter) => {
+    // If it's a dropdown-only parent like 'About Us', do not execute main page navigation
+    if (typeof item === 'object' && item.dropdownOnly) {
+      setMobileSubmenu(mobileSubmenu === item.name ? null : item.name);
+      return;
+    }
+
+    const sectionId = typeof item === 'object' ? item.id : item;
     onSelectSection(sectionId, filter);
     setMobileMenuOpen(false);
   };
@@ -70,13 +79,13 @@ export default function Navbar({ onOpenSearch, onOpenUserModal, onSelectSection 
             </div>
           </div>
 
-          {/* Desktop Nav Items: Darker, Bolder Typography with Gold Underline Animation */}
+          {/* Desktop Nav Items */}
           <div className="hidden lg:flex items-center gap-8">
             {menuStructure.map((item) => (
               <div key={item.name} className="relative group py-6">
                 <button
-                  onClick={() => handleNavClick(item.id)}
-                  className="flex items-center gap-1.5 text-sm font-bold text-gray-900 hover:text-amber-700 tracking-wide transition-colors duration-300"
+                  onClick={() => handleNavClick(item)}
+                  className="flex items-center gap-1.5 text-sm font-bold text-gray-900 hover:text-amber-700 tracking-wide transition-colors duration-300 cursor-pointer"
                 >
                   <span>{item.name}</span>
                   {item.submenu && (
@@ -94,7 +103,7 @@ export default function Navbar({ onOpenSearch, onOpenUserModal, onSelectSection 
                         <button
                           key={subItem.name}
                           onClick={() => handleNavClick(subItem.id, subItem.filter)}
-                          className="w-full text-left px-4 py-2.5 text-xs font-semibold text-gray-800 hover:text-gray-900 hover:bg-[#FDFBF7] hover:border-l-2 hover:border-[#D4AF37] rounded-lg transition-all duration-200 flex items-center justify-between"
+                          className="w-full text-left px-4 py-2.5 text-xs font-semibold text-gray-800 hover:text-gray-900 hover:bg-[#FDFBF7] hover:border-l-2 hover:border-[#D4AF37] rounded-lg transition-all duration-200 flex items-center justify-between cursor-pointer"
                         >
                           <span>{subItem.name}</span>
                           <span className="text-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity">→</span>
@@ -109,19 +118,17 @@ export default function Navbar({ onOpenSearch, onOpenUserModal, onSelectSection 
 
           {/* Right Action Items: Circular Search & Circular User Icons */}
           <div className="hidden sm:flex items-center gap-3">
-            {/* Search Icon Button */}
             <button
               onClick={onOpenSearch}
-              className="w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 text-gray-800 transition-colors shadow-sm"
+              className="w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 text-gray-800 transition-colors shadow-sm cursor-pointer"
               title="Search Projects"
             >
               <Search className="w-4 h-4 text-gray-800" />
             </button>
 
-            {/* User Profile / Account Icon Button */}
             <button
               onClick={onOpenUserModal}
-              className="w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 text-gray-800 transition-colors shadow-sm"
+              className="w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center hover:bg-gray-100 text-gray-800 transition-colors shadow-sm cursor-pointer"
               title="User Account & Enquiry Portal"
             >
               <User className="w-4 h-4 text-gray-800" />
@@ -160,7 +167,7 @@ export default function Navbar({ onOpenSearch, onOpenUserModal, onSelectSection 
             <div key={item.name} className="border-b border-stone-100 pb-2">
               <div className="flex justify-between items-center py-2">
                 <button
-                  onClick={() => handleNavClick(item.id)}
+                  onClick={() => handleNavClick(item)}
                   className="text-gray-900 font-bold text-sm"
                 >
                   {item.name}

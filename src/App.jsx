@@ -2,26 +2,39 @@ import React, { useState } from 'react';
 import SplashView from './components/SplashView';
 import Navbar from './components/Navbar';
 import HeroBannerSlider from './components/HeroBannerSlider';
+import CentralFilterBox from './components/CentralFilterBox';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
 import ProjectsShowcase from './components/ProjectsShowcase';
 import AmenitiesSection from './components/AmenitiesSection';
 import TestimonialsSection from './components/TestimonialsSection';
 import MediaSection from './components/MediaSection';
+import BrandPage from './components/BrandPage';
+import MentorPage from './components/MentorPage';
+import ManagementPage from './components/ManagementPage';
+import OngoingResidentialPage from './components/OngoingResidentialPage';
+import OngoingCommercialPage from './components/OngoingCommercialPage';
+import UnitedTownshipPage from './components/UnitedTownshipPage';
+import CompletedProjectsPage from './components/CompletedProjectsPage';
+import GovernmentProjectsPage from './components/GovernmentProjectsPage';
 import EnquiryModal from './components/EnquiryModal';
 import SearchModal from './components/SearchModal';
 import UserModal from './components/UserModal';
 import Footer from './components/Footer';
 
 export default function App() {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(false);
+  const [currentPage, setCurrentPage] = useState('home');
   const [isEnquireModalOpen, setIsEnquireModalOpen] = useState(false);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
   const [activeProjectFilter, setActiveProjectFilter] = useState('All');
+  const [selectedCity, setSelectedCity] = useState('All');
+  const [selectedConfig, setSelectedConfig] = useState('All');
 
   const handleExplore = () => {
     setShowSplash(false);
+    setCurrentPage('home');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -29,13 +42,68 @@ export default function App() {
     if (showSplash) {
       setShowSplash(false);
     }
+    
     if (filterCategory) {
       setActiveProjectFilter(filterCategory);
     }
+
+    if (sectionId === 'brand' || sectionId === 'about') {
+      setCurrentPage('brand');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (sectionId === 'mentor') {
+      setCurrentPage('mentor');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (sectionId === 'management') {
+      setCurrentPage('management');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (sectionId === 'projects-residential') {
+      setCurrentPage('projects-residential');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (sectionId === 'projects-commercial') {
+      setCurrentPage('projects-commercial');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (sectionId === 'projects-township') {
+      setCurrentPage('projects-township');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (sectionId === 'projects-completed') {
+      setCurrentPage('projects-completed');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (sectionId === 'projects-government') {
+      setCurrentPage('projects-government');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    // Switch back to home view for any home section
+    setCurrentPage('home');
+    
     setTimeout(() => {
       const elem = document.getElementById(sectionId);
       if (elem) {
         elem.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }, 100);
   };
@@ -47,46 +115,128 @@ export default function App() {
         /* 1. INITIAL LANDING VIEW (Splash / Intro Screen) */
         <SplashView onExplore={handleExplore} />
       ) : (
-        /* MAIN HOME PAGE FLOW */
-        <div className="animate-in fade-in duration-500">
+        /* MAIN APPLICATION FLOW */
+        <div className="animate-in fade-in duration-500 flex flex-col min-h-screen">
           
-          {/* 2. STICKY NAVBAR */}
+          {/* STICKY NAVBAR */}
           <Navbar
             onOpenSearch={() => setIsSearchModalOpen(true)}
             onOpenUserModal={() => setIsUserModalOpen(true)}
             onSelectSection={handleSelectSection}
           />
 
-          {/* 3. NEW HERO BANNER SLIDER (Full Width Flagship Banner) */}
-          <HeroBannerSlider onSelectSection={handleSelectSection} />
+          {currentPage === 'brand' ? (
+            /* DEDICATED BRAND WEBPAGE VIEW */
+            <div className="flex-grow">
+              <BrandPage
+                onOpenEnquire={() => setIsEnquireModalOpen(true)}
+                onSelectSection={handleSelectSection}
+                onNavigateHome={() => handleSelectSection('projects')}
+              />
+            </div>
+          ) : currentPage === 'mentor' ? (
+            /* DEDICATED OUR MENTOR WEBPAGE VIEW */
+            <div className="flex-grow">
+              <MentorPage
+                onOpenEnquire={() => setIsEnquireModalOpen(true)}
+                onNavigateHome={() => handleSelectSection('projects')}
+              />
+            </div>
+          ) : currentPage === 'management' ? (
+            /* DEDICATED MANAGEMENT WEBPAGE VIEW */
+            <div className="flex-grow">
+              <ManagementPage
+                onOpenEnquire={() => setIsEnquireModalOpen(true)}
+                onNavigateHome={() => handleSelectSection('projects')}
+              />
+            </div>
+          ) : currentPage === 'projects-residential' ? (
+            /* DEDICATED ONGOING RESIDENTIAL PAGE VIEW */
+            <div className="flex-grow">
+              <OngoingResidentialPage
+                onOpenEnquire={() => setIsEnquireModalOpen(true)}
+                onNavigateHome={() => handleSelectSection('hero')}
+              />
+            </div>
+          ) : currentPage === 'projects-commercial' ? (
+            /* DEDICATED ONGOING COMMERCIAL PAGE VIEW */
+            <div className="flex-grow">
+              <OngoingCommercialPage
+                onOpenEnquire={() => setIsEnquireModalOpen(true)}
+                onNavigateHome={() => handleSelectSection('hero')}
+              />
+            </div>
+          ) : currentPage === 'projects-township' ? (
+            /* DEDICATED UNITED TOWNSHIP PAGE VIEW */
+            <div className="flex-grow">
+              <UnitedTownshipPage
+                onOpenEnquire={() => setIsEnquireModalOpen(true)}
+                onNavigateHome={() => handleSelectSection('hero')}
+              />
+            </div>
+          ) : currentPage === 'projects-completed' ? (
+            /* DEDICATED COMPLETED PROJECTS PAGE VIEW */
+            <div className="flex-grow">
+              <CompletedProjectsPage
+                onOpenEnquire={() => setIsEnquireModalOpen(true)}
+                onNavigateHome={() => handleSelectSection('hero')}
+              />
+            </div>
+          ) : currentPage === 'projects-government' ? (
+            /* DEDICATED GOVERNMENT PROJECTS PAGE VIEW */
+            <div className="flex-grow">
+              <GovernmentProjectsPage
+                onOpenEnquire={() => setIsEnquireModalOpen(true)}
+                onNavigateHome={() => handleSelectSection('hero')}
+              />
+            </div>
+          ) : (
+            /* HOME PAGE FLOW */
+            <div className="flex-grow">
+              {/* HERO BANNER SLIDER */}
+              <HeroBannerSlider onSelectSection={handleSelectSection} />
 
-          {/* 4. MAIN HOME PAGE SECTIONS */}
-          <main>
-            {/* Pioneers of Modern Urban Development Section */}
-            <HeroSection
-              onOpenEnquire={() => setIsEnquireModalOpen(true)}
-              onSelectSection={handleSelectSection}
-            />
+              {/* CENTRAL FILTERING BOX */}
+              <CentralFilterBox
+                selectedCity={selectedCity}
+                setSelectedCity={setSelectedCity}
+                selectedCategory={activeProjectFilter}
+                setSelectedCategory={setActiveProjectFilter}
+                selectedConfig={selectedConfig}
+                setSelectedConfig={setSelectedConfig}
+              />
 
-            {/* Creating Landmarks That Inspire Generations Section */}
-            <AboutSection />
+              {/* MAIN SECTIONS */}
+              <main>
+                {/* Pioneers of Modern Urban Development Section */}
+                <HeroSection
+                  onOpenEnquire={() => setIsEnquireModalOpen(true)}
+                  onSelectSection={handleSelectSection}
+                />
 
-            {/* Featured Projects Showcase */}
-            <ProjectsShowcase
-              onOpenEnquire={() => setIsEnquireModalOpen(true)}
-              activeFilter={activeProjectFilter}
-              setActiveFilter={setActiveProjectFilter}
-            />
+                {/* Creating Landmarks That Inspire Generations Section */}
+                <AboutSection />
 
-            {/* Luxury Lifestyle Amenities */}
-            <AmenitiesSection />
+                {/* Featured Projects Showcase */}
+                <ProjectsShowcase
+                  onOpenEnquire={() => setIsEnquireModalOpen(true)}
+                  activeFilter={activeProjectFilter}
+                  setActiveFilter={setActiveProjectFilter}
+                  selectedCity={selectedCity}
+                  selectedConfig={selectedConfig}
+                />
 
-            {/* Resident Testimonials */}
-            <TestimonialsSection />
+                {/* Luxury Lifestyle Amenities */}
+                <AmenitiesSection />
 
-            {/* Media & News Coverage */}
-            <MediaSection />
-          </main>
+                {/* Resident Testimonials */}
+                <TestimonialsSection />
+
+                {/* Media & News Coverage */}
+                <MediaSection />
+              </main>
+            </div>
+          )}
 
           {/* FOOTER */}
           <Footer
@@ -98,7 +248,7 @@ export default function App() {
           <div className="fixed bottom-6 right-6 z-40">
             <button
               onClick={() => setShowSplash(true)}
-              className="px-4 py-2 bg-[#1A1A1A]/80 hover:bg-[#1A1A1A] backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/40 rounded-full text-xs font-semibold shadow-2xl hover:scale-105 transition-all"
+              className="px-4 py-2 bg-[#1A1A1A]/80 hover:bg-[#1A1A1A] backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/40 rounded-full text-xs font-semibold shadow-2xl hover:scale-105 transition-all cursor-pointer"
               title="Return to Splash Screen"
             >
               ✦ Splash View

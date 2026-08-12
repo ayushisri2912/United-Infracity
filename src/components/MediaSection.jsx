@@ -30,62 +30,62 @@ export default function MediaSection() {
   ];
 
   return (
-    <section id="media" className="py-20 lg:py-28 bg-[#FDFBF7] relative border-t border-amber-900/10">
+    <section id="media" className="py-10 lg:py-14 bg-[#FDFBF7] relative border-t border-[#D4AF37]/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#D4AF37]/10 text-[#997B20] text-xs font-bold uppercase tracking-widest">
+        <div className="text-center max-w-3xl mx-auto space-y-2.5 mb-8">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#D4AF37]/10 text-[#997B20] text-xs font-bold uppercase tracking-widest">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Media & Insights</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#1A1A1A]">
+          <h2 className="font-serif text-2xl sm:text-4xl font-bold text-[#1A1A1A]">
             News, Events & <span className="text-[#D4AF37] italic font-serif">Press Coverage</span>
           </h2>
-          <p className="text-stone-600 text-sm sm:text-base font-light">
+          <p className="text-stone-600 text-xs sm:text-sm font-light">
             Stay updated with our latest corporate announcements, industry awards, and thought leadership articles.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {articles.map((item, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-2xl overflow-hidden border border-[#D4AF37]/20 shadow-md hover:shadow-2xl transition-all duration-300 group flex flex-col justify-between"
+              className="bg-white rounded-2xl overflow-hidden border border-[#D4AF37]/20 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col justify-between"
             >
               <div>
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-40 overflow-hidden">
                   <img
                     src={item.image}
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute top-4 left-4 px-3 py-1 bg-[#1A1A1A]/90 text-[#D4AF37] text-[10px] font-bold uppercase tracking-wider rounded-full backdrop-blur-md">
+                  <div className="absolute top-3 left-3 px-2.5 py-0.5 bg-[#1A1A1A]/90 text-[#D4AF37] text-[9px] font-bold uppercase tracking-wider rounded-full backdrop-blur-md">
                     {item.type}
                   </div>
                 </div>
 
-                <div className="p-6 space-y-3">
-                  <div className="flex items-center gap-2 text-xs text-stone-400">
-                    <Calendar className="w-3.5 h-3.5 text-[#D4AF37]" />
+                <div className="p-5 space-y-2.5">
+                  <div className="flex items-center gap-2 text-[11px] text-stone-400">
+                    <Calendar className="w-3 h-3 text-[#D4AF37]" />
                     <span>{item.date}</span>
                     <span>•</span>
                     <span>{item.author}</span>
                   </div>
 
-                  <h3 className="font-serif font-bold text-lg text-stone-900 group-hover:text-[#D4AF37] transition-colors leading-snug">
+                  <h3 className="font-serif font-bold text-base text-stone-900 group-hover:text-[#D4AF37] transition-colors leading-snug">
                     {item.title}
                   </h3>
 
-                  <p className="text-stone-600 text-xs leading-relaxed font-light">
+                  <p className="text-stone-600 text-xs leading-relaxed font-light line-clamp-2">
                     {item.excerpt}
                   </p>
                 </div>
               </div>
 
-              <div className="px-6 pb-6 pt-2">
-                <button className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#997B20] hover:text-[#1A1A1A] transition-colors">
+              <div className="px-5 pb-5 pt-1">
+                <button className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#997B20] hover:text-[#1A1A1A] transition-colors">
                   <span>Read Article</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
             </div>
