@@ -1,0 +1,81 @@
+import React, { useState } from 'react';
+import { Mail, CheckCircle2, ArrowRight } from 'lucide-react';
+
+export default function NewsNewsletterSection() {
+  const [email, setEmail] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (email.trim()) {
+      setSubscribed(true);
+      setEmail('');
+    }
+  };
+
+  return (
+    <section className="py-20 sm:py-28 bg-[#FAF8F5] border-t border-[#E8DCC8]">
+      <div className="max-w-4xl mx-auto px-6">
+        
+        {/* Minimal Beige Card Container with Generous Spacing */}
+        <div className="bg-white rounded-2xl p-8 sm:p-14 border border-[#E8DCC8] shadow-[0_10px_35px_rgba(0,0,0,0.02)] text-center space-y-8">
+          
+          <div className="space-y-3 max-w-lg mx-auto">
+            {/* Header Icon */}
+            <div className="w-12 h-12 rounded-full bg-[#FAF8F5] border border-[#E8DCC8] text-[#C6A15B] flex items-center justify-center mx-auto shadow-xs">
+              <Mail className="w-5 h-5" />
+            </div>
+
+            {/* Heading */}
+            <h2 className="font-cormorant text-4xl sm:text-5xl font-normal text-[#1C1C1A]">
+              Stay <span className="italic text-[#C6A15B]">Updated</span>
+            </h2>
+
+            {/* Subtitle */}
+            <p className="font-montserrat text-xs sm:text-sm text-[#66625A] font-light leading-relaxed">
+              Subscribe to receive the latest company news, project launches, and event updates directly in your inbox.
+            </p>
+          </div>
+
+          {/* Form State */}
+          {subscribed ? (
+            <div className="inline-flex items-center gap-3 px-6 py-4 rounded-full bg-[#FAF8F5] border border-[#C6A15B]/40 text-[#1C1C1A] animate-in fade-in duration-300">
+              <CheckCircle2 className="w-5 h-5 text-[#C6A15B]" />
+              <span className="font-montserrat text-xs font-semibold tracking-wide">
+                Subscription confirmed. Welcome to United Infracity Press Club.
+              </span>
+            </div>
+          ) : (
+            <form 
+              onSubmit={handleSubmit}
+              className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto"
+            >
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email address"
+                required
+                className="w-full px-6 py-3.5 rounded-full bg-[#FAF8F5] border border-[#E8DCC8] focus:border-[#C6A15B] text-xs font-montserrat text-[#1C1C1A] placeholder-stone-400 outline-none transition-colors"
+              />
+
+              <button
+                type="submit"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-[#C6A15B] hover:bg-[#1C1C1A] text-white font-montserrat text-xs font-bold uppercase tracking-wider transition-colors duration-300 shadow-sm cursor-pointer whitespace-nowrap"
+              >
+                <span>Subscribe</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </form>
+          )}
+
+          <p className="font-montserrat text-[10px] text-stone-400 font-light">
+            We value your privacy. No spam. Unsubscribe anytime.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+  );
+}

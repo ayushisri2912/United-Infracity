@@ -2,23 +2,66 @@
 
 @layer base {
   :root {
-    --color-cream: #FDFBF7;
-    --color-cream-dark: #F5F0E6;
-    --color-charcoal: #1A1A1A;
-    --color-gold: #D4AF37;
-    --color-gold-dark: #B38F24;
+    --color-cream: #F8F5F0;
+    --color-cream-dark: #EFE9E0;
+    --color-charcoal: #1C1C1A;
+    --color-gold: #C6A15B;
+    --color-gold-dark: #A88746;
     --color-gold-light: #F4E5B0;
   }
 
   body {
-    background-color: var(--color-cream);
-    color: var(--color-charcoal);
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #F8F5F0;
+    color: #1C1C1A;
+    font-family: 'Plus Jakarta Sans', 'Montserrat', sans-serif;
     overflow-x: hidden;
   }
 
-  h1, h2, h3, h4, .font-serif-luxury {
-    font-family: 'Playfair Display', serif;
+  h1, h2, h3, h4, .font-serif-luxury, .font-serif {
+    font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+  }
+
+  .font-montserrat, .font-sans {
+    font-family: 'Plus Jakarta Sans', 'Montserrat', sans-serif;
+  }
+}
+
+/* Global Home Page Typography Design System Utilities */
+@layer components {
+  /* Main Section Headings */
+  .heading-primary {
+    font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+    font-weight: 700;
+    color: #1A1A1A;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+  }
+
+  /* Taglines & Section Badge Labels */
+  .tagline-badge {
+    font-family: 'Plus Jakarta Sans', 'Montserrat', sans-serif;
+    font-size: 0.75rem; /* 12px */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: #997B20;
+  }
+
+  /* Body Paragraphs */
+  .body-luxury {
+    font-family: 'Plus Jakarta Sans', 'Montserrat', sans-serif;
+    font-weight: 300;
+    color: #57534E; /* text-stone-600 */
+    line-height: 1.625;
+  }
+
+  /* Button Typography */
+  .btn-typography {
+    font-family: 'Plus Jakarta Sans', 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem; /* 12px */
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
   }
 }
 
