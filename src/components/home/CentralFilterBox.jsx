@@ -26,17 +26,17 @@ export default function CentralFilterBox() {
         </div>
 
         {/* Section Heading */}
-        <h2 className="font-serif text-2xl sm:text-4xl font-bold tracking-wider text-[#B38F24] uppercase mb-8">
+        <h2 className="font-serif text-xl sm:text-3xl lg:text-4xl font-bold tracking-wider text-[#B38F24] uppercase mb-6 sm:mb-8">
           PORTFOLIO OF OUR FINEST PROJECTS
         </h2>
 
         {/* Central White Box Container */}
-        <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-[0_10px_35px_rgba(212,175,55,0.08)] border border-[#D4AF37]/25 relative">
+        <div className="bg-white rounded-2xl p-4 sm:p-7 lg:p-8 shadow-[0_10px_35px_rgba(212,175,55,0.08)] border border-[#D4AF37]/25 relative">
           
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-[3px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent rounded-full" />
           
           {/* 3 Filters */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 items-end">
             
             {/* FILTER 1: LOCATION */}
             <div className="text-left space-y-1.5">

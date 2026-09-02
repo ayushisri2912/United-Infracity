@@ -98,26 +98,26 @@ export default function ProjectsShowcase() {
   });
 
   return (
-    <section id="projects" className="py-20 lg:py-28 bg-[#FDFBF7] relative">
-      <div className="max-w-[1550px] w-full mx-auto px-6 sm:px-10 lg:px-14">
+    <section id="projects" className="py-16 sm:py-20 lg:py-28 bg-[#FDFBF7] relative">
+      <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-6">
           <div className="space-y-3">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#D4AF37]/10 text-[#997B20] border border-[#D4AF37]/20 text-xs font-bold uppercase tracking-widest">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Architectural Portfolio</span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#1A1A1A]">
+            <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-[#1A1A1A]">
               Explore Our <span className="text-[#D4AF37] italic font-serif">Flagship Developments</span>
             </h2>
-            <p className="text-stone-700 text-base sm:text-lg font-light max-w-xl">
+            <p className="text-stone-700 text-sm sm:text-base lg:text-lg font-light max-w-xl leading-relaxed">
               Discover luxury residences, grade-A commercial hubs, and township ecosystems crafted with uncompromised engineering standards.
             </p>
           </div>
 
           {/* Filter Pills */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none max-w-full">
             {categories.map((cat) => (
               <button
                 key={cat}

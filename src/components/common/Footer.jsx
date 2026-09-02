@@ -35,22 +35,22 @@ export default function Footer() {
 
   return (
     <footer id="footer" className="bg-[#161513] text-stone-200 border-t-4 border-[#D4AF37] pt-12 pb-8 relative overflow-hidden font-montserrat">
-      <div className="max-w-[1550px] w-full mx-auto px-6 sm:px-10 lg:px-14">
+      <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14">
         
         {/* PART 1: Top Bar - Branding & Quick Action */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b border-stone-800">
-          <div className="flex flex-wrap items-center gap-5">
-            <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-3.5 group">
-              <div className="w-11 h-11 rounded-xl bg-[#D4AF37] p-0.5 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
+          <div className="flex flex-wrap items-center gap-4 sm:gap-5">
+            <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-3 group">
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[#D4AF37] p-0.5 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300 shrink-0">
                 <div className="w-full h-full bg-stone-950 rounded-[10px] flex items-center justify-center">
-                  <Building2 className="w-5 h-5 text-[#D4AF37]" />
+                  <Building2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37]" />
                 </div>
               </div>
               <div className="flex flex-col">
-                <span className="font-serif font-bold text-xl sm:text-2xl text-white tracking-tight group-hover:text-[#D4AF37] transition-colors">
+                <span className="font-serif font-bold text-lg sm:text-2xl text-white tracking-tight group-hover:text-[#D4AF37] transition-colors">
                   UNITED INFRACITY
                 </span>
-                <span className="text-[10px] sm:text-[11px] tracking-[0.3em] uppercase font-bold text-[#D4AF37]">
+                <span className="text-[9px] sm:text-[11px] tracking-[0.25em] sm:tracking-[0.3em] uppercase font-bold text-[#D4AF37]">
                   Private Limited
                 </span>
               </div>
@@ -58,17 +58,17 @@ export default function Footer() {
 
             <span className="hidden sm:inline-block w-px h-8 bg-stone-800" />
 
-            <div className="flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-stone-800/80 border border-[#D4AF37]/40 text-xs text-[#D4AF37]">
+            <div className="flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-stone-800/80 border border-[#D4AF37]/40 text-xs text-[#D4AF37]">
               <ShieldCheck className="w-4 h-4 shrink-0" />
-              <span className="font-semibold uppercase tracking-wider">RERA Registered Developer</span>
-              <span className="text-stone-400 font-light hidden lg:inline">| CIN: U70102UP2012PTC050901</span>
+              <span className="font-semibold uppercase tracking-wider text-[11px] sm:text-xs">RERA Registered Developer</span>
+              <span className="text-stone-400 font-light hidden xl:inline">| CIN: U70102UP2012PTC050901</span>
             </div>
           </div>
 
           <div className="flex items-center gap-4 shrink-0">
             <button
               onClick={openEnquire}
-              className="px-6 py-3 bg-gradient-to-r from-[#D4AF37] to-[#B38F24] hover:from-[#B38F24] hover:to-[#997B20] text-stone-950 font-bold text-xs sm:text-sm uppercase tracking-[0.15em] rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] cursor-pointer"
+              className="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-[#D4AF37] to-[#B38F24] hover:from-[#B38F24] hover:to-[#997B20] text-stone-950 font-bold text-xs sm:text-sm uppercase tracking-[0.15em] rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] cursor-pointer text-center"
             >
               Enquire Corporate Desk
             </button>
@@ -76,7 +76,7 @@ export default function Footer() {
         </div>
 
         {/* PART 2: Main Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 py-8 border-b border-stone-800">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 py-8 border-b border-stone-800">
           
           {/* Col 1: Corporate Profile & Social */}
           <div className="space-y-5">
@@ -183,11 +183,15 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2.5 pt-1">
                 <Phone className="w-4 h-4 text-[#D4AF37] shrink-0" />
-                <span>+91 (0522) 4567 890 / 98765 43210</span>
+                <a href="tel:+915224567890" className="hover:text-[#D4AF37] transition-colors">
+                  +91 (0522) 4567 890 / 98765 43210
+                </a>
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-[#D4AF37] shrink-0" />
-                <span>enquiry@unitedinfracity.com</span>
+                <a href="mailto:enquiry@unitedinfracity.com" className="hover:text-[#D4AF37] transition-colors">
+                  enquiry@unitedinfracity.com
+                </a>
               </div>
             </div>
           </div>
@@ -195,7 +199,7 @@ export default function Footer() {
         </div>
 
         {/* PART 3: Bottom Bar */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-stone-400 font-light">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-stone-400 font-light text-center sm:text-left">
           <p>
             © {new Date().getFullYear()} <strong className="text-stone-200">UNITED INFRACITY PRIVATE LIMITED</strong>. All Rights Reserved.
           </p>
@@ -206,5 +210,6 @@ export default function Footer() {
 
       </div>
     </footer>
+
   );
 }

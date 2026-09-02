@@ -54,7 +54,7 @@ export default function HeroBannerSlider() {
   };
 
   return (
-    <section className="relative w-full h-[72vh] sm:h-[80vh] lg:h-[88vh] min-h-[650px] overflow-hidden bg-black selection:bg-amber-500 selection:text-black">
+    <section className="relative w-full h-[72vh] sm:h-[80vh] lg:h-[88vh] min-h-[500px] sm:min-h-[600px] lg:min-h-[650px] overflow-hidden bg-black selection:bg-amber-500 selection:text-black">
       {/* Background Slides */}
       {slides.map((slide, idx) => (
         <div
@@ -66,29 +66,29 @@ export default function HeroBannerSlider() {
             alt={slide.title}
             className="absolute inset-0 w-full h-full object-cover object-center scale-110 transition-transform duration-[6000ms]"
           />
-          <div className="absolute inset-0 bg-black/30" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/25 to-transparent" />
+          <div className="absolute inset-0 bg-black/35" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-transparent" />
         </div>
       ))}
 
       {/* Floating Content Overlay */}
-      <div className="relative z-20 max-w-[1550px] w-full mx-auto h-full px-6 sm:px-10 lg:px-14 flex flex-col justify-center text-left">
-        <div className="max-w-2xl space-y-3 animate-in fade-in slide-in-from-left duration-700">
+      <div className="relative z-20 max-w-[1550px] w-full mx-auto h-full px-4 sm:px-8 lg:px-14 flex flex-col justify-center text-left">
+        <div className="max-w-2xl space-y-3 animate-in fade-in slide-in-from-left duration-700 pr-4">
 
           {/* Top Tagline */}
-          <div className="text-[#D4AF37] text-xs tracking-[0.25em] uppercase font-semibold flex items-center gap-3">
-            <span className="w-6 h-[2px] bg-[#D4AF37] inline-block" />
-            <span>{activeSlide.tagline}</span>
-            <span className="w-6 h-[2px] bg-[#D4AF37] inline-block" />
+          <div className="text-[#D4AF37] text-[11px] sm:text-xs tracking-[0.2em] sm:tracking-[0.25em] uppercase font-semibold flex items-center gap-2 sm:gap-3">
+            <span className="w-4 sm:w-6 h-[2px] bg-[#D4AF37] inline-block shrink-0" />
+            <span className="truncate">{activeSlide.tagline}</span>
+            <span className="w-4 sm:w-6 h-[2px] bg-[#D4AF37] inline-block shrink-0" />
           </div>
 
           {/* Main Title */}
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif text-white tracking-tight leading-tight font-bold">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-white tracking-tight leading-tight font-bold">
             {activeSlide.title}
           </h1>
 
           {/* Subtitle */}
-          <p className="text-[#D4AF37]/90 text-xs sm:text-sm tracking-[0.2em] font-semibold">
+          <p className="text-[#D4AF37]/95 text-xs sm:text-sm tracking-[0.15em] sm:tracking-[0.2em] font-semibold">
             {activeSlide.subtitle}
           </p>
 
@@ -96,7 +96,7 @@ export default function HeroBannerSlider() {
           <div className="pt-2">
             <button
               onClick={() => handleExplore(activeSlide)}
-              className="inline-flex items-center gap-3 bg-[#D4AF37] hover:bg-[#B38F24] text-stone-950 font-bold px-6 py-2.5 text-xs tracking-[0.2em] uppercase rounded-lg shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer"
+              className="inline-flex items-center gap-2 sm:gap-3 bg-[#D4AF37] hover:bg-[#B38F24] text-stone-950 font-bold px-5 sm:px-6 py-2.5 sm:py-3 text-[11px] sm:text-xs tracking-[0.15em] sm:tracking-[0.2em] uppercase rounded-xl shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer"
             >
               <span>EXPLORE MORE</span>
               <span className="font-serif text-sm">→</span>
@@ -107,10 +107,11 @@ export default function HeroBannerSlider() {
       </div>
 
       {/* Slider Controls */}
-      <div className="absolute bottom-6 right-6 sm:right-8 z-30 flex items-center gap-3 bg-black/50 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15 shadow-xl">
+      <div className="absolute bottom-5 sm:bottom-6 right-4 sm:right-8 z-30 flex items-center gap-2 sm:gap-3 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 shadow-xl">
         <button
           onClick={() => setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1))}
           className="p-1 text-white/70 hover:text-[#D4AF37] transition-colors cursor-pointer"
+          aria-label="Previous Slide"
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
@@ -120,7 +121,8 @@ export default function HeroBannerSlider() {
             <button
               key={idx}
               onClick={() => setCurrentSlide(idx)}
-              className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${idx === currentSlide ? 'w-6 bg-[#D4AF37]' : 'w-1.5 bg-white/40 hover:bg-white'}`}
+              aria-label={`Go to slide ${idx + 1}`}
+              className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${idx === currentSlide ? 'w-5 sm:w-6 bg-[#D4AF37]' : 'w-1.5 bg-white/40 hover:bg-white'}`}
             />
           ))}
         </div>
@@ -128,6 +130,7 @@ export default function HeroBannerSlider() {
         <button
           onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
           className="p-1 text-white/70 hover:text-[#D4AF37] transition-colors cursor-pointer"
+          aria-label="Next Slide"
         >
           <ChevronRight className="w-4 h-4" />
         </button>

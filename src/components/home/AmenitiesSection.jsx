@@ -36,18 +36,18 @@ export default function AmenitiesSection() {
   ];
 
   return (
-    <section className="py-20 lg:py-28 bg-[#F5F0E6] relative border-t border-b border-[#D4AF37]/20">
-      <div className="max-w-[1550px] w-full mx-auto px-6 sm:px-10 lg:px-14">
+    <section className="py-16 sm:py-20 lg:py-28 bg-[#F5F0E6] relative border-t border-b border-[#D4AF37]/20">
+      <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-12 sm:mb-16">
           <span className="text-[#997B20] text-xs font-bold uppercase tracking-[0.25em] block">
             THE LUXURY LIFESTYLE
           </span>
-          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#1A1A1A]">
+          <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-[#1A1A1A]">
             Curated World-Class <span className="text-[#D4AF37] italic font-serif">Amenities</span>
           </h2>
-          <p className="text-stone-700 text-base sm:text-lg font-light leading-relaxed">
+          <p className="text-stone-700 text-sm sm:text-base lg:text-lg font-light leading-relaxed">
             Designed to elevate your everyday living into an ultra-luxury retreat across all United Infracity communities.
           </p>
         </div>

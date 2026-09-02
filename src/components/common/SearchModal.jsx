@@ -33,16 +33,16 @@ export default function SearchModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 p-4 bg-black/70 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="bg-[#FDFBF7] max-w-2xl w-full rounded-2xl overflow-hidden shadow-2xl border border-[#D4AF37]/40">
+    <div className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-20 p-3 sm:p-4 bg-black/70 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="bg-[#FDFBF7] max-w-2xl w-full max-h-[85vh] flex flex-col rounded-2xl overflow-hidden shadow-2xl border border-[#D4AF37]/40">
         
         {/* Search Header */}
-        <div className="p-4 border-b border-stone-200 flex items-center gap-3 bg-white">
-          <Search className="w-5 h-5 text-[#D4AF37]" />
+        <div className="p-3.5 sm:p-4 border-b border-stone-200 flex items-center gap-2.5 sm:gap-3 bg-white shrink-0">
+          <Search className="w-5 h-5 text-[#D4AF37] shrink-0" />
           <input
             type="text"
             autoFocus
-            placeholder="Search projects by name, location (e.g. Aura Tower, Golf Course, Commercial)..."
+            placeholder="Search projects (e.g. Orchid, Aura, Township)..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="w-full bg-transparent outline-none text-stone-800 text-sm font-medium"

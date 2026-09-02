@@ -15,11 +15,11 @@ export default function UserModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="bg-[#FDFBF7] max-w-md w-full rounded-3xl overflow-hidden shadow-2xl border border-[#D4AF37]/40 relative">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/70 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="bg-[#FDFBF7] max-w-md w-full max-h-[92vh] overflow-y-auto rounded-2xl sm:rounded-3xl shadow-2xl border border-[#D4AF37]/40 relative">
         
         {/* Header */}
-        <div className="bg-stone-900 text-white p-6 relative">
+        <div className="bg-stone-900 text-white p-5 sm:p-6 relative">
           <button
             onClick={closeUser}
             className="absolute top-5 right-5 p-1.5 rounded-full bg-stone-800 text-stone-400 hover:text-white cursor-pointer"

@@ -41,18 +41,18 @@ export default function MediaSection() {
   };
 
   return (
-    <section id="media" className="py-10 lg:py-14 bg-[#FDFBF7] relative border-t border-[#D4AF37]/20">
-      <div className="max-w-[1550px] w-full mx-auto px-6 sm:px-10 lg:px-14">
+    <section id="media" className="py-14 sm:py-16 lg:py-20 bg-[#FDFBF7] relative border-t border-[#D4AF37]/20">
+      <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14">
         
-        <div className="text-center max-w-3xl mx-auto space-y-2.5 mb-8">
+        <div className="text-center max-w-3xl mx-auto space-y-2.5 mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#D4AF37]/10 text-[#997B20] text-xs font-bold uppercase tracking-widest">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Media & Insights</span>
           </div>
-          <h2 className="font-serif text-2xl sm:text-4xl font-bold text-[#1A1A1A]">
+          <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-[#1A1A1A]">
             News, Events & <span className="text-[#D4AF37] italic font-serif">Press Coverage</span>
           </h2>
-          <p className="text-stone-700 text-base sm:text-lg font-light">
+          <p className="text-stone-700 text-sm sm:text-base lg:text-lg font-light leading-relaxed">
             Stay updated with our latest corporate announcements, industry awards, and thought leadership articles.
           </p>
         </div>
