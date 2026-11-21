@@ -1,141 +1,118 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React from 'react';
+import { MapPin, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useModal } from '../../context/ModalContext';
 
 export default function HeroBannerSlider() {
-  const [currentSlide, setCurrentSlide] = useState(0);
   const navigate = useNavigate();
   const { setActiveProjectFilter } = useModal();
 
-  const slides = [
-    {
-      id: 1,
-      tagline: 'FLAGSHIP RESIDENTIAL',
-      title: 'THE GRAND HORIZON',
-      subtitle: 'ULTRA-LUXURY SKY RESIDENCES & PENTHOUSES',
-      image: '/images/united_residences.jpg',
-      category: 'Residential',
-      path: '/projects/residential'
-    },
-    {
-      id: 2,
-      tagline: 'COMMERCIAL LANDMARK',
-      title: 'AURA BUSINESS TOWER',
-      subtitle: 'GRADE-A CORPORATE HEADQUARTERS & RETAIL',
-      image: '/images/aura_tower_facade.jpg',
-      category: 'Commercial',
-      path: '/projects/commercial'
-    },
-    {
-      id: 3,
-      tagline: 'INTEGRATED TOWNSHIP',
-      title: 'UNITED IMPERIAL TOWNSHIP',
-      subtitle: '150-ACRE MASTER-PLANNED GREEN ECOSYSTEM',
-      image: '/images/hero_luxury_tower.jpg',
-      category: 'Township',
-      path: '/projects/township'
-    }
-  ];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [slides.length]);
-
-  const activeSlide = slides[currentSlide];
-
-  const handleExplore = (slide) => {
-    setActiveProjectFilter(slide.category);
-    navigate(slide.path);
+  const handleExplore = () => {
+    setActiveProjectFilter('Residential');
+    navigate('/projects/residential');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // const handleScrollDown = () => {
+  //   const nextElem = document.getElementById('central-filter');
+  //   if (nextElem) {
+  //     nextElem.scrollIntoView({ behavior: 'smooth' });
+  //   } else {
+  //     window.scrollTo({ top: window.innerHeight - 80, behavior: 'smooth' });
+  //   }
+  // };
+
   return (
-    <section className="relative w-full h-[72vh] sm:h-[80vh] lg:h-[88vh] min-h-[500px] sm:min-h-[600px] lg:min-h-[650px] overflow-hidden bg-black selection:bg-amber-500 selection:text-black">
-      {/* Background Slides */}
-      {slides.map((slide, idx) => (
-        <div
-          key={slide.id}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-        >
-          <img
-            src={slide.image}
-            alt={slide.title}
-            className="absolute inset-0 w-full h-full object-cover object-center scale-110 transition-transform duration-[6000ms]"
-          />
-          <div className="absolute inset-0 bg-black/35" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-transparent" />
-        </div>
-      ))}
+    <section className="relative w-full h-[calc(100vh-80px)] sm:h-[calc(100vh-88px)] min-h-[600px] sm:min-h-[650px] lg:min-h-[720px] overflow-hidden bg-[#F8F5F0] flex flex-col justify-between selection:bg-[#D4AF37] selection:text-white">
+      {/* Full Screen Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/images/herosec-img.webp"
+          alt="United Orchid Heights"
+          className="w-full h-full object-cover object-right sm:object-[center_right] md:object-center select-none"
+        />
+        {/* Soft overlay ensuring high contrast and readability on all screen sizes */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#FAF6F0]/95 via-[#FAF6F0]/80 via-40% to-transparent sm:via-[#FAF6F0]/45 sm:via-45% md:via-transparent pointer-events-none" />
+      </div>
 
-      {/* Floating Content Overlay */}
-      <div className="relative z-20 max-w-[1550px] w-full mx-auto h-full px-4 sm:px-8 lg:px-14 flex flex-col justify-center text-left">
-        <div className="max-w-2xl space-y-3 animate-in fade-in slide-in-from-left duration-700 pr-4">
-
-          {/* Top Tagline */}
-          <div className="text-[#D4AF37] text-[11px] sm:text-xs tracking-[0.2em] sm:tracking-[0.25em] uppercase font-semibold flex items-center gap-2 sm:gap-3">
-            <span className="w-4 sm:w-6 h-[2px] bg-[#D4AF37] inline-block shrink-0" />
-            <span className="truncate">{activeSlide.tagline}</span>
-            <span className="w-4 sm:w-6 h-[2px] bg-[#D4AF37] inline-block shrink-0" />
+      {/* Main Content Area */}
+      <div className="relative z-10 max-w-[1550px] w-full mx-auto h-full px-5 sm:px-10 lg:px-16 flex flex-col justify-center">
+        <div className="max-w-2xl xl:max-w-3xl space-y-4 sm:space-y-5 lg:space-y-6 pt-2">
+          
+          {/* Top Tagline with Decorative Lines */}
+          <div className="flex items-center gap-3">
+            <span className="w-8 sm:w-12 h-[1.5px] bg-[#B0894C]" />
+            <span className="text-[#A07D3E] text-xs sm:text-[13px] tracking-[0.25em] uppercase font-semibold">
+              LUXURY LIVING IN LUCKNOW
+            </span>
+            <span className="w-8 sm:w-12 h-[1.5px] bg-[#B0894C]" />
           </div>
 
           {/* Main Title */}
-          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-white tracking-tight leading-tight font-bold">
-            {activeSlide.title}
+          <h1 className="font-serif text-[#1F1B17] text-4xl sm:text-5xl md:text-6xl lg:text-[70px] xl:text-[78px] font-normal leading-[1.05] tracking-tight">
+            UNITED<br />ORCHID HEIGHTS
           </h1>
 
           {/* Subtitle */}
-          <p className="text-[#D4AF37]/95 text-xs sm:text-sm tracking-[0.15em] sm:tracking-[0.2em] font-semibold">
-            {activeSlide.subtitle}
+          <p className="font-serif italic text-lg sm:text-2xl lg:text-[28px] text-[#4E4338] font-normal leading-relaxed">
+            The Finest Expression of Modern Living
           </p>
 
-          {/* Action Button */}
-          <div className="pt-2">
+          {/* Location Pin */}
+          <div className="flex items-center gap-2.5 text-stone-800 text-sm sm:text-base font-medium">
+            <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-[#2A241F] fill-[#2A241F] shrink-0" />
+            <span>Vrindavan Yojna Phase 1, Lucknow</span>
+          </div>
+
+          {/* Single Action Button: Explore Now */}
+          <div className="pt-2 sm:pt-4">
             <button
-              onClick={() => handleExplore(activeSlide)}
-              className="inline-flex items-center gap-2 sm:gap-3 bg-[#D4AF37] hover:bg-[#B38F24] text-stone-950 font-bold px-5 sm:px-6 py-2.5 sm:py-3 text-[11px] sm:text-xs tracking-[0.15em] sm:tracking-[0.2em] uppercase rounded-xl shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer"
+              onClick={handleExplore}
+              className="inline-flex items-center gap-3 bg-[#BA8748] hover:bg-[#A37438] active:scale-[0.98] text-white font-medium px-8 sm:px-9 py-3.5 sm:py-4 text-sm sm:text-base rounded-xl shadow-[0_8px_25px_rgba(186,135,72,0.35)] hover:shadow-[0_12px_30px_rgba(186,135,72,0.45)] transition-all duration-300 hover:scale-[1.02] cursor-pointer group"
             >
-              <span>EXPLORE MORE</span>
-              <span className="font-serif text-sm">→</span>
+              <span className="tracking-wide">Explore Now</span>
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1" />
             </button>
           </div>
 
         </div>
       </div>
 
-      {/* Slider Controls */}
-      <div className="absolute bottom-5 sm:bottom-6 right-4 sm:right-8 z-30 flex items-center gap-2 sm:gap-3 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 shadow-xl">
-        <button
-          onClick={() => setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1))}
-          className="p-1 text-white/70 hover:text-[#D4AF37] transition-colors cursor-pointer"
-          aria-label="Previous Slide"
-        >
-          <ChevronLeft className="w-4 h-4" />
-        </button>
-
-        <div className="flex items-center gap-1.5">
-          {slides.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentSlide(idx)}
-              aria-label={`Go to slide ${idx + 1}`}
-              className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${idx === currentSlide ? 'w-5 sm:w-6 bg-[#D4AF37]' : 'w-1.5 bg-white/40 hover:bg-white'}`}
-            />
-          ))}
+      {/* Scroll Down Indicator */}
+      {/* <button
+        onClick={handleScrollDown}
+        className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 text-stone-700/80 hover:text-stone-900 transition-colors cursor-pointer group"
+        aria-label="Scroll Down"
+      >
+        <div className="w-5 h-8 border-[1.5px] border-stone-600/70 group-hover:border-stone-900 rounded-full flex justify-center pt-1.5 transition-colors">
+          <div className="w-1 h-2 bg-stone-700 group-hover:bg-stone-900 rounded-full animate-bounce" />
         </div>
+        <span className="text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-stone-700 group-hover:text-stone-900">
+          Scroll Down
+        </span>
+      </button> */}
 
-        <button
-          onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
-          className="p-1 text-white/70 hover:text-[#D4AF37] transition-colors cursor-pointer"
-          aria-label="Next Slide"
+      {/* Elegant Curved Bottom Divider */}
+      <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none z-10 pointer-events-none">
+        <svg
+          viewBox="0 0 1440 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-6 sm:h-9 lg:h-12 block"
+          preserveAspectRatio="none"
         >
-          <ChevronRight className="w-4 h-4" />
-        </button>
+          <path
+            d="M0,28 C360,50 800,0 1140,25 C1280,35 1380,18 1440,24 L1440,48 L0,48 Z"
+            fill="#FDFBF7"
+          />
+          <path
+            d="M0,28 C360,50 800,0 1140,25 C1280,35 1380,18 1440,24"
+            stroke="#D4AF37"
+            strokeWidth="1.2"
+            strokeOpacity="0.35"
+          />
+        </svg>
       </div>
-
     </section>
   );
 }
