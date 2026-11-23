@@ -2,10 +2,13 @@ import React, { useEffect } from 'react';
 import HeroBannerSlider from '../components/home/HeroBannerSlider';
 import HeroSection from '../components/home/HeroSection';
 import AboutSection from '../components/home/AboutSection';
-import ProjectsShowcase from '../components/home/ProjectsShowcase';
-import AmenitiesSection from '../components/home/AmenitiesSection';
 import TestimonialsSection from '../components/home/TestimonialsSection';
-import MediaSection from '../components/home/MediaSection';
+import SecureLiving from '../components/home/SecureLiving';
+import LifestyleExperiences from '../components/home/LifestyleExperiences';
+import SwimmingPool from '../components/home/SwimmingPool';
+import LuxuryInteriors from '../components/home/LuxuryInteriors';
+import LocationConnectivity from '../components/home/LocationConnectivity';
+import FloorPlan from '../components/home/FloorPlan';
 
 export default function Home() {
   useEffect(() => {
@@ -23,17 +26,22 @@ export default function Home() {
       {/* 3. Creating Landmarks That Inspire Generations (About Section) */}
       <AboutSection />
 
-      {/* 4. Featured Projects Showcase */}
-      <ProjectsShowcase />
+      <SecureLiving/>
 
-      {/* 5. Luxury Lifestyle Amenities */}
-      <AmenitiesSection />
+      <LifestyleExperiences/>
+    
+      <SwimmingPool/>
 
+      <LuxuryInteriors/>
+
+      <LocationConnectivity/>
+
+      <FloorPlan/>
+      
       {/* 6. Resident Testimonials Teaser */}
       <TestimonialsSection />
 
-      {/* 7. Media & News Coverage */}
-      <MediaSection />
+      
     </div>
   );
 }

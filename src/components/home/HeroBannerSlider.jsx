@@ -36,7 +36,7 @@ export default function HeroBannerSlider() {
       </div>
 
       {/* Main Content Area */}
-      <div className="relative z-10 max-w-[1550px] w-full mx-auto h-full px-5 sm:px-10 lg:px-16 flex flex-col justify-center">
+      <div className="relative z-10 max-w-[1550px] w-full mx-auto h-full px-4 sm:px-8 lg:px-14 flex flex-col justify-center">
         <div className="max-w-2xl xl:max-w-3xl space-y-4 sm:space-y-5 lg:space-y-6 pt-2">
           
           {/* Top Tagline with Decorative Lines */}

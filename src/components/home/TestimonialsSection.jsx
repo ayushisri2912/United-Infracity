@@ -39,7 +39,7 @@ export default function TestimonialsSection() {
 
   return (
     <section id="testimonials" className="py-20 lg:py-28 bg-[#F8F5F0] relative border-t border-[#C6A15B]/20">
-      <div className="max-w-[1550px] w-full mx-auto px-6 sm:px-10 lg:px-14">
+      <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14">
         
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">

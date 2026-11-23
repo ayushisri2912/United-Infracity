@@ -21,6 +21,10 @@
     font-family: 'Playfair Display', 'Cormorant Garamond', serif;
   }
 
+  .font-instrument, .font-editorial {
+    font-family: 'Instrument Serif', 'Cormorant Garamond', Georgia, serif;
+  }
+
   .font-montserrat, .font-sans {
     font-family: 'Plus Jakarta Sans', 'Montserrat', sans-serif;
   }

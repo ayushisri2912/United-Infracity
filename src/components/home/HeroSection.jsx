@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { PhoneCall } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useModal } from '../../context/ModalContext';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function HeroSection() {
   const navigate = useNavigate();
   const { openEnquire } = useModal();
+
+  const sectionRef = useRef(null);
+  const textContentRef = useRef(null);
+  const imgContainerRef = useRef(null);
+  const imgRef = useRef(null);
+  const outlineRef = useRef(null);
 
   const stats = [
     { value: '180', label: 'Residences' },
@@ -14,8 +26,88 @@ export default function HeroSection() {
     { value: '3 BHK', label: 'Configurations' }
   ];
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Right column text and stats fade-up
+      if (textContentRef.current) {
+        gsap.from(textContentRef.current.querySelectorAll('.gsap-hero-fade'), {
+          y: 35,
+          opacity: 0,
+          duration: 1.1,
+          stagger: 0.16,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none none'
+          }
+        });
+      }
+
+      // Lodha-style Image container smooth reveal
+      if (imgContainerRef.current) {
+        gsap.from(imgContainerRef.current, {
+          y: 40,
+          opacity: 0,
+          duration: 1.25,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 78%',
+            toggleActions: 'play none none none'
+          }
+        });
+      }
+
+      // Lodha-style Image subtle zoom-out reveal
+      if (imgRef.current) {
+        gsap.from(imgRef.current, {
+          scale: 1.12,
+          duration: 1.4,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 78%',
+            toggleActions: 'play none none none'
+          }
+        });
+
+        // Lodha-style subtle parallax scrub as user scrolls
+        gsap.to(imgRef.current, {
+          yPercent: 6,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.2
+          }
+        });
+      }
+
+      // Subtle offset golden outline floating into place from alignment
+      if (outlineRef.current) {
+        gsap.from(outlineRef.current, {
+          x: 14,
+          y: -14,
+          opacity: 0,
+          duration: 1.2,
+          ease: 'power2.out',
+          delay: 0.3,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 78%',
+            toggleActions: 'play none none none'
+          }
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="hero" className="py-14 sm:py-18 lg:py-24 bg-[#F8F2E8] relative overflow-hidden">
+    <section ref={sectionRef} id="hero" className="py-14 sm:py-18 lg:py-24 bg-[#F8F2E8] relative overflow-hidden">
       {/* Subtle Luxury Background Accents */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-[#EDE2D1]/40 rounded-full blur-3xl pointer-events-none -z-0" />
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#B9953E]/5 rounded-full blur-2xl pointer-events-none -z-0" />
@@ -25,16 +117,23 @@ export default function HeroSection() {
           
           {/* Left Column (Approx 50% width): Project Building Image - Height matched to right content */}
           <div className="lg:col-span-6 order-1 flex flex-col h-full">
-            <div className="relative group w-full h-full flex flex-col max-w-xl mx-auto lg:max-w-none">
-              {/* Subtle Decorative Outer Border Frame */}
-              <div className="absolute -inset-2.5 sm:-inset-3.5 border border-[#B9953E]/30 rounded-2xl pointer-events-none hidden sm:block transition-all duration-500 group-hover:border-[#B9953E]/50" />
-              
+            <div className="relative group w-full h-full flex flex-col max-w-xl mx-auto lg:max-w-none pb-3 pl-3 sm:pb-4 sm:pl-4">
+              {/* Subtle Offset Golden Outline Frame (shifted down-left, bounded inside container) */}
+              <div
+                ref={outlineRef}
+                className="absolute top-3 left-0 sm:top-4 right-3 sm:right-4 bottom-0 border border-[#B9953E]/45 rounded-xl sm:rounded-2xl pointer-events-none z-0"
+              />
+
               {/* Main Image Container filling height */}
-              <div className="relative flex-1 w-full h-full min-h-[380px] sm:min-h-[460px] lg:min-h-0 overflow-hidden rounded-xl sm:rounded-2xl bg-[#EDE2D1] shadow-xl border border-[#B9953E]/20 flex flex-col">
+              <div 
+                ref={imgContainerRef}
+                className="relative z-10 flex-1 w-full h-full min-h-[380px] sm:min-h-[460px] lg:min-h-0 overflow-hidden rounded-xl sm:rounded-2xl bg-[#EDE2D1] shadow-xl border border-[#B9953E]/20 flex flex-col"
+              >
                 <img
+                  ref={imgRef}
                   src="/images/about1.webp"
                   alt="United Orchid Heights - 15-Storey Luxury Residential Tower"
-                  className="w-full h-full object-cover object-center flex-1 transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                  className="w-full h-full object-cover object-center flex-1 will-change-transform block"
                   loading="lazy"
                 />
 
@@ -59,12 +158,12 @@ export default function HeroSection() {
           </div>
 
           {/* Right Column (Approx 50% width): Project Information, Stats & Buttons */}
-          <div className="lg:col-span-6 order-2 text-left flex flex-col justify-between h-full py-1 sm:py-2 space-y-6 sm:space-y-7">
+          <div ref={textContentRef} className="lg:col-span-6 order-2 text-left flex flex-col justify-between h-full py-1 sm:py-2 space-y-6 sm:space-y-7">
             
             {/* Top: Header & Description */}
             <div className="space-y-5">
               {/* Small Label with Orchid Motif */}
-              <div className="inline-flex items-center gap-2.5">
+              <div className="gsap-hero-fade inline-flex items-center gap-2.5">
                 <svg className="w-4 h-4 text-[#B9953E] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M12 2C12 2 8 6 8 10C8 13 10 15 12 15C14 15 16 13 16 10C16 6 12 2 12 2Z" fill="#B9953E" fillOpacity="0.2" />
                   <path d="M12 15V22" strokeLinecap="round" />
@@ -78,7 +177,7 @@ export default function HeroSection() {
               </div>
 
               {/* Main Heading */}
-              <div>
+              <div className="gsap-hero-fade">
                 <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#29221F] leading-[1.12]">
                   United Orchid Heights
                 </h2>
@@ -88,7 +187,7 @@ export default function HeroSection() {
               </div>
 
               {/* Description Paragraphs */}
-              <div className="space-y-3 sm:space-y-3.5 text-[#29221F]/85 text-xs sm:text-sm lg:text-[15px] leading-relaxed font-light">
+              <div className="gsap-hero-fade space-y-3 sm:space-y-3.5 text-[#29221F]/85 text-xs sm:text-sm lg:text-[15px] leading-relaxed font-light">
                 <p>
                   United Orchid Heights is a thoughtfully planned residential development by United Infracity Private Limited, created for modern families seeking the right balance of comfort, connectivity and contemporary living.
                 </p>
@@ -101,8 +200,8 @@ export default function HeroSection() {
               </div>
             </div>
 
-            {/* Middle: Project Statistics - All 4 in one single clean row, adjusted size & perfectly aligned */}
-            <div className="pt-5 border-t border-[#B9953E]/20">
+            {/* Middle: Project Statistics */}
+            <div className="gsap-hero-fade pt-5 border-t border-[#B9953E]/20">
               <div className="grid grid-cols-4 gap-2 sm:gap-4 lg:gap-5 items-start">
                 {stats.map((stat, idx) => (
                   <div key={idx} className="space-y-1">
@@ -117,8 +216,8 @@ export default function HeroSection() {
               </div>
             </div>
 
-            {/* Bottom: Two Action Buttons matching 2nd image layout & 3rd image brochure theme */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
+            {/* Bottom: Two Action Buttons */}
+            <div className="gsap-hero-fade flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
               <button
                 onClick={() => {
                   navigate('/about');
