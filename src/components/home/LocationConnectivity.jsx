@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import useImageReveal from '../../hooks/useImageReveal';
 import { 
   Route, 
   Plane, 
@@ -115,6 +116,18 @@ export default function LocationConnectivity() {
 
   const activeCategory = categories.find((c) => c.id === activeCategoryId) || categories[0];
 
+  // Cinematic Left-to-Right Map Reveal (Scaling disabled to keep map labels & landmarks razor-sharp)
+  useImageReveal({
+    direction: 'left',
+    duration: 1.3,
+    scaleEnabled: false,
+    start: 'top 85%',
+    borderDelay: 0.1,
+    containerRef: mapWrapperRef,
+    imageRef: mapImgRef,
+    borderRef: outlineRef,
+  });
+
   // GSAP Entrance ScrollTrigger Animation
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -130,52 +143,6 @@ export default function LocationConnectivity() {
           toggleActions: 'play none none none'
         }
       });
-
-      // Lodha-style map entrance reveal
-      if (mapWrapperRef.current) {
-        gsap.from(mapWrapperRef.current, {
-          y: 45,
-          opacity: 0,
-          duration: 1.25,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: mapWrapperRef.current,
-            start: 'top 78%',
-            toggleActions: 'play none none none'
-          }
-        });
-      }
-
-      // Lodha-style subtle map zoom-out reveal
-      if (mapImgRef.current) {
-        gsap.from(mapImgRef.current, {
-          scale: 1.08,
-          duration: 1.4,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: mapWrapperRef.current,
-            start: 'top 78%',
-            toggleActions: 'play none none none'
-          }
-        });
-      }
-
-      // Subtle offset golden outline floating into place from alignment
-      if (outlineRef.current) {
-        gsap.from(outlineRef.current, {
-          x: 14,
-          y: -14,
-          opacity: 0,
-          duration: 1.2,
-          ease: 'power2.out',
-          delay: 0.25,
-          scrollTrigger: {
-            trigger: mapWrapperRef.current,
-            start: 'top 78%',
-            toggleActions: 'play none none none'
-          }
-        });
-      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -224,7 +191,7 @@ export default function LocationConnectivity() {
     <section
       ref={sectionRef}
       id="location-connectivity"
-      className="relative pt-6 pb-6 sm:pt-8 sm:pb-8 lg:pt-10 lg:pb-8 bg-[#F6F0E6] border-b border-[#B99A59]/20 overflow-hidden"
+      className="relative pt-4 sm:pt-5 lg:pt-6 pb-3 sm:pb-4 lg:pb-4 bg-[#F6F0E6] border-b border-[#B99A59]/20 overflow-hidden"
     >
       {/* Subtle Background Watermark Emblem */}
       <div 
@@ -242,7 +209,7 @@ export default function LocationConnectivity() {
       <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14 relative z-10">
         
         {/* 1. Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8 space-y-2 sm:space-y-2.5">
+        <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-5 space-y-1.5 sm:space-y-2">
           {/* Subtitle / Eyebrow Pill Badge */}
           <div className="gsap-loc-header inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#B99A59]/10 border border-[#B99A59]/25 text-[#A07828]">
             <svg className="w-3.5 h-3.5 text-[#B99A59]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -254,8 +221,8 @@ export default function LocationConnectivity() {
             </span>
           </div>
 
-          {/* Main Heading: Regular weight serif, ~62px desktop */}
-          <h2 className="gsap-loc-header font-serif font-medium text-3xl sm:text-5xl lg:text-[62px] leading-[1.08] tracking-tight text-[#29221F]">
+          {/* Main Heading: Matching Lifestyle & Living heading font and size */}
+          <h2 className="gsap-loc-header font-serif font-medium text-3xl sm:text-4xl md:text-5xl text-[#29221F] leading-tight tracking-tight">
             Closer to Everything That Matters
           </h2>
 
@@ -265,11 +232,11 @@ export default function LocationConnectivity() {
           </p>
 
           {/* Thin Decorative Champagne Gold Line */}
-          <div className="gsap-loc-header h-[1.5px] w-20 sm:w-28 bg-[#B99A59]/60 mx-auto my-2.5 sm:my-3.5" />
+          <div className="gsap-loc-header h-[1.5px] w-20 sm:w-28 bg-[#B99A59]/60 mx-auto my-2 sm:my-2.5" />
         </div>
 
         {/* 2. Asymmetric Two-Column Layout (40% Explorer, 60% Map) - Equal Height on Desktop */}
-        <div className="flex flex-col lg:flex-row lg:items-stretch justify-between gap-8 lg:gap-10 xl:gap-14 w-full my-6 sm:my-8">
+        <div className="flex flex-col lg:flex-row lg:items-stretch justify-between gap-8 lg:gap-10 xl:gap-14 w-full mt-4 sm:mt-5 mb-2 sm:mb-3">
           
           {/* Left Side: Interactive Connectivity Explorer (40% desktop) - Stretches to equal height */}
           <div className="w-full lg:w-[40%] flex flex-col justify-between h-full space-y-4 sm:space-y-5">
@@ -355,6 +322,20 @@ export default function LocationConnectivity() {
               </p>
             </div>
 
+            {/* View Location on Google Maps Button Below Connectivity Box (Left Column) */}
+            <div className="pt-2 sm:pt-3">
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=United+Orchid+Heights+Vrindavan+Yojna+Lucknow"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 border border-[#B99A59] bg-[#B99A59]/10 hover:bg-[#B99A59] text-[#A68A4E] hover:text-white transition-all duration-300 font-medium text-xs sm:text-[13px] tracking-[0.16em] uppercase rounded-none cursor-pointer shadow-2xs"
+              >
+                <MapPin className="w-3.5 h-3.5 text-[#B99A59] group-hover:text-white" />
+                <span>View Location on Google Maps</span>
+                <ExternalLink className="w-3 h-3 ml-0.5 opacity-80" />
+              </a>
+            </div>
+
           </div>
 
           {/* Right Side: Original Location Map (60% desktop) - Stretches to equal height */}
@@ -395,22 +376,11 @@ export default function LocationConnectivity() {
               </div>
             </div>
 
-            {/* View Location on Google Maps Button Below Map */}
-            <div className="pt-3 sm:pt-4 flex items-center justify-between flex-wrap gap-3">
+            {/* Address Details Below Map (Right Column) */}
+            <div className="pt-2 sm:pt-3 flex items-center justify-start sm:justify-end">
               <span className="text-xs text-[#665A49]/80 font-light italic">
                 Sector 6, Vrindavan Yojna, Raebareli Road, Lucknow
               </span>
-
-              <a
-                href="https://www.google.com/maps/search/?api=1&query=United+Orchid+Heights+Vrindavan+Yojna+Lucknow"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 border border-[#B99A59] bg-[#B99A59]/10 hover:bg-[#B99A59] text-[#A68A4E] hover:text-white transition-all duration-300 font-medium text-xs sm:text-[13px] tracking-[0.16em] uppercase rounded-none cursor-pointer shadow-2xs"
-              >
-                <MapPin className="w-3.5 h-3.5 text-[#B99A59] group-hover:text-white" />
-                <span>View Location on Google Maps</span>
-                <ExternalLink className="w-3 h-3 ml-0.5 opacity-80" />
-              </a>
             </div>
 
           </div>
@@ -418,7 +388,7 @@ export default function LocationConnectivity() {
         </div>
 
         {/* 3. Original Floral Emblem at Bottom Center */}
-        <div className="pt-3 sm:pt-5 flex flex-col items-center justify-center">
+        <div className="pt-1 sm:pt-2 flex flex-col items-center justify-center">
           <div className="flex items-center justify-center gap-4 w-full max-w-xs">
             <div className="h-[1px] flex-1 bg-[#B99A59]/30" />
             <img

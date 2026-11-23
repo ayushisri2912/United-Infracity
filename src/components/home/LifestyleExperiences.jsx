@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import useImageReveal from '../../hooks/useImageReveal';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -9,15 +10,26 @@ if (typeof window !== 'undefined') {
 export default function LifestyleExperiences() {
   const sectionRef = useRef(null);
 
+  // Alternating cinematic image reveals with synchronized golden borders
+  // 1: Left to right
+  const reveal1 = useImageReveal({ direction: 'left', start: 'top 85%' });
+  // 2: Right to left (Kids' Park)
+  const reveal2 = useImageReveal({ direction: 'right', start: 'top 85%' });
+  // 3: Left to right (Modern Gymnasium - subtle 0.15s stagger in same row)
+  const reveal3 = useImageReveal({ direction: 'left', delay: 0.15, start: 'top 85%' });
+  // 4: Right to left (Banquet Hall)
+  const reveal4 = useImageReveal({ direction: 'right', start: 'top 85%' });
+  // 5: Left to right (Indoor Games)
+  const reveal5 = useImageReveal({ direction: 'left', start: 'top 85%' });
+  // 6: Right to left (Lift Lobby)
+  const reveal6 = useImageReveal({ direction: 'right', start: 'top 85%' });
+
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Reveal all experience blocks as they scroll into view
+      // Reveal all experience text blocks as they scroll into view
       const blocks = sectionRef.current.querySelectorAll('.experience-block');
       blocks.forEach((block) => {
         const textElements = block.querySelectorAll('.gsap-fade-up');
-        const imgContainers = block.querySelectorAll('.gsap-img-reveal');
-        const images = block.querySelectorAll('.gsap-parallax-img');
-        const outlines = block.querySelectorAll('.gsap-outline-reveal');
         const line = block.querySelector('.gsap-line-reveal');
 
         if (textElements.length > 0) {
@@ -48,63 +60,6 @@ export default function LifestyleExperiences() {
             }
           });
         }
-
-        if (imgContainers.length > 0) {
-          gsap.from(imgContainers, {
-            y: 40,
-            opacity: 0,
-            duration: 1.25,
-            ease: 'power3.out',
-            stagger: 0.15,
-            scrollTrigger: {
-              trigger: block,
-              start: 'top 78%',
-              toggleActions: 'play none none none'
-            }
-          });
-        }
-
-        // Lodha-style subtle zoom-out and parallax scrub for images
-        images.forEach((img) => {
-          gsap.from(img, {
-            scale: 1.12,
-            duration: 1.4,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: block,
-              start: 'top 78%',
-              toggleActions: 'play none none none'
-            }
-          });
-
-          gsap.to(img, {
-            yPercent: 5,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: block,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 1.2
-            }
-          });
-        });
-
-        if (outlines.length > 0) {
-          gsap.from(outlines, {
-            x: 14,
-            y: -14,
-            opacity: 0,
-            duration: 1.2,
-            ease: 'power2.out',
-            delay: 0.25,
-            stagger: 0.15,
-            scrollTrigger: {
-              trigger: block,
-              start: 'top 78%',
-              toggleActions: 'play none none none'
-            }
-          });
-        }
       });
     }, sectionRef);
 
@@ -115,7 +70,7 @@ export default function LifestyleExperiences() {
     <section
       ref={sectionRef}
       id="lifestyle-experiences"
-      className="relative pt-8 pb-4 sm:pt-12 sm:pb-6 lg:pt-14 lg:pb-8 bg-[#F8F2E8] border-b border-[#B9953E]/20 overflow-hidden"
+      className="relative pt-6 pb-4 sm:pt-8 sm:pb-6 lg:pt-9 lg:pb-8 bg-[#F8F2E8] border-b border-[#B9953E]/20 overflow-hidden"
     >
       {/* Subtle Background Watermark Emblem */}
       <div 
@@ -133,7 +88,7 @@ export default function LifestyleExperiences() {
       <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14 relative z-10">
         
         {/* Main Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 lg:mb-14 space-y-2.5 sm:space-y-3">
+        <div className="text-center max-w-3xl mx-auto mb-5 sm:mb-7 lg:mb-8 space-y-2 sm:space-y-2.5">
           {/* Eyebrow Pill Badge */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#B9953E]/10 border border-[#B9953E]/25 text-[#A07828]">
             <svg className="w-3.5 h-3.5 text-[#B9953E]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -145,12 +100,12 @@ export default function LifestyleExperiences() {
             </span>
           </div>
 
-          {/* Heading */}
-          <h2 className="font-serif font-medium text-3xl sm:text-5xl lg:text-[56px] text-[#29221F] leading-tight tracking-tight">
+          {/* Heading - Exact font, weight and scale matching Image 2 */}
+          <h2 className="font-serif font-medium text-3xl sm:text-4xl md:text-5xl text-[#29221F] leading-tight tracking-tight">
             Life, Beautifully Experienced
           </h2>
 
-          <div className="h-[1.5px] w-20 sm:w-24 bg-[#B9953E]/50 mx-auto mt-3" />
+          <div className="h-[1.5px] w-20 sm:w-24 bg-[#B9953E]/50 mx-auto mt-2.5 sm:mt-3" />
         </div>
 
         {/* Experiences Staggered Editorial Column - Compact luxury spacing */}
@@ -167,12 +122,13 @@ export default function LifestyleExperiences() {
               <div className="w-full lg:w-[58%]">
                 <div className="relative w-full group pb-3 pl-3 sm:pb-4 sm:pl-4">
                   {/* Subtle Offset Golden Outline Frame */}
-                  <div className="gsap-outline-reveal absolute top-3 left-0 sm:top-4 right-3 sm:right-4 bottom-0 border border-[#B9953E]/45 pointer-events-none z-0" />
-                  <div className="gsap-img-reveal relative z-10 w-full overflow-hidden rounded-none border border-[#DFD1B7]/60 bg-[#EDE2D1]/40">
+                  <div ref={reveal1.borderRef} className="absolute top-3 left-0 sm:top-4 right-3 sm:right-4 bottom-0 border border-[#B9953E]/45 pointer-events-none z-0" />
+                  <div ref={reveal1.containerRef} className="relative z-10 w-full overflow-hidden rounded-none border border-[#DFD1B7]/60 bg-[#EDE2D1]/40">
                     <img
+                      ref={reveal1.imageRef}
                       src="/images/download1.webp"
                       alt="Charge into Tomorrow - EV Charging Infrastructure"
-                      className="gsap-parallax-img w-full h-auto max-h-[460px] object-cover rounded-none block will-change-transform"
+                      className="w-full h-auto max-h-[460px] object-cover rounded-none block will-change-transform"
                       loading="lazy"
                     />
                   </div>
@@ -201,12 +157,13 @@ export default function LifestyleExperiences() {
               {/* Kids' Park */}
               <div className="space-y-2.5 group w-full">
                 <div className="relative w-full pb-2.5 pl-2.5 sm:pb-3 sm:pl-3">
-                  <div className="gsap-outline-reveal absolute top-2.5 left-0 sm:top-3 right-2.5 sm:right-3 bottom-0 border border-[#B9953E]/40 pointer-events-none z-0" />
-                  <div className="gsap-img-reveal relative z-10 overflow-hidden rounded-none border border-[#DFD1B7]/60 bg-[#EDE2D1]/40">
+                  <div ref={reveal2.borderRef} className="absolute top-2.5 left-0 sm:top-3 right-2.5 sm:right-3 bottom-0 border border-[#B9953E]/40 pointer-events-none z-0" />
+                  <div ref={reveal2.containerRef} className="relative z-10 overflow-hidden rounded-none border border-[#DFD1B7]/60 bg-[#EDE2D1]/40">
                     <img
+                      ref={reveal2.imageRef}
                       src="/images/download2.webp"
                       alt="Kids' Park"
-                      className="gsap-parallax-img w-full h-auto max-h-[340px] object-cover rounded-none block will-change-transform"
+                      className="w-full h-auto max-h-[340px] object-cover rounded-none block will-change-transform"
                       loading="lazy"
                     />
                   </div>
@@ -222,12 +179,13 @@ export default function LifestyleExperiences() {
               {/* Modern Gymnasium */}
               <div className="space-y-2.5 group w-full">
                 <div className="relative w-full pb-2.5 pl-2.5 sm:pb-3 sm:pl-3">
-                  <div className="gsap-outline-reveal absolute top-2.5 left-0 sm:top-3 right-2.5 sm:right-3 bottom-0 border border-[#B9953E]/40 pointer-events-none z-0" />
-                  <div className="gsap-img-reveal relative z-10 overflow-hidden rounded-none border border-[#DFD1B7]/60 bg-[#EDE2D1]/40">
+                  <div ref={reveal3.borderRef} className="absolute top-2.5 left-0 sm:top-3 right-2.5 sm:right-3 bottom-0 border border-[#B9953E]/40 pointer-events-none z-0" />
+                  <div ref={reveal3.containerRef} className="relative z-10 overflow-hidden rounded-none border border-[#DFD1B7]/60 bg-[#EDE2D1]/40">
                     <img
+                      ref={reveal3.imageRef}
                       src="/images/download3.webp"
                       alt="Modern Gymnasium"
-                      className="gsap-parallax-img w-full h-auto max-h-[340px] object-cover rounded-none block will-change-transform"
+                      className="w-full h-auto max-h-[340px] object-cover rounded-none block will-change-transform"
                       loading="lazy"
                     />
                   </div>
@@ -267,12 +225,13 @@ export default function LifestyleExperiences() {
               <div className="w-full lg:w-[58%] flex justify-center lg:justify-end">
                 <div className="relative w-full group pb-3 pl-3 sm:pb-4 sm:pl-4">
                   {/* Subtle Offset Golden Outline Frame */}
-                  <div className="gsap-outline-reveal absolute top-3 left-0 sm:top-4 right-3 sm:right-4 bottom-0 border border-[#B9953E]/45 pointer-events-none z-0" />
-                  <div className="gsap-img-reveal relative z-10 w-full overflow-hidden rounded-none border border-[#DFD1B7]/60 bg-[#EDE2D1]/40">
+                  <div ref={reveal4.borderRef} className="absolute top-3 left-0 sm:top-4 right-3 sm:right-4 bottom-0 border border-[#B9953E]/45 pointer-events-none z-0" />
+                  <div ref={reveal4.containerRef} className="relative z-10 w-full overflow-hidden rounded-none border border-[#DFD1B7]/60 bg-[#EDE2D1]/40">
                     <img
+                      ref={reveal4.imageRef}
                       src="/images/download4.webp"
                       alt="Gatherings Worth Remembering - Banquet Hall"
-                      className="gsap-parallax-img w-full h-auto max-h-[460px] object-cover rounded-none block will-change-transform"
+                      className="w-full h-auto max-h-[460px] object-cover rounded-none block will-change-transform"
                       loading="lazy"
                     />
                   </div>
@@ -292,12 +251,13 @@ export default function LifestyleExperiences() {
               <div className="w-full lg:w-[58%]">
                 <div className="relative w-full group pb-3 pl-3 sm:pb-4 sm:pl-4">
                   {/* Subtle Offset Golden Outline Frame */}
-                  <div className="gsap-outline-reveal absolute top-3 left-0 sm:top-4 right-3 sm:right-4 bottom-0 border border-[#B9953E]/45 pointer-events-none z-0" />
-                  <div className="gsap-img-reveal relative z-10 w-full overflow-hidden rounded-none border border-[#DFD1B7]/60 bg-[#EDE2D1]/40">
+                  <div ref={reveal5.borderRef} className="absolute top-3 left-0 sm:top-4 right-3 sm:right-4 bottom-0 border border-[#B9953E]/45 pointer-events-none z-0" />
+                  <div ref={reveal5.containerRef} className="relative z-10 w-full overflow-hidden rounded-none border border-[#DFD1B7]/60 bg-[#EDE2D1]/40">
                     <img
+                      ref={reveal5.imageRef}
                       src="/images/download5.webp"
                       alt="Unwind in Style - Indoor Games & Leisure"
-                      className="gsap-parallax-img w-full h-auto max-h-[460px] object-cover rounded-none block will-change-transform"
+                      className="w-full h-auto max-h-[460px] object-cover rounded-none block will-change-transform"
                       loading="lazy"
                     />
                   </div>
@@ -345,12 +305,13 @@ export default function LifestyleExperiences() {
               <div className="w-full lg:w-[58%] flex justify-center lg:justify-end">
                 <div className="relative w-full group pb-3 pl-3 sm:pb-4 sm:pl-4">
                   {/* Subtle Offset Golden Outline Frame */}
-                  <div className="gsap-outline-reveal absolute top-3 left-0 sm:top-4 right-3 sm:right-4 bottom-0 border border-[#B9953E]/45 pointer-events-none z-0" />
-                  <div className="gsap-img-reveal relative z-10 w-full overflow-hidden rounded-none border border-[#DFD1B7]/60 bg-[#EDE2D1]/40">
+                  <div ref={reveal6.borderRef} className="absolute top-3 left-0 sm:top-4 right-3 sm:right-4 bottom-0 border border-[#B9953E]/45 pointer-events-none z-0" />
+                  <div ref={reveal6.containerRef} className="relative z-10 w-full overflow-hidden rounded-none border border-[#DFD1B7]/60 bg-[#EDE2D1]/40">
                     <img
+                      ref={reveal6.imageRef}
                       src="/images/download6.webp"
                       alt="A Welcome Wrapped in Elegance - Luxury Lift Lobby"
-                      className="gsap-parallax-img w-full h-auto max-h-[480px] object-cover rounded-none block will-change-transform"
+                      className="w-full h-auto max-h-[480px] object-cover rounded-none block will-change-transform"
                       loading="lazy"
                     />
                   </div>

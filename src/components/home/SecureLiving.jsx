@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import useImageReveal from '../../hooks/useImageReveal';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -13,6 +14,20 @@ export default function SecureLiving() {
   const imageContainerRef = useRef(null);
   const imgRef = useRef(null);
   const outlineRef = useRef(null);
+
+  // Cinematic Left-to-Right Image Reveal with Synchronized Golden Border
+  useImageReveal({
+    direction: 'left',
+    duration: 1.3,
+    scaleDuration: 1.4,
+    scale: 1.08,
+    scaleEnabled: true,
+    start: 'top 85%',
+    borderDelay: 0.1,
+    containerRef: imageContainerRef,
+    imageRef: imgRef,
+    borderRef: outlineRef,
+  });
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -46,64 +61,6 @@ export default function SecureLiving() {
           }
         });
       }
-
-      // Lodha-style Image entrance reveal (container fade up + scale down)
-      if (imageContainerRef.current) {
-        gsap.from(imageContainerRef.current, {
-          y: 45,
-          opacity: 0,
-          duration: 1.25,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 78%',
-            toggleActions: 'play none none none'
-          }
-        });
-      }
-
-      // Lodha-style Image subtle zoom-out reveal
-      if (imgRef.current) {
-        gsap.from(imgRef.current, {
-          scale: 1.12,
-          duration: 1.4,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 78%',
-            toggleActions: 'play none none none'
-          }
-        });
-
-        // Lodha-style subtle parallax scrub as user scrolls
-        gsap.to(imgRef.current, {
-          yPercent: 6,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1.2
-          }
-        });
-      }
-
-      // Subtle offset golden outline floating into place from alignment
-      if (outlineRef.current) {
-        gsap.from(outlineRef.current, {
-          x: 14,
-          y: -14,
-          opacity: 0,
-          duration: 1.2,
-          ease: 'power2.out',
-          delay: 0.3,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 78%',
-            toggleActions: 'play none none none'
-          }
-        });
-      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -113,20 +70,8 @@ export default function SecureLiving() {
     <section
       ref={sectionRef}
       id="secure-living"
-      className="relative py-8 sm:py-12 lg:py-14 bg-[#F8F2E8] border-b border-[#B9953E]/20 overflow-hidden"
+      className="relative pt-6 sm:pt-7 lg:pt-8 pb-8 sm:pb-12 lg:pb-14 bg-[#F8F2E8] border-b border-[#B9953E]/20 overflow-hidden"
     >
-      {/* Subtle Orchid Heights Emblem Watermark (4-6% opacity) */}
-      <div 
-        className="absolute left-[-30px] sm:left-4 bottom-[-20px] sm:bottom-4 w-64 sm:w-80 h-64 sm:h-80 pointer-events-none select-none opacity-[0.05] z-0"
-        aria-hidden="true"
-      >
-        <img
-          src="/images/orchid-emblem.webp"
-          alt=""
-          className="w-full h-full object-contain filter contrast-125"
-        />
-      </div>
-
       {/* Main Container - Aligned exactly with Navbar max-w-[1550px] */}
       <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14 relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 xl:gap-16">

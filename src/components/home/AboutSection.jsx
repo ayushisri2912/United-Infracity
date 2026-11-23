@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { 
   Sun, 
   Users, 
@@ -9,6 +9,12 @@ import {
   Cctv, 
   Zap 
 } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 /* Custom Luxury Amenity Icons specifically crafted to match brand design */
 function GrandClubhouseIcon({ className = "w-8 h-8", ...props }) {
@@ -107,6 +113,37 @@ function BanquetHallIcon({ className = "w-8 h-8", ...props }) {
 }
 
 export default function AboutSection() {
+  const amenitiesRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (amenitiesRef.current) {
+        const cards = amenitiesRef.current.querySelectorAll('.amenity-card');
+        gsap.fromTo(
+          cards,
+          {
+            opacity: 0,
+            y: 20
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.95,
+            stagger: 0.1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: amenitiesRef.current,
+              start: 'top 85%',
+              once: true
+            }
+          }
+        );
+      }
+    }, amenitiesRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const pillars = [
     {
       number: '01',
@@ -154,7 +191,7 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" className="py-16 sm:py-20 lg:py-28 bg-[#F6F0E6] relative border-t border-b border-[#B99A59]/20 overflow-hidden">
+    <section id="about" className="pt-8 sm:pt-10 lg:pt-12 pb-6 sm:pb-8 lg:pb-10 bg-[#F6F0E6] relative border-t border-b border-[#B99A59]/20 overflow-hidden">
       {/* Subtle Background Glow & Orchid Accents matching luxury theme */}
       <div className="absolute top-1/4 -left-20 w-80 h-80 bg-[#B99A59]/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 -right-20 w-96 h-96 bg-[#EDE2D1]/40 rounded-full blur-3xl pointer-events-none" />
@@ -237,10 +274,10 @@ export default function AboutSection() {
           })}
         </div>
 
-        {/* 3. Premium Amenities (Curated For Your Comfort) - 2 Lines aligned with Navbar width */}
-        <div className="mt-16 sm:mt-20 lg:mt-24 w-full">
+        {/* 3. Premium Amenities (Curated For Your Comfort) - Compact Spacing with Double-Layer Liquid Wave Hover Animation */}
+        <div ref={amenitiesRef} className="mt-8 sm:mt-10 lg:mt-12 w-full">
           {/* Section Header */}
-          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10 space-y-1.5 sm:space-y-2">
+          <div className="text-center max-w-2xl mx-auto mb-5 sm:mb-6 space-y-1.5 sm:space-y-2">
             <span className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-[#A68A4E] block">
               CURATED FOR YOUR COMFORT
             </span>
@@ -261,12 +298,49 @@ export default function AboutSection() {
                 return (
                   <div
                     key={idx}
-                    className="flex flex-col items-center justify-center text-center py-6 px-3 sm:py-7 sm:px-4 min-h-[104px] sm:min-h-[112px] bg-[#FAF7F2] hover:bg-white border border-[#DFD1B7] hover:border-[#B99A59] transition-all duration-300 group shadow-2xs"
+                    tabIndex={0}
+                    role="button"
+                    aria-label={amenity.name}
+                    className="amenity-card group relative flex flex-col items-center justify-center text-center py-6 px-3 sm:py-7 sm:px-4 min-h-[104px] sm:min-h-[112px] bg-[#FAF7F2] border border-[#DFD1B7] hover:border-[#98713F] transition-colors duration-300 shadow-2xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#98713F] cursor-pointer select-none"
+                    style={{ isolation: 'isolate' }}
                   >
-                    <div className="text-[#B99A59] group-hover:scale-105 transition-transform duration-300 flex items-center justify-center">
+                    {/* Layer 1: Champagne Gold Liquid Wave (#C3A371) */}
+                    <div className="wave-layer-1 absolute inset-x-0 bottom-0 h-[190%] w-full pointer-events-none z-0">
+                      <svg
+                        className="w-full h-full"
+                        viewBox="0 0 1200 400"
+                        preserveAspectRatio="none"
+                        fill="none"
+                      >
+                        <path
+                          d="M 0,110 C 200,60 400,160 600,100 C 800,40 1000,140 1200,90 L 1200,400 L 0,400 Z"
+                          fill="#C3A371"
+                        />
+                      </svg>
+                    </div>
+
+                    {/* Layer 2: Golden-Brown Liquid Wave (#9D7749) */}
+                    <div className="wave-layer-2 absolute inset-x-0 bottom-0 h-[190%] w-full pointer-events-none z-0">
+                      <svg
+                        className="w-full h-full"
+                        viewBox="0 0 1200 400"
+                        preserveAspectRatio="none"
+                        fill="none"
+                      >
+                        <path
+                          d="M 0,120 C 250,170 450,70 700,130 C 950,190 1080,80 1200,110 L 1200,400 L 0,400 Z"
+                          fill="#9D7749"
+                        />
+                      </svg>
+                    </div>
+
+                    {/* Icon - Above animated wave layers */}
+                    <div className="relative z-10 text-[#B99A59] group-hover:text-[#FFF4DC] group-focus-visible:text-[#FFF4DC] group-hover:-translate-y-[5px] group-focus-visible:-translate-y-[5px] group-hover:scale-[1.05] group-focus-visible:scale-[1.05] transition-all duration-700 ease-out flex items-center justify-center">
                       <AmenityIcon className="w-7 h-7 sm:w-8 sm:h-8 stroke-[1.6]" />
                     </div>
-                    <span className="mt-2.5 sm:mt-3 text-xs sm:text-sm lg:text-[14px] font-medium text-[#665A49] group-hover:text-[#29221F] tracking-normal transition-colors">
+
+                    {/* Title - Above animated wave layers */}
+                    <span className="relative z-10 mt-2.5 sm:mt-3 text-xs sm:text-sm lg:text-[14px] font-medium text-[#665A49] group-hover:text-[#FFF4DC] group-focus-visible:text-[#FFF4DC] tracking-normal transition-colors duration-700 ease-out text-center">
                       {amenity.name}
                     </span>
                   </div>
@@ -281,12 +355,49 @@ export default function AboutSection() {
                 return (
                   <div
                     key={idx}
-                    className="flex flex-col items-center justify-center text-center py-6 px-3 sm:py-7 sm:px-4 min-h-[104px] sm:min-h-[112px] bg-[#FAF7F2] hover:bg-white border border-[#DFD1B7] hover:border-[#B99A59] transition-all duration-300 group shadow-2xs"
+                    tabIndex={0}
+                    role="button"
+                    aria-label={amenity.name}
+                    className="amenity-card group relative flex flex-col items-center justify-center text-center py-6 px-3 sm:py-7 sm:px-4 min-h-[104px] sm:min-h-[112px] bg-[#FAF7F2] border border-[#DFD1B7] hover:border-[#98713F] transition-colors duration-300 shadow-2xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#98713F] cursor-pointer select-none"
+                    style={{ isolation: 'isolate' }}
                   >
-                    <div className="text-[#B99A59] group-hover:scale-105 transition-transform duration-300 flex items-center justify-center">
+                    {/* Layer 1: Champagne Gold Liquid Wave (#C3A371) */}
+                    <div className="wave-layer-1 absolute inset-x-0 bottom-0 h-[190%] w-full pointer-events-none z-0">
+                      <svg
+                        className="w-full h-full"
+                        viewBox="0 0 1200 400"
+                        preserveAspectRatio="none"
+                        fill="none"
+                      >
+                        <path
+                          d="M 0,110 C 200,60 400,160 600,100 C 800,40 1000,140 1200,90 L 1200,400 L 0,400 Z"
+                          fill="#C3A371"
+                        />
+                      </svg>
+                    </div>
+
+                    {/* Layer 2: Golden-Brown Liquid Wave (#9D7749) */}
+                    <div className="wave-layer-2 absolute inset-x-0 bottom-0 h-[190%] w-full pointer-events-none z-0">
+                      <svg
+                        className="w-full h-full"
+                        viewBox="0 0 1200 400"
+                        preserveAspectRatio="none"
+                        fill="none"
+                      >
+                        <path
+                          d="M 0,120 C 250,170 450,70 700,130 C 950,190 1080,80 1200,110 L 1200,400 L 0,400 Z"
+                          fill="#9D7749"
+                        />
+                      </svg>
+                    </div>
+
+                    {/* Icon - Above animated wave layers */}
+                    <div className="relative z-10 text-[#B99A59] group-hover:text-[#FFF4DC] group-focus-visible:text-[#FFF4DC] group-hover:-translate-y-[5px] group-focus-visible:-translate-y-[5px] group-hover:scale-[1.05] group-focus-visible:scale-[1.05] transition-all duration-700 ease-out flex items-center justify-center">
                       <AmenityIcon className="w-7 h-7 sm:w-8 sm:h-8 stroke-[1.6]" />
                     </div>
-                    <span className="mt-2.5 sm:mt-3 text-xs sm:text-sm lg:text-[14px] font-medium text-[#665A49] group-hover:text-[#29221F] tracking-normal transition-colors">
+
+                    {/* Title - Above animated wave layers */}
+                    <span className="relative z-10 mt-2.5 sm:mt-3 text-xs sm:text-sm lg:text-[14px] font-medium text-[#665A49] group-hover:text-[#FFF4DC] group-focus-visible:text-[#FFF4DC] tracking-normal transition-colors duration-700 ease-out text-center">
                       {amenity.name}
                     </span>
                   </div>
@@ -295,6 +406,44 @@ export default function AboutSection() {
             </div>
           </div>
         </div>
+
+        {/* Scoped CSS for Luxury Double-Layer Liquid Wave Hover Animation */}
+        <style>{`
+          .amenity-card {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+          }
+          .amenity-card .wave-layer-1 {
+            transform: translateY(102%);
+            transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform;
+          }
+          .amenity-card .wave-layer-2 {
+            transform: translateY(102%);
+            transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform;
+          }
+          .amenity-card:hover .wave-layer-1,
+          .amenity-card:focus-visible .wave-layer-1,
+          .amenity-card:active .wave-layer-1 {
+            transform: translateY(0%);
+            transition: transform 1250ms cubic-bezier(0.22, 1, 0.36, 1);
+          }
+          .amenity-card:hover .wave-layer-2,
+          .amenity-card:focus-visible .wave-layer-2,
+          .amenity-card:active .wave-layer-2 {
+            transform: translateY(0%);
+            transition: transform 1050ms cubic-bezier(0.22, 1, 0.36, 1) 120ms;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            .amenity-card .wave-layer-1,
+            .amenity-card .wave-layer-2 {
+              transition: none !important;
+              transform: none !important;
+            }
+          }
+        `}</style>
 
       </div>
     </section>

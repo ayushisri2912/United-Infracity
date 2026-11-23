@@ -282,7 +282,7 @@ export default function FloorPlan() {
     <section
       ref={sectionRef}
       id="floor-plans"
-      className="pt-6 pb-12 sm:pt-8 sm:pb-14 lg:pt-8 lg:pb-16 bg-[#F6F0E6] border-b border-[#B99A59]/20 relative overflow-hidden"
+      className="pt-3 pb-4 sm:pt-4 sm:pb-6 lg:pt-4 lg:pb-6 bg-[#F6F0E6] border-b border-[#B99A59]/20 relative overflow-hidden"
     >
       {/* Subtle Background Watermark Emblem */}
       <div 
@@ -300,7 +300,7 @@ export default function FloorPlan() {
       <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14 relative z-10">
         
         {/* 1. Section Header (Centered) */}
-        <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8 space-y-2 sm:space-y-2.5">
+        <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-5 space-y-1.5 sm:space-y-2">
           {/* Eyebrow Pill Badge */}
           <div className="gsap-fp-header inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#B99A59]/10 border border-[#B99A59]/25 text-[#A68A4E]">
             <Compass className="w-3.5 h-3.5 text-[#B99A59]" />
@@ -423,13 +423,13 @@ export default function FloorPlan() {
         </div>
 
         {/* Section Bottom Orchid Crest */}
-        <div className="pt-6 sm:pt-8 flex flex-col items-center justify-center">
+        <div className="pt-4 sm:pt-5 flex flex-col items-center justify-center">
           <div className="flex items-center justify-center gap-4 w-full max-w-xs">
             <div className="h-[1px] flex-1 bg-[#B99A59]/30" />
             <img
               src="/images/orchid-emblem.webp"
               alt="United Orchid Heights"
-              className="w-10 h-10 sm:w-12 sm:h-12 object-contain opacity-40 hover:opacity-80 transition-opacity duration-300"
+              className="w-8 h-8 sm:w-10 sm:h-10 object-contain opacity-40 hover:opacity-80 transition-opacity duration-300"
             />
             <div className="h-[1px] flex-1 bg-[#B99A59]/30" />
           </div>

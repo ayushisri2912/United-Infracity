@@ -117,7 +117,7 @@ export default function Navbar() {
               <img
                 src="/images/logo-hero.webp"
                 alt="United Infracity Private Limited"
-                className="h-12 sm:h-14 lg:h-15 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                className="h-14 sm:h-16 lg:h-[72px] xl:h-[74px] w-auto object-contain transition-transform duration-300 group-hover:scale-105 filter drop-shadow-xs"
               />
             </Link>
           </div>

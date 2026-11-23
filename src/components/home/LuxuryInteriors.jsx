@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import useImageReveal from '../../hooks/useImageReveal';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -62,7 +63,21 @@ export default function LuxuryInteriors() {
 
   const currentRoom = rooms[activeIndex];
 
-  // GSAP Entrance ScrollTrigger Animation
+  // Cinematic Left-to-Right Image Reveal with Synchronized Golden Border & Re-trigger on Slide Change
+  const { triggerAnimation } = useImageReveal({
+    direction: 'left',
+    duration: 1.3,
+    scaleDuration: 1.4,
+    scale: 1.08,
+    scaleEnabled: true,
+    start: 'top 85%',
+    borderDelay: 0.1,
+    containerRef: imageDisplayRef,
+    imageRef: imgRef,
+    borderRef: outlineRef,
+  });
+
+  // GSAP Entrance ScrollTrigger Animation for header
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from('.gsap-header-item', {
@@ -77,63 +92,6 @@ export default function LuxuryInteriors() {
           toggleActions: 'play none none none'
         }
       });
-
-      // Lodha-style Image entrance reveal
-      if (imageDisplayRef.current) {
-        gsap.from(imageDisplayRef.current, {
-          y: 45,
-          opacity: 0,
-          duration: 1.25,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 75%',
-            toggleActions: 'play none none none'
-          }
-        });
-      }
-
-      // Lodha-style Image subtle zoom-out reveal
-      if (imgRef.current) {
-        gsap.from(imgRef.current, {
-          scale: 1.12,
-          duration: 1.4,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 75%',
-            toggleActions: 'play none none none'
-          }
-        });
-
-        gsap.to(imgRef.current, {
-          yPercent: 5,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1.2
-          }
-        });
-      }
-
-      // Subtle offset golden outline floating into place from alignment
-      if (outlineRef.current) {
-        gsap.from(outlineRef.current, {
-          x: 14,
-          y: -14,
-          opacity: 0,
-          duration: 1.2,
-          ease: 'power2.out',
-          delay: 0.25,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 75%',
-            toggleActions: 'play none none none'
-          }
-        });
-      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -156,27 +114,38 @@ export default function LuxuryInteriors() {
     if (index === activeIndex || isTransitioning) return;
     setIsTransitioning(true);
 
-    // Smooth subtle crossfade & fade-up transition for image & dynamic content
-    if (imageDisplayRef.current && contentDisplayRef.current) {
-      gsap.to([imageDisplayRef.current, contentDisplayRef.current], {
-        opacity: 0.2,
+    // Synchronize image masked reveal with content text transition
+    if (contentDisplayRef.current) {
+      gsap.to(contentDisplayRef.current, {
+        opacity: 0,
         y: 6,
         duration: 0.22,
         ease: 'power2.in',
         onComplete: () => {
           setActiveIndex(index);
-          gsap.to([imageDisplayRef.current, contentDisplayRef.current], {
-            opacity: 1,
-            y: 0,
-            duration: 0.45,
-            ease: 'power3.out',
-            onComplete: () => setIsTransitioning(false)
+          // Trigger smooth cinematic left-to-right mask reveal for new image
+          triggerAnimation(0, () => {
+            setIsTransitioning(false);
           });
+          // Fade text back in synchronized with the reveal
+          gsap.fromTo(
+            contentDisplayRef.current,
+            { opacity: 0, y: 10 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.55,
+              delay: 0.15,
+              ease: 'power3.out'
+            }
+          );
         }
       });
     } else {
       setActiveIndex(index);
-      setIsTransitioning(false);
+      triggerAnimation(0, () => {
+        setIsTransitioning(false);
+      });
     }
   };
 
@@ -194,7 +163,7 @@ export default function LuxuryInteriors() {
     <section
       ref={sectionRef}
       id="luxury-interiors"
-      className="relative pt-6 pb-8 sm:pt-8 sm:pb-12 lg:pt-10 lg:pb-16 bg-[#F6F0E6] border-b border-[#B99A59]/20 overflow-hidden"
+      className="relative pt-4 sm:pt-5 lg:pt-6 pb-4 sm:pb-6 lg:pb-7 bg-[#F6F0E6] border-b border-[#B99A59]/20 overflow-hidden"
     >
       {/* Subtle Background Watermark Emblem */}
       <div 
@@ -212,7 +181,7 @@ export default function LuxuryInteriors() {
       <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14 relative z-10">
         
         {/* 1. Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8 space-y-2 sm:space-y-2.5">
+        <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-5 space-y-1.5 sm:space-y-2">
           {/* Small Uppercase Label */}
           <div className="gsap-header-item inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#B99A59]/10 border border-[#B99A59]/25 text-[#A07828]">
             <svg className="w-3.5 h-3.5 text-[#B99A59]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -224,18 +193,18 @@ export default function LuxuryInteriors() {
             </span>
           </div>
 
-          {/* Main Heading: Regular weight, elegant serif */}
-          <h2 className="gsap-header-item font-serif font-medium text-3xl sm:text-5xl lg:text-[62px] leading-[1.08] tracking-tight text-[#29221F]">
+          {/* Main Heading: Matching 2nd image (Designed Around the Way You Live) font size and style */}
+          <h2 className="gsap-header-item font-serif font-medium text-3xl sm:text-4xl md:text-5xl text-[#29221F] leading-tight tracking-tight">
             Explore Our Luxury Interiors
           </h2>
 
           {/* Thin Decorative Champagne Gold Line */}
-          <div className="gsap-header-item h-[1.5px] w-20 sm:w-28 bg-[#B99A59]/60 mx-auto my-2.5 sm:my-3.5" />
+          <div className="gsap-header-item h-[1.5px] w-20 sm:w-28 bg-[#B99A59]/60 mx-auto my-2 sm:my-2.5" />
 
         </div>
 
         {/* 2. Interactive Room Navigation (Clean Horizontal Tabs with Animated Underline) */}
-        <div className="gsap-header-item flex items-center justify-center gap-6 sm:gap-10 border-b border-[#B99A59]/25 max-w-3xl mx-auto mb-6 sm:mb-8 overflow-x-auto no-scrollbar py-1">
+        <div className="gsap-header-item flex items-center justify-center gap-6 sm:gap-10 border-b border-[#B99A59]/25 max-w-3xl mx-auto mb-4 sm:mb-5 overflow-x-auto no-scrollbar py-1">
           {rooms.map((room, idx) => {
             const isActive = activeIndex === idx;
             return (
@@ -284,7 +253,7 @@ export default function LuxuryInteriors() {
         {/* 4. Dynamic Content Below Image (Centered, Flanked by Minimal Circular Arrow Buttons) */}
         <div 
           ref={contentDisplayRef}
-          className="relative w-full max-w-4xl mx-auto my-7 sm:my-8 px-2 sm:px-4"
+          className="relative w-full max-w-4xl mx-auto mt-3 sm:mt-4 mb-2 sm:mb-3 px-2 sm:px-4"
         >
           <div className="flex items-center justify-between gap-4 sm:gap-6">
             
@@ -298,7 +267,7 @@ export default function LuxuryInteriors() {
             </button>
 
             {/* Centered Editorial Content */}
-            <div className="text-center flex-1 space-y-2 sm:space-y-2.5 min-h-[140px] sm:min-h-[150px] flex flex-col justify-center">
+            <div className="text-center flex-1 space-y-1.5 sm:space-y-2 min-h-[90px] sm:min-h-[105px] flex flex-col justify-center">
               {/* Room Category & Slide Counter */}
               <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs font-semibold tracking-[0.22em] uppercase text-[#A68A4E]">
                 <span>0{activeIndex + 1} / {currentRoom.category}</span>
@@ -306,16 +275,16 @@ export default function LuxuryInteriors() {
                 <span className="tracking-widest">0{activeIndex + 1} / 04</span>
               </div>
 
-              {/* Large Elegant Serif Heading (around 44-48px on desktop) */}
-              <h3 className="font-serif font-medium text-2xl sm:text-3xl md:text-4xl lg:text-[46px] leading-[1.12] tracking-tight text-[#A68A4E]">
+              {/* Large Elegant Serif Heading */}
+              <h3 className="font-serif font-medium text-2xl sm:text-3xl md:text-4xl lg:text-[42px] leading-[1.12] tracking-tight text-[#A68A4E]">
                 {currentRoom.heading}
               </h3>
 
               {/* Thin Champagne Gold Decorative Line */}
-              <div className="h-[1.5px] w-16 sm:w-20 bg-[#B99A59]/70 mx-auto my-2 sm:my-2.5" />
+              <div className="h-[1.5px] w-16 sm:w-20 bg-[#B99A59]/70 mx-auto my-1.5 sm:my-2" />
 
               {/* Short Description (max 650px width, 16-18px) */}
-              <p className="text-sm sm:text-base lg:text-[17px] text-[#665A49] font-light leading-relaxed max-w-[650px] mx-auto">
+              <p className="text-sm sm:text-base lg:text-[16px] text-[#665A49] font-light leading-relaxed max-w-[650px] mx-auto">
                 {currentRoom.description}
               </p>
             </div>
@@ -333,7 +302,7 @@ export default function LuxuryInteriors() {
         </div>
 
         {/* 5. Architectural Thumbnail Navigation (4 Thumbnails Synced with State) */}
-        <div className="pt-2 sm:pt-4 max-w-4xl mx-auto w-full">
+        <div className="pt-1 sm:pt-2 max-w-4xl mx-auto w-full">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
             {rooms.map((room, idx) => {
               const isActive = activeIndex === idx;
@@ -343,8 +312,8 @@ export default function LuxuryInteriors() {
                   onClick={() => handleRoomChange(idx)}
                   className={`text-left group cursor-pointer transition-all duration-300 relative ${
                     isActive 
-                      ? 'opacity-100' 
-                      : 'opacity-60 hover:opacity-90'
+                    ? 'opacity-100' 
+                    : 'opacity-60 hover:opacity-90'
                   }`}
                 >
                   <div className={`relative overflow-hidden rounded-none transition-all duration-300 ${
@@ -374,13 +343,13 @@ export default function LuxuryInteriors() {
         </div>
 
         {/* 6. Original Floral Emblem at Bottom Center */}
-        <div className="pt-8 sm:pt-12 flex flex-col items-center justify-center">
+        <div className="pt-3 sm:pt-4 flex flex-col items-center justify-center">
           <div className="flex items-center justify-center gap-4 w-full max-w-xs">
             <div className="h-[1px] flex-1 bg-[#B99A59]/30" />
             <img
               src="/images/orchid-emblem.webp"
               alt="United Orchid Heights"
-              className="w-10 h-10 sm:w-12 sm:h-12 object-contain opacity-45 hover:opacity-80 transition-opacity duration-300"
+              className="w-9 h-9 sm:w-10 sm:h-10 object-contain opacity-45 hover:opacity-80 transition-opacity duration-300"
             />
             <div className="h-[1px] flex-1 bg-[#B99A59]/30" />
           </div>

@@ -107,7 +107,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="hero" className="py-14 sm:py-18 lg:py-24 bg-[#F8F2E8] relative overflow-hidden">
+    <section ref={sectionRef} id="hero" className="pt-12 sm:pt-16 lg:pt-20 pb-6 sm:pb-8 lg:pb-10 bg-[#F8F2E8] relative overflow-hidden">
       {/* Subtle Luxury Background Accents */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-[#EDE2D1]/40 rounded-full blur-3xl pointer-events-none -z-0" />
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#B9953E]/5 rounded-full blur-2xl pointer-events-none -z-0" />

@@ -27,17 +27,19 @@ export default function HeroBannerSlider() {
       {/* Full Screen Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/herosec-img.webp"
+          src="/images/herosec-full.webp"
           alt="United Orchid Heights"
-          className="w-full h-full object-cover object-right sm:object-[center_right] md:object-center select-none"
+          className="w-full h-full object-cover object-[78%_center] sm:object-[center_right] md:object-center select-none filter contrast-[1.03] brightness-[0.97]"
         />
-        {/* Soft overlay ensuring high contrast and readability on all screen sizes */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#FAF6F0]/95 via-[#FAF6F0]/80 via-40% to-transparent sm:via-[#FAF6F0]/45 sm:via-45% md:via-transparent pointer-events-none" />
+        {/* Reduced left-side brightness: subtle warm wash instead of milky white overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#FAF6F0]/60 via-[#FAF6F0]/25 via-45% to-transparent pointer-events-none" />
+        {/* Subtle architectural base shadow grounding the towers and greenery */}
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#1F1B17]/15 to-transparent pointer-events-none" />
       </div>
 
       {/* Main Content Area */}
-      <div className="relative z-10 max-w-[1550px] w-full mx-auto h-full px-4 sm:px-8 lg:px-14 flex flex-col justify-center">
-        <div className="max-w-2xl xl:max-w-3xl space-y-4 sm:space-y-5 lg:space-y-6 pt-2">
+      <div className="relative z-10 max-w-[1550px] w-full mx-auto h-full px-4 sm:px-8 lg:px-14 flex flex-col justify-center pb-10 sm:pb-16 lg:pb-20">
+        <div className="max-w-2xl xl:max-w-3xl space-y-4 sm:space-y-5 lg:space-y-5">
           
           {/* Top Tagline with Decorative Lines */}
           <div className="flex items-center gap-3">
@@ -49,17 +51,17 @@ export default function HeroBannerSlider() {
           </div>
 
           {/* Main Title */}
-          <h1 className="font-serif text-[#1F1B17] text-4xl sm:text-5xl md:text-6xl lg:text-[70px] xl:text-[78px] font-normal leading-[1.05] tracking-tight">
+          <h1 className="font-serif text-[#1F1B17] text-4xl sm:text-5xl md:text-6xl lg:text-[70px] xl:text-[76px] font-normal leading-[1.06] tracking-tight drop-shadow-[0_1px_1px_rgba(255,255,255,0.7)]">
             UNITED<br />ORCHID HEIGHTS
           </h1>
 
           {/* Subtitle */}
-          <p className="font-serif italic text-lg sm:text-2xl lg:text-[28px] text-[#4E4338] font-normal leading-relaxed">
+          <p className="font-serif italic text-lg sm:text-2xl lg:text-[27px] text-[#3D332A] font-normal leading-relaxed drop-shadow-[0_1px_1px_rgba(255,255,255,0.6)]">
             The Finest Expression of Modern Living
           </p>
 
           {/* Location Pin */}
-          <div className="flex items-center gap-2.5 text-stone-800 text-sm sm:text-base font-medium">
+          <div className="flex items-center gap-2.5 text-[#2A241F] text-sm sm:text-base font-medium">
             <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-[#2A241F] fill-[#2A241F] shrink-0" />
             <span>Vrindavan Yojna Phase 1, Lucknow</span>
           </div>
@@ -68,7 +70,7 @@ export default function HeroBannerSlider() {
           <div className="pt-2 sm:pt-4">
             <button
               onClick={handleExplore}
-              className="inline-flex items-center gap-3 bg-[#BA8748] hover:bg-[#A37438] active:scale-[0.98] text-white font-medium px-8 sm:px-9 py-3.5 sm:py-4 text-sm sm:text-base rounded-xl shadow-[0_8px_25px_rgba(186,135,72,0.35)] hover:shadow-[0_12px_30px_rgba(186,135,72,0.45)] transition-all duration-300 hover:scale-[1.02] cursor-pointer group"
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-[#BA8748] to-[#9C6D34] hover:from-[#A37438] hover:to-[#8B5F2A] active:scale-[0.98] text-white font-medium px-8 sm:px-9 py-3.5 sm:py-4 text-sm sm:text-base rounded-xl shadow-[0_8px_25px_rgba(186,135,72,0.32)] hover:shadow-[0_12px_30px_rgba(186,135,72,0.42)] transition-all duration-300 hover:scale-[1.02] cursor-pointer group border border-[#D9B472]/30"
             >
               <span className="tracking-wide">Explore Now</span>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -78,19 +80,7 @@ export default function HeroBannerSlider() {
         </div>
       </div>
 
-      {/* Scroll Down Indicator */}
-      {/* <button
-        onClick={handleScrollDown}
-        className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 text-stone-700/80 hover:text-stone-900 transition-colors cursor-pointer group"
-        aria-label="Scroll Down"
-      >
-        <div className="w-5 h-8 border-[1.5px] border-stone-600/70 group-hover:border-stone-900 rounded-full flex justify-center pt-1.5 transition-colors">
-          <div className="w-1 h-2 bg-stone-700 group-hover:bg-stone-900 rounded-full animate-bounce" />
-        </div>
-        <span className="text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-stone-700 group-hover:text-stone-900">
-          Scroll Down
-        </span>
-      </button> */}
+     
 
       {/* Elegant Curved Bottom Divider */}
       <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none z-10 pointer-events-none">

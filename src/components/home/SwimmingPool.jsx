@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import useImageReveal from '../../hooks/useImageReveal';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -14,6 +15,20 @@ export default function SwimmingPool() {
   const imageRef = useRef(null);
   const outlineRef = useRef(null);
   const bottomContentRef = useRef(null);
+
+  // Cinematic Right-to-Left Swimming Pool Image Reveal with Synchronized Golden Border
+  useImageReveal({
+    direction: 'right',
+    duration: 1.3,
+    scaleDuration: 1.4,
+    scale: 1.08,
+    scaleEnabled: true,
+    start: 'top 85%',
+    borderDelay: 0.1,
+    containerRef: imageWrapperRef,
+    imageRef: imageRef,
+    borderRef: outlineRef,
+  });
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -48,64 +63,6 @@ export default function SwimmingPool() {
         });
       }
 
-      // Lodha-style Swimming Pool Image Entrance Reveal
-      if (imageWrapperRef.current) {
-        gsap.from(imageWrapperRef.current, {
-          y: 45,
-          opacity: 0,
-          duration: 1.25,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: imageWrapperRef.current,
-            start: 'top 78%',
-            toggleActions: 'play none none none'
-          }
-        });
-      }
-
-      // Lodha-style Image subtle zoom-out reveal
-      if (imageRef.current) {
-        gsap.from(imageRef.current, {
-          scale: 1.12,
-          duration: 1.4,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: imageWrapperRef.current,
-            start: 'top 78%',
-            toggleActions: 'play none none none'
-          }
-        });
-
-        // Subtle Parallax effect on the pool image
-        gsap.to(imageRef.current, {
-          yPercent: 6,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1.2
-          }
-        });
-      }
-
-      // Subtle offset golden outline floating into place from alignment
-      if (outlineRef.current) {
-        gsap.from(outlineRef.current, {
-          x: 14,
-          y: -14,
-          opacity: 0,
-          duration: 1.2,
-          ease: 'power2.out',
-          delay: 0.3,
-          scrollTrigger: {
-            trigger: imageWrapperRef.current,
-            start: 'top 78%',
-            toggleActions: 'play none none none'
-          }
-        });
-      }
-
       // Bottom Heading & Description reveal
       if (bottomContentRef.current) {
         gsap.from(bottomContentRef.current.querySelectorAll('.gsap-fade-up-bottom'), {
@@ -130,15 +87,15 @@ export default function SwimmingPool() {
     <section
       ref={sectionRef}
       id="swimming-pool"
-      className="relative pt-6 pb-8 sm:pt-8 sm:pb-10 lg:pt-10 lg:pb-12 bg-[#F6F0E6] border-b border-[#B99A59]/20 overflow-hidden"
+      className="relative pt-6 pb-5 sm:pt-8 sm:pb-6 lg:pt-10 lg:pb-7 bg-[#F6F0E6] border-b border-[#B99A59]/20 overflow-hidden"
     >
       {/* Container - Aligned exactly with Navbar max-w-[1550px] */}
       <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14 relative z-10">
         
         {/* 1. Top Section Header (Centered) */}
         <div ref={topContentRef} className="text-center max-w-3xl mx-auto mb-5 sm:mb-7 space-y-2 sm:space-y-2.5">
-          {/* Main Heading (~64px desktop, font-serif, regular weight 400/500) */}
-          <h2 className="gsap-fade-up font-serif font-medium text-3xl sm:text-5xl lg:text-[64px] leading-[1.08] tracking-tight text-[#29221F]">
+          {/* Main Heading - Matching Image 1 (Designed Around the Way You Live) font and responsive scale */}
+          <h2 className="gsap-fade-up font-serif font-medium text-3xl sm:text-4xl md:text-5xl text-[#29221F] leading-tight tracking-tight">
             Your Everyday Escape
           </h2>
 
@@ -182,9 +139,9 @@ export default function SwimmingPool() {
         </div>
 
         {/* 3. Bottom Heading & Description (Centered) */}
-        <div ref={bottomContentRef} className="text-center max-w-2xl mx-auto mt-6 sm:mt-8 space-y-2 sm:space-y-2.5">
-          {/* Bottom Heading - Styled with Premium Amenities golden bronze color #96743B */}
-          <h3 className="gsap-fade-up-bottom font-serif font-medium text-2xl sm:text-3xl lg:text-4xl leading-snug tracking-tight text-[#96743B]">
+        <div ref={bottomContentRef} className="text-center max-w-3xl mx-auto mt-6 sm:mt-8 space-y-2 sm:space-y-2.5">
+          {/* Bottom Heading - Size matched to 2nd image (Explore Our Luxury Interiors), preserving color #96743B */}
+          <h3 className="gsap-fade-up-bottom font-serif font-medium text-3xl sm:text-5xl lg:text-[62px] leading-[1.08] tracking-tight text-[#96743B]">
             Your Weekend Starts Here!
           </h3>
 
@@ -195,7 +152,7 @@ export default function SwimmingPool() {
         </div>
 
         {/* 4. Floral Emblem at Bottom Center */}
-        <div className="pt-6 sm:pt-8 flex flex-col items-center justify-center">
+        <div className="pt-3 sm:pt-4 flex flex-col items-center justify-center">
           <div className="flex items-center justify-center gap-4 w-full max-w-xs">
             <div className="h-[1px] flex-1 bg-[#B99A59]/30" />
             <img
