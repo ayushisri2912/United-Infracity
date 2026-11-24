@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import { PhoneCall } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useModal } from '../../context/ModalContext';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import useImageReveal from '../../hooks/useImageReveal';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -14,92 +14,108 @@ export default function HeroSection() {
   const { openEnquire } = useModal();
 
   const sectionRef = useRef(null);
-  const textContentRef = useRef(null);
-  const imgContainerRef = useRef(null);
-  const imgRef = useRef(null);
-  const outlineRef = useRef(null);
+  const contentColRef = useRef(null);
+  const statsStripRef = useRef(null);
+  const stat1Ref = useRef(null);
+  const stat2Ref = useRef(null);
+  const stat3Ref = useRef(null);
 
-  const stats = [
-    { value: '180', label: 'Residences' },
-    { value: '15', label: 'Storeys' },
-    { value: '5,301', label: 'Sq. Metres' },
-    { value: '3 BHK', label: 'Configurations' }
-  ];
+  // 1. Cinematic Left-to-Right Masked Reveal Hook for the Building Image
+  const { containerRef: imageContainerRef, imageRef } = useImageReveal({
+    direction: 'left',
+    duration: 1.3,
+    scale: 1.08,
+    start: 'top 82%',
+    once: true,
+    ease: 'power3.inOut'
+  });
 
   useEffect(() => {
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const ctx = gsap.context(() => {
-      // Right column text and stats fade-up
-      if (textContentRef.current) {
-        gsap.from(textContentRef.current.querySelectorAll('.gsap-hero-fade'), {
-          y: 35,
+      if (prefersReducedMotion) return;
+
+      // 2. Heading Bottom-to-Top Line Reveal
+      const heading = sectionRef.current?.querySelector('.gsap-about-heading');
+      if (heading) {
+        gsap.from(heading, {
+          y: 40,
           opacity: 0,
-          duration: 1.1,
-          stagger: 0.16,
+          duration: 1.05,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top 80%',
-            toggleActions: 'play none none none'
+            once: true
           }
         });
       }
 
-      // Lodha-style Image container smooth reveal
-      if (imgContainerRef.current) {
-        gsap.from(imgContainerRef.current, {
-          y: 40,
-          opacity: 0,
-          duration: 1.25,
+      // 3. Staggered Fade-Up for Subtitle, Paragraphs and Action Buttons
+      if (contentColRef.current) {
+        const textElements = contentColRef.current.querySelectorAll('.gsap-about-fade');
+        if (textElements.length > 0) {
+          gsap.from(textElements, {
+            y: 28,
+            opacity: 0,
+            duration: 0.95,
+            stagger: 0.12,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top 80%',
+              once: true
+            }
+          });
+        }
+      }
+
+      // 4. Smooth Numerical Count-Up Effect for Statistics
+      if (statsStripRef.current) {
+        const statsObj = { count1: 0, count2: 0, count3: 0 };
+        gsap.to(statsObj, {
+          count1: 180,
+          count2: 15,
+          count3: 5301,
+          duration: 2.0,
           ease: 'power3.out',
           scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 78%',
-            toggleActions: 'play none none none'
-          }
-        });
-      }
-
-      // Lodha-style Image subtle zoom-out reveal
-      if (imgRef.current) {
-        gsap.from(imgRef.current, {
-          scale: 1.12,
-          duration: 1.4,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 78%',
-            toggleActions: 'play none none none'
+            trigger: statsStripRef.current,
+            start: 'top 90%',
+            once: true
+          },
+          onUpdate: () => {
+            if (stat1Ref.current) {
+              stat1Ref.current.textContent = Math.floor(statsObj.count1);
+            }
+            if (stat2Ref.current) {
+              stat2Ref.current.textContent = Math.floor(statsObj.count2);
+            }
+            if (stat3Ref.current) {
+              stat3Ref.current.textContent = Math.floor(statsObj.count3).toLocaleString();
+            }
           }
         });
 
-        // Lodha-style subtle parallax scrub as user scrolls
-        gsap.to(imgRef.current, {
-          yPercent: 6,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1.2
-          }
-        });
-      }
-
-      // Subtle offset golden outline floating into place from alignment
-      if (outlineRef.current) {
-        gsap.from(outlineRef.current, {
-          x: 14,
-          y: -14,
-          opacity: 0,
-          duration: 1.2,
-          ease: 'power2.out',
-          delay: 0.3,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 78%',
-            toggleActions: 'play none none none'
-          }
-        });
+        // 5. Subtle Staggered Reveal for Statistics Labels
+        const labels = statsStripRef.current.querySelectorAll('.gsap-stat-label');
+        if (labels.length > 0) {
+          gsap.from(labels, {
+            y: 12,
+            opacity: 0,
+            duration: 0.85,
+            stagger: 0.08,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: statsStripRef.current,
+              start: 'top 90%',
+              once: true
+            }
+          });
+        }
       }
     }, sectionRef);
 
@@ -107,132 +123,104 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="hero" className="pt-12 sm:pt-16 lg:pt-20 pb-6 sm:pb-8 lg:pb-10 bg-[#F8F2E8] relative overflow-hidden">
-      {/* Subtle Luxury Background Accents */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#EDE2D1]/40 rounded-full blur-3xl pointer-events-none -z-0" />
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#B9953E]/5 rounded-full blur-2xl pointer-events-none -z-0" />
-
-      <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-stretch">
+    <section
+      ref={sectionRef}
+      id="hero"
+      className="bg-white py-14 sm:py-16 lg:py-[68px] relative border-b border-[#E5E5E5] overflow-hidden"
+    >
+      <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14">
+        
+        {/* Part 1: Two-Column Editorial Architectural Layout */}
+        <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-10 sm:gap-12 lg:gap-14 xl:gap-16">
           
-          {/* Left Column (Approx 50% width): Project Building Image - Height matched to right content */}
-          <div className="lg:col-span-6 order-1 flex flex-col h-full">
-            <div className="relative group w-full h-full flex flex-col max-w-xl mx-auto lg:max-w-none pb-3 pl-3 sm:pb-4 sm:pl-4">
-              {/* Subtle Offset Golden Outline Frame (shifted down-left, bounded inside container) */}
+          {/* Left Column: Prominent Building Image (~48% Desktop Width) */}
+          <div className="w-full lg:w-[48%] flex flex-col">
+            <div className="relative w-full overflow-hidden">
+              {/* Image Container with Left-to-Right Masked Reveal */}
               <div
-                ref={outlineRef}
-                className="absolute top-3 left-0 sm:top-4 right-3 sm:right-4 bottom-0 border border-[#B9953E]/45 rounded-xl sm:rounded-2xl pointer-events-none z-0"
-              />
-
-              {/* Main Image Container filling height */}
-              <div 
-                ref={imgContainerRef}
-                className="relative z-10 flex-1 w-full h-full min-h-[380px] sm:min-h-[460px] lg:min-h-0 overflow-hidden rounded-xl sm:rounded-2xl bg-[#EDE2D1] shadow-xl border border-[#B9953E]/20 flex flex-col"
+                ref={imageContainerRef}
+                className="relative w-full aspect-[4/3] overflow-hidden rounded-none bg-[#F5F5F5]"
               >
                 <img
-                  ref={imgRef}
+                  ref={imageRef}
                   src="/images/about1.webp"
                   alt="United Orchid Heights - 15-Storey Luxury Residential Tower"
-                  className="w-full h-full object-cover object-center flex-1 will-change-transform block"
+                  className="w-full h-full object-cover rounded-none block will-change-transform"
                   loading="lazy"
                 />
+              </div>
 
-                {/* Subtle Luxury Caption Card */}
-                <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 p-3 sm:p-3.5 rounded-xl bg-[#F8F2E8]/95 backdrop-blur-md border border-[#B9953E]/30 shadow-md flex items-center justify-between">
-                  <div>
-                    <span className="text-[10px] font-bold tracking-[0.2em] text-[#B9953E] uppercase block">
-                      Architectural Landmark
-                    </span>
-                    <h4 className="font-serif text-sm sm:text-base font-bold text-[#29221F] mt-0.5">
-                      United Orchid Heights
-                    </h4>
-                  </div>
-                  <div className="text-right hidden sm:block">
-                    <span className="text-[11px] font-medium text-[#29221F]/70 tracking-wide">
-                      Vrindavan Yojana, Lucknow
-                    </span>
-                  </div>
-                </div>
+              {/* Minimal Editorial Caption Below Image */}
+              <div className="pt-3.5 flex flex-wrap items-center justify-between gap-2 text-[11px] sm:text-xs tracking-[0.16em] uppercase text-[#777777] border-t border-[#E5E5E5] mt-3">
+                <span className="font-semibold text-[#111111] tracking-[0.18em]">
+                  United Orchid Heights
+                </span>
+                <span className="text-[#888888] font-light tracking-[0.12em]">
+                  Architectural Landmark • Lucknow
+                </span>
               </div>
             </div>
           </div>
 
-          {/* Right Column (Approx 50% width): Project Information, Stats & Buttons */}
-          <div ref={textContentRef} className="lg:col-span-6 order-2 text-left flex flex-col justify-between h-full py-1 sm:py-2 space-y-6 sm:space-y-7">
-            
-            {/* Top: Header & Description */}
-            <div className="space-y-5">
-              {/* Small Label with Orchid Motif */}
-              <div className="gsap-hero-fade inline-flex items-center gap-2.5">
-                <svg className="w-4 h-4 text-[#B9953E] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M12 2C12 2 8 6 8 10C8 13 10 15 12 15C14 15 16 13 16 10C16 6 12 2 12 2Z" fill="#B9953E" fillOpacity="0.2" />
-                  <path d="M12 15V22" strokeLinecap="round" />
-                  <path d="M8 12C5 12 2 14 2 17C2 19 4 21 7 21C10 21 11 18 12 15" strokeLinecap="round" />
-                  <path d="M16 12C19 12 22 14 22 17C22 19 20 21 17 21C14 21 13 18 12 15" strokeLinecap="round" />
-                </svg>
-                <span className="text-xs font-semibold tracking-[0.25em] text-[#B9953E] uppercase">
-                  ABOUT THE PROJECT
-                </span>
-                <div className="h-[1px] w-12 bg-[#B9953E]/40" />
-              </div>
-
-              {/* Main Heading */}
-              <div className="gsap-hero-fade">
-                <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#29221F] leading-[1.12]">
-                  United Orchid Heights
-                </h2>
-                <p className="font-serif italic text-lg sm:text-xl text-[#B9953E] font-medium mt-1">
-                  Where Thoughtful Living Rises Higher
-                </p>
-              </div>
-
-              {/* Description Paragraphs */}
-              <div className="gsap-hero-fade space-y-3 sm:space-y-3.5 text-[#29221F]/85 text-xs sm:text-sm lg:text-[15px] leading-relaxed font-light">
-                <p>
-                  United Orchid Heights is a thoughtfully planned residential development by United Infracity Private Limited, created for modern families seeking the right balance of comfort, connectivity and contemporary living.
-                </p>
-                <p>
-                  Located in Vrindavan Yojana Phase 1, Lucknow, the project brings together well-designed 3 BHK and 3 BHK + S residences within a single 15-storey residential tower.
-                </p>
-                <p>
-                  Spread across 5,301 sq. m., United Orchid Heights comprises 180 residences, complemented by landscaped spaces and lifestyle amenities.
-                </p>
-              </div>
+          {/* Right Column: Architectural Content (~52% Desktop Width) */}
+          <div
+            ref={contentColRef}
+            className="w-full lg:w-[52%] flex flex-col justify-center space-y-6 sm:space-y-7 text-left"
+          >
+            {/* Top Eyebrow Label with Thin Golden Line */}
+            <div className="gsap-about-fade inline-flex items-center gap-3">
+              <span className="text-xs font-semibold tracking-[0.25em] text-[#B99A55] uppercase">
+                ABOUT THE PROJECT
+              </span>
+              <span className="h-[1px] w-12 bg-[#B99A55]" />
             </div>
 
-            {/* Middle: Project Statistics */}
-            <div className="gsap-hero-fade pt-5 border-t border-[#B9953E]/20">
-              <div className="grid grid-cols-4 gap-2 sm:gap-4 lg:gap-5 items-start">
-                {stats.map((stat, idx) => (
-                  <div key={idx} className="space-y-1">
-                    <div className="font-serif text-2xl sm:text-3xl font-bold text-[#B9953E] tracking-tight leading-none">
-                      {stat.value}
-                    </div>
-                    <p className="text-[10px] sm:text-[11px] text-[#29221F]/70 uppercase tracking-wider font-semibold leading-tight">
-                      {stat.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
+            {/* Main Heading & Subtitle */}
+            <div className="space-y-2">
+              <h2 className="gsap-about-heading font-serif text-3xl sm:text-4xl lg:text-[46px] font-normal tracking-tight text-[#111111] leading-[1.14]">
+                United Orchid Heights
+              </h2>
+              <p className="gsap-about-fade font-serif italic text-lg sm:text-xl text-[#B99A55] font-normal">
+                Where Thoughtful Living Rises Higher
+              </p>
             </div>
 
-            {/* Bottom: Two Action Buttons */}
-            <div className="gsap-hero-fade flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
+            {/* Three Project Description Paragraphs */}
+            <div className="gsap-about-fade space-y-3.5 text-[#555555] text-sm sm:text-[15px] leading-relaxed font-normal">
+              <p>
+                United Orchid Heights is a thoughtfully planned residential development by United Infracity Private Limited, created for modern families seeking the right balance of comfort, connectivity and contemporary living.
+              </p>
+              <p>
+                Located in Vrindavan Yojana Phase 1, Lucknow, the project brings together well-designed 3 BHK and 3 BHK + S residences within a single 15-storey residential tower.
+              </p>
+              <p>
+                Spread across 5,301 sq. m., United Orchid Heights comprises 180 residences, complemented by landscaped spaces and lifestyle amenities.
+              </p>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="gsap-about-fade flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+              {/* Primary Button: Solid Black with Smooth Golden Sliding-Fill Hover Animation */}
               <button
                 onClick={() => {
                   navigate('/about');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="px-6 sm:px-7 py-3.5 bg-[#B9953E] hover:bg-[#A38131] text-white font-bold text-xs uppercase tracking-widest rounded-xl shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer text-center"
+                className="relative overflow-hidden group px-7 py-3.5 bg-[#111111] text-white font-medium text-xs uppercase tracking-[0.18em] rounded-none transition-colors duration-400 cursor-pointer flex items-center justify-center gap-2.5 shadow-xs"
               >
-                Discover Our Journey →
+                {/* Sliding Golden Fill Layer */}
+                <span className="absolute inset-0 bg-[#B99A55] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-400 ease-out z-0" />
+                <span className="relative z-10 flex items-center gap-2 group-hover:text-[#111111] transition-colors duration-400">
+                  <span>Discover Our Journey</span>
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </span>
               </button>
 
+              {/* Secondary Button: Clean Outlined Rectangular Button */}
               <button
                 onClick={openEnquire}
-                className="px-6 sm:px-7 py-3.5 bg-[#EDE2D1]/60 hover:bg-[#EDE2D1] border border-[#B9953E]/40 text-[#29221F] font-bold text-xs uppercase tracking-widest rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-xs cursor-pointer"
+                className="px-7 py-3.5 bg-transparent hover:bg-[#111111] border border-[#B99A55] text-[#111111] hover:text-white font-medium text-xs uppercase tracking-[0.18em] rounded-none transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-xs"
               >
-                <PhoneCall className="w-3.5 h-3.5 text-[#B9953E]" />
                 <span>Schedule Consultation</span>
               </button>
             </div>
@@ -240,7 +228,108 @@ export default function HeroSection() {
           </div>
 
         </div>
+
+        {/* Part 2: Compact Full-Width Black Statistics Strip Directly Below */}
+        <div
+          ref={statsStripRef}
+          className="mt-12 sm:mt-14 lg:mt-16 bg-[#111111] w-full py-5 sm:py-6 lg:py-0 lg:h-[120px] flex items-center shadow-sm"
+        >
+          <div className="grid grid-cols-2 md:grid-cols-4 w-full divide-y md:divide-y-0 md:divide-x divide-[#333333]">
+            
+            {/* Stat 1: Residences */}
+            <div className="flex flex-col items-center justify-center text-center px-3 sm:px-4 py-3 md:py-0">
+              <div className="h-12 sm:h-14 lg:h-16 flex items-center justify-center">
+                <span
+                  ref={stat1Ref}
+                  className="text-4xl sm:text-5xl lg:text-[48px] xl:text-[50px] font-semibold text-[#D4B675] tracking-tight leading-none"
+                  style={{
+                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontVariantNumeric: 'lining-nums tabular-nums',
+                    fontFeatureSettings: '"lnum" 1, "tnum" 1'
+                  }}
+                >
+                  180
+                </span>
+              </div>
+              <span className="gsap-stat-label text-[11px] sm:text-xs font-semibold tracking-[0.22em] uppercase text-white/90 mt-1 sm:mt-1.5">
+                Residences
+              </span>
+            </div>
+
+            {/* Stat 2: Storeys */}
+            <div className="flex flex-col items-center justify-center text-center px-3 sm:px-4 py-3 md:py-0">
+              <div className="h-12 sm:h-14 lg:h-16 flex items-center justify-center">
+                <span
+                  ref={stat2Ref}
+                  className="text-4xl sm:text-5xl lg:text-[48px] xl:text-[50px] font-semibold text-[#D4B675] tracking-tight leading-none"
+                  style={{
+                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontVariantNumeric: 'lining-nums tabular-nums',
+                    fontFeatureSettings: '"lnum" 1, "tnum" 1'
+                  }}
+                >
+                  15
+                </span>
+              </div>
+              <span className="gsap-stat-label text-[11px] sm:text-xs font-semibold tracking-[0.22em] uppercase text-white/90 mt-1 sm:mt-1.5">
+                Storeys
+              </span>
+            </div>
+
+            {/* Stat 3: Sq. Metres */}
+            <div className="flex flex-col items-center justify-center text-center px-3 sm:px-4 py-3 md:py-0">
+              <div className="h-12 sm:h-14 lg:h-16 flex items-center justify-center">
+                <span
+                  ref={stat3Ref}
+                  className="text-4xl sm:text-5xl lg:text-[48px] xl:text-[50px] font-semibold text-[#D4B675] tracking-tight leading-none"
+                  style={{
+                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontVariantNumeric: 'lining-nums tabular-nums',
+                    fontFeatureSettings: '"lnum" 1, "tnum" 1'
+                  }}
+                >
+                  5,301
+                </span>
+              </div>
+              <span className="gsap-stat-label text-[11px] sm:text-xs font-semibold tracking-[0.22em] uppercase text-white/90 mt-1 sm:mt-1.5">
+                Sq. Metres
+              </span>
+            </div>
+
+            {/* Stat 4: Configurations */}
+            <div className="flex flex-col items-center justify-center text-center px-3 sm:px-4 py-3 md:py-0">
+              <div className="h-12 sm:h-14 lg:h-16 flex items-center justify-center">
+                <span
+                  className="text-2xl sm:text-3xl lg:text-[30px] xl:text-[32px] font-semibold text-[#D4B675] tracking-tight leading-none whitespace-nowrap"
+                  style={{
+                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontVariantNumeric: 'lining-nums tabular-nums',
+                    fontFeatureSettings: '"lnum" 1, "tnum" 1'
+                  }}
+                >
+                  3 BHK & 3 BHK + S
+                </span>
+              </div>
+              <span className="gsap-stat-label text-[11px] sm:text-xs font-semibold tracking-[0.22em] uppercase text-white/90 mt-1 sm:mt-1.5">
+                Configurations
+              </span>
+            </div>
+
+          </div>
+        </div>
+
       </div>
+
+      {/* Scoped CSS for Reduced Motion Respect */}
+      <style>{`
+        @media (prefers-reduced-motion: reduce) {
+          #hero,
+          #hero * {
+            transition-duration: 0.01ms !important;
+            animation-duration: 0.01ms !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
