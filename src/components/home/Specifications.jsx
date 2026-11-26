@@ -194,17 +194,28 @@ const specificationGroups = [
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// ACCORDION ROW COMPONENT
+// ACCORDION ROW COMPONENT WITH SMOOTH HOVER & ACCENT ANIMATIONS
 // ─────────────────────────────────────────────────────────────────────────────
 function SpecificationItem({ item, isOpen, onToggle }) {
   const Icon = item.icon;
 
   return (
     <div
-      className={`border-b border-[#D9C8A7]/70 last:border-b-0 transition-colors duration-300 rounded-none ${
-        isOpen ? 'bg-[#EDE3CF]' : 'hover:bg-[#F2ECE1]/70'
+      className={`group relative overflow-hidden border transition-all duration-300 rounded-none mb-2 last:mb-0 ${
+        isOpen
+          ? 'bg-[#FAF5ED] border-[#C5A059]/70 shadow-xs'
+          : 'bg-white hover:bg-[#FAF8F4] border-[#E8E1D3] hover:border-[#C5A059]/50'
       }`}
     >
+      {/* Left Golden Accent Indicator Line */}
+      <span 
+        className={`absolute left-0 top-0 bottom-0 w-[3.5px] transition-all duration-300 ease-out z-10 ${
+          isOpen 
+            ? 'bg-[#C5A059] opacity-100 scale-y-100' 
+            : 'bg-[#C5A059] opacity-0 group-hover:opacity-100 scale-y-0 group-hover:scale-y-100'
+        }`} 
+      />
+
       {/* Accordion Header Button */}
       <button
         type="button"
@@ -212,18 +223,22 @@ function SpecificationItem({ item, isOpen, onToggle }) {
         aria-expanded={isOpen}
         aria-controls={`spec-content-${item.id}`}
         onClick={onToggle}
-        className="w-full text-left flex items-center justify-between min-h-[46px] px-3.5 sm:px-4 py-2.5 group cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-[#B99A59]"
+        className="w-full text-left flex items-center justify-between min-h-[50px] px-3.5 sm:px-4 py-2.5 cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-[#C5A059]"
       >
         <div className="flex items-center gap-3 min-w-0 pr-2">
-          {/* Outline Icon with subtle slide on hover */}
-          <div className="text-[#B99A59] group-hover:text-[#96743B] transition-transform duration-300 group-hover:translate-x-0.5 shrink-0">
-            <Icon className="w-4 h-4 stroke-[1.65]" />
+          {/* Refined Icon Badge in Architectural Dark Frame */}
+          <div className={`w-8 h-8 rounded-none flex items-center justify-center shrink-0 transition-all duration-300 ${
+            isOpen 
+              ? 'bg-[#C5A059] text-[#111111] shadow-xs' 
+              : 'bg-[#111111] text-[#D4B675] group-hover:bg-[#C5A059] group-hover:text-[#111111]'
+          }`}>
+            <Icon className="w-4 h-4 stroke-[1.8] transition-transform duration-300 group-hover:scale-110" />
           </div>
 
           {/* Category Heading */}
           <span
-            className={`text-[15px] sm:text-[15.5px] font-medium tracking-tight truncate transition-colors duration-250 ${
-              isOpen ? 'text-[#806435] font-semibold' : 'text-[#806435] group-hover:text-[#B99A59]'
+            className={`text-[14px] sm:text-[14.5px] tracking-tight truncate transition-colors duration-250 ${
+              isOpen ? 'text-[#111111] font-semibold' : 'text-[#222222] font-medium group-hover:text-[#111111]'
             }`}
           >
             {item.category}
@@ -232,18 +247,18 @@ function SpecificationItem({ item, isOpen, onToggle }) {
 
         {/* Plus / Minus Smooth Rotation Icon */}
         <div
-          className={`w-5 h-5 rounded-none flex items-center justify-center shrink-0 transition-all duration-250 ${
+          className={`w-6 h-6 rounded-none flex items-center justify-center shrink-0 transition-all duration-300 ${
             isOpen
-              ? 'text-[#806435] rotate-45 scale-110'
-              : 'text-[#B99A59] group-hover:text-[#806435] rotate-0 group-hover:scale-110'
+              ? 'text-white bg-[#111111] rotate-45 scale-105 shadow-xs'
+              : 'text-[#777777] bg-[#F2EDE4] group-hover:bg-[#C5A059] group-hover:text-[#111111] rotate-0'
           }`}
           aria-hidden="true"
         >
-          <Plus className="w-3.5 h-3.5 stroke-[2]" />
+          <Plus className="w-3.5 h-3.5 stroke-[2.2]" />
         </div>
       </button>
 
-      {/* Accordion Expandable Content (Grid transition for smooth 0 -> auto height) */}
+      {/* Accordion Expandable Content */}
       <div
         id={`spec-content-${item.id}`}
         role="region"
@@ -254,26 +269,29 @@ function SpecificationItem({ item, isOpen, onToggle }) {
       >
         <div className="overflow-hidden">
           <div
-            className={`transition-transform duration-300 ease-out ${
-              isOpen ? 'translate-y-0' : '-translate-y-1'
-            } px-4 pb-3.5 pt-1 text-[13.5px] sm:text-[14px] leading-relaxed text-[#665A49] border-t border-[#D9C8A7]/40 space-y-1`}
+            className={`transition-all duration-300 ease-out ${
+              isOpen ? 'translate-y-0 opacity-100' : '-translate-y-1.5 opacity-0'
+            } px-4 pb-4 pt-3 text-[13px] sm:text-[13.5px] leading-relaxed text-[#555555] border-t border-[#EAE3D5] space-y-2 bg-[#FAF8F4]/80`}
           >
             {item.specs.map((spec, sIdx) => (
-              <div key={sIdx} className="flex flex-wrap items-baseline gap-x-1.5">
-                {spec.label ? (
-                  <>
-                    <span className="font-medium text-[#29221F] tracking-tight shrink-0">
-                      {spec.label}:
+              <div key={sIdx} className="flex items-start gap-2.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059] mt-2 shrink-0" />
+                <div className="flex-1">
+                  {spec.label ? (
+                    <>
+                      <span className="font-semibold text-[#111111] mr-1.5">
+                        {spec.label}:
+                      </span>
+                      <span className="text-[#444444] font-normal">
+                        {spec.value}
+                      </span>
+                    </>
+                  ) : (
+                    <span className="text-[#444444] font-normal leading-relaxed">
+                      {spec.description}
                     </span>
-                    <span className="text-[#665A49] font-normal">
-                      {spec.value}
-                    </span>
-                  </>
-                ) : (
-                  <span className="text-[#665A49] font-normal leading-relaxed">
-                    {spec.description}
-                  </span>
-                )}
+                  )}
+                </div>
               </div>
             ))}
           </div>
@@ -284,33 +302,38 @@ function SpecificationItem({ item, isOpen, onToggle }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// SPECIFICATION PANEL COMPONENT
+// SPECIFICATION PANEL COMPONENT WITH LUXURY HEADER & HOVER ELEVATION
 // ─────────────────────────────────────────────────────────────────────────────
 function SpecificationPanel({ group, activeItemId, onToggleItem }) {
   return (
-    <div className="gsap-spec-panel group relative bg-[#F9F5ED] border border-[#D9C8A7] hover:border-[#B99A59]/80 transition-all duration-350 rounded-none p-5 sm:p-6 flex flex-col justify-between shadow-[0_2px_8px_rgba(185,154,89,0.04)]">
+    <div className="gsap-spec-panel group relative bg-white border border-[#E2DAC8] hover:border-[#C5A059] shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_40px_rgba(197,160,89,0.15)] transition-all duration-400 ease-out rounded-none flex flex-col justify-between hover:-translate-y-1.5 overflow-hidden">
       
-      {/* Top Header Section of Panel */}
-      <div className="relative mb-4">
-        {/* Large Faded Golden Decorative Numbering (38-42px) */}
-        <div
-          className="absolute -top-3.5 right-0 font-serif font-bold text-3xl sm:text-[38px] lg:text-[40px] text-[#CDB789] opacity-35 group-hover:opacity-65 group-hover:text-[#B99A59] transition-all duration-350 select-none pointer-events-none leading-none"
-          aria-hidden="true"
-        >
-          {group.number}
+      {/* Animated Top Golden Border Accent */}
+      <span className="absolute top-0 left-0 right-0 h-[3px] bg-[#C5A059] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out origin-left z-20 pointer-events-none" />
+
+      {/* Top Header Section of Panel with Distinct Luxury Band */}
+      <div className="p-5 sm:p-6 pb-4 bg-gradient-to-b from-[#FAF8F4] to-white border-b border-[#EAE3D5] relative">
+        {/* Top Badges Row */}
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] uppercase px-2.5 py-0.5 bg-[#111111] text-[#D4B675] border border-[#C5A059]/30">
+            PART {group.number}
+          </span>
+          <span className="font-serif font-light text-3xl sm:text-4xl text-[#C5A059] leading-none select-none">
+            {group.number}
+          </span>
         </div>
 
-        {/* Group Heading (23-26px, font-serif) */}
-        <h3 className="font-serif font-medium text-xl sm:text-[23px] lg:text-[24px] text-[#96743B] tracking-tight leading-snug pr-12">
+        {/* Group Heading */}
+        <h3 className="font-serif font-normal text-xl sm:text-[22px] lg:text-[23px] text-[#111111] tracking-tight leading-snug transition-colors duration-300">
           {group.title}
         </h3>
 
-        {/* Short Golden Decorative Underline */}
-        <div className="h-[1.5px] w-12 bg-[#B99A59]/70 mt-2 mb-1" />
+        {/* Short Golden Decorative Underline with Hover Expansion */}
+        <div className="h-[2px] w-12 group-hover:w-20 bg-[#C5A059] mt-2.5 transition-all duration-400 ease-out" />
       </div>
 
-      {/* Accordion Rows (Square corners, border-radius: 0px) */}
-      <div className="border border-[#D9C8A7]/70 divide-y divide-transparent bg-white/40">
+      {/* Accordion Rows Container */}
+      <div className="p-3 sm:p-4 bg-white/60">
         {group.items.map((item) => (
           <SpecificationItem
             key={item.id}
@@ -345,39 +368,38 @@ export default function Specifications() {
       // 1. Header elements reveal: pill, heading, line, description
       gsap.fromTo(
         '.gsap-spec-header-el',
-        { y: 25, opacity: 0 },
+        { y: 30, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.8,
-          stagger: 0.1,
+          duration: 0.85,
+          stagger: 0.12,
           ease: 'power3.out',
           clearProps: 'all',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 90%',
+            start: 'top 82%',
             toggleActions: 'play none none none'
           }
         }
       );
 
-      // 2. Staggered Panel Entrance: Panel 01 -> Panel 02 -> Panel 03
-      // Initial opacity: 0, translateY: 40px -> Final opacity: 1, translateY: 0
-      // Duration: 0.9s, Stagger delay: 0.18s, Easing: power3.out
+      // 2. Staggered Panel Entrance with subtle scale & smooth float-up
       if (panelsRef.current) {
         gsap.fromTo(
           panelsRef.current.querySelectorAll('.gsap-spec-panel'),
-          { y: 40, opacity: 0 },
+          { y: 35, opacity: 0, scale: 0.98 },
           {
             y: 0,
             opacity: 1,
+            scale: 1,
             duration: 0.9,
-            stagger: 0.18,
+            stagger: 0.16,
             ease: 'power3.out',
             clearProps: 'all',
             scrollTrigger: {
               trigger: panelsRef.current,
-              start: 'top 85%',
+              start: 'top 82%',
               toggleActions: 'play none none none'
             }
           }
@@ -415,11 +437,11 @@ export default function Specifications() {
     <section
       ref={sectionRef}
       id="specifications"
-      className="pt-5 pb-5 sm:pt-6 sm:pb-6 lg:pt-8 lg:pb-6 bg-[#F6F0E6] border-b border-[#B99A59]/20 relative overflow-hidden"
+      className="pt-8 pb-5 sm:pt-10 sm:pb-6 lg:pt-12 lg:pb-7 bg-[#F9F7F2] border-b border-[#E8E2D5] relative overflow-hidden"
     >
-      {/* Subtle floral watermark in background (~3% opacity) */}
+      {/* Subtle floral watermark in background (~2.5% opacity) */}
       <div
-        className="absolute -right-16 top-1/2 -translate-y-1/2 w-80 sm:w-96 h-80 sm:h-96 pointer-events-none select-none opacity-[0.03] z-0"
+        className="absolute -right-16 top-1/2 -translate-y-1/2 w-80 sm:w-96 h-80 sm:h-96 pointer-events-none select-none opacity-[0.025] z-0"
         aria-hidden="true"
       >
         <img
@@ -433,30 +455,31 @@ export default function Specifications() {
       <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14 relative z-10">
         
         {/* ───────────────────────────────────────────────────────────────── */}
-        {/* 1. SECTION HEADER (Centered - matching Floor Plans styling)       */}
+        {/* 1. SECTION HEADER (Centered - matching About & Floor Plans style) */}
         {/* ───────────────────────────────────────────────────────────────── */}
-        <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8 space-y-2 sm:space-y-2.5">
+        <div className="text-center max-w-3xl mx-auto mb-5 sm:mb-6 space-y-1.5 sm:space-y-2">
           
-          {/* Eyebrow Pill Badge */}
-          <div className="gsap-spec-header-el inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#B99A59]/10 border border-[#B99A59]/25 text-[#A68A4E]">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#B99A59]" />
-            <span className="text-xs font-semibold tracking-widest uppercase">
+          {/* Eyebrow Label with Thin Golden Lines */}
+          <div className="gsap-spec-header-el inline-flex items-center justify-center gap-2.5 sm:gap-3 mb-1">
+            <span className="h-[1px] w-7 sm:w-10 bg-[#C5A059]" />
+            <span className="text-xs sm:text-sm font-semibold tracking-[0.25em] text-[#C5A059] uppercase block">
               QUALITY IN EVERY DETAIL
             </span>
+            <span className="h-[1px] w-7 sm:w-10 bg-[#C5A059]" />
           </div>
 
-          {/* Main Heading (~56-60px desktop, font-serif, regular/medium weight) */}
-          <h2 className="gsap-spec-header-el font-serif font-medium text-3xl sm:text-5xl lg:text-[58px] leading-[1.08] tracking-tight text-[#29221F]">
+          {/* Main Heading: Matching About Section Heading Font Size & Style */}
+          <h2 className="gsap-spec-header-el font-serif font-normal text-3xl sm:text-4xl lg:text-[40px] leading-[1.15] tracking-tight text-[#111111]">
             Specifications
           </h2>
 
           {/* Thin Decorative Champagne Gold Line below Heading */}
-          <div className="gsap-spec-header-el h-[1.5px] w-20 sm:w-28 bg-[#B99A59]/60 mx-auto my-2.5 sm:my-3.5" />
+          <div className="gsap-spec-header-el h-[1.5px] w-14 sm:w-18 bg-[#C5A059] mx-auto mt-2 sm:mt-2.5" />
 
           {/* Description & Italic Tagline */}
-          <p className="gsap-spec-header-el text-sm sm:text-base lg:text-lg text-[#665A49] font-light leading-relaxed max-w-xl mx-auto">
+          <p className="gsap-spec-header-el text-sm sm:text-base text-[#555555] font-light leading-relaxed max-w-xl mx-auto">
             Thoughtfully selected materials. Refined finishes.
-            <span className="block italic text-[#806435] mt-1 text-sm sm:text-base">
+            <span className="block font-serif italic text-[#C5A059] mt-1 text-sm sm:text-base font-normal">
               Crafted with care, designed to endure.
             </span>
           </p>
@@ -482,15 +505,15 @@ export default function Specifications() {
         {/* ───────────────────────────────────────────────────────────────── */}
         {/* 3. DECORATIVE ORCHID BRANDING AT BOTTOM CENTER                    */}
         {/* ───────────────────────────────────────────────────────────────── */}
-        <div className="gsap-spec-emblem pt-5 sm:pt-6 flex flex-col items-center justify-center">
+        <div className="gsap-spec-emblem pt-3.5 sm:pt-4 flex flex-col items-center justify-center">
           <div className="flex items-center justify-center gap-4 sm:gap-6 w-full max-w-xs">
-            <div className="h-[1px] flex-1 bg-[#D9C8A7]" />
+            <div className="h-[1px] flex-1 bg-[#DCD4C4]" />
             <img
               src="/images/orchid-emblem.webp"
               alt="United Orchid Heights"
-              className="w-9 sm:w-10 h-auto object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
+              className="w-7 h-7 sm:w-8 sm:h-8 object-contain opacity-45 hover:opacity-80 transition-opacity duration-300"
             />
-            <div className="h-[1px] flex-1 bg-[#D9C8A7]" />
+            <div className="h-[1px] flex-1 bg-[#DCD4C4]" />
           </div>
         </div>
 

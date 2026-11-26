@@ -15,7 +15,8 @@ import {
   ExternalLink, 
   Maximize2, 
   X,
-  Clock
+  Clock,
+  ChevronRight
 } from 'lucide-react';
 
 if (typeof window !== 'undefined') {
@@ -191,11 +192,11 @@ export default function LocationConnectivity() {
     <section
       ref={sectionRef}
       id="location-connectivity"
-      className="relative pt-4 sm:pt-5 lg:pt-6 pb-3 sm:pb-4 lg:pb-4 bg-[#F6F0E6] border-b border-[#B99A59]/20 overflow-hidden"
+      className="relative pt-10 sm:pt-12 lg:pt-14 pb-4 sm:pb-5 lg:pb-6 bg-white border-b border-[#E5E5E5] overflow-hidden"
     >
       {/* Subtle Background Watermark Emblem */}
       <div 
-        className="absolute right-[-30px] top-1/4 w-72 sm:w-80 h-72 sm:h-80 pointer-events-none select-none opacity-[0.04] z-0"
+        className="absolute right-[-30px] top-1/4 w-72 sm:w-80 h-72 sm:h-80 pointer-events-none select-none opacity-[0.025] z-0"
         aria-hidden="true"
       >
         <img
@@ -209,48 +210,46 @@ export default function LocationConnectivity() {
       <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14 relative z-10">
         
         {/* 1. Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-5 space-y-1.5 sm:space-y-2">
-          {/* Subtitle / Eyebrow Pill Badge */}
-          <div className="gsap-loc-header inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#B99A59]/10 border border-[#B99A59]/25 text-[#A07828]">
-            <svg className="w-3.5 h-3.5 text-[#B99A59]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M12 2C12 2 8 6 8 10C8 13 10 15 12 15C14 15 16 13 16 10C16 6 12 2 12 2Z" fill="#B99A59" fillOpacity="0.2" />
-              <path d="M12 15V22" strokeLinecap="round" />
-            </svg>
-            <span className="text-xs font-semibold tracking-widest uppercase text-[#A07828]">
+        <div className="text-center max-w-3xl mx-auto mb-5 sm:mb-6 space-y-1.5 sm:space-y-2">
+          {/* Eyebrow Label with Thin Golden Lines */}
+          <div className="gsap-loc-header inline-flex items-center justify-center gap-2.5 sm:gap-3 mb-1">
+            <span className="h-[1px] w-7 sm:w-10 bg-[#C5A059]" />
+            <span className="text-xs sm:text-sm font-semibold tracking-[0.25em] text-[#C5A059] uppercase block">
               PERFECTLY POSITIONED
             </span>
+            <span className="h-[1px] w-7 sm:w-10 bg-[#C5A059]" />
           </div>
 
-          {/* Main Heading: Matching Lifestyle & Living heading font and size */}
-          <h2 className="gsap-loc-header font-serif font-medium text-3xl sm:text-4xl md:text-5xl text-[#29221F] leading-tight tracking-tight">
+          {/* Main Heading: Matching About Section Heading Font Size & Style */}
+          <h2 className="gsap-loc-header font-serif font-normal text-3xl sm:text-4xl lg:text-[40px] text-[#111111] leading-[1.15] tracking-tight">
             Closer to Everything That Matters
           </h2>
 
-          {/* Description: Vrindavan Yojna, Lucknow */}
-          <p className="gsap-loc-header font-serif italic text-lg sm:text-2xl text-[#A68A4E]">
+          {/* Subtitle: Vrindavan Yojna, Lucknow */}
+          <p className="gsap-loc-header font-serif italic text-lg sm:text-xl text-[#C5A059] font-normal mt-1">
             Vrindavan Yojna, Lucknow
           </p>
 
           {/* Thin Decorative Champagne Gold Line */}
-          <div className="gsap-loc-header h-[1.5px] w-20 sm:w-28 bg-[#B99A59]/60 mx-auto my-2 sm:my-2.5" />
+          <div className="gsap-loc-header h-[1.5px] w-14 sm:w-18 bg-[#C5A059] mx-auto mt-2 sm:mt-2.5" />
         </div>
 
         {/* 2. Asymmetric Two-Column Layout (40% Explorer, 60% Map) - Equal Height on Desktop */}
-        <div className="flex flex-col lg:flex-row lg:items-stretch justify-between gap-8 lg:gap-10 xl:gap-14 w-full mt-4 sm:mt-5 mb-2 sm:mb-3">
+        <div className="flex flex-col lg:flex-row lg:items-stretch justify-between gap-8 lg:gap-10 xl:gap-14 w-full mt-6 sm:mt-8 mb-2 sm:mb-3">
           
           {/* Left Side: Interactive Connectivity Explorer (40% desktop) - Stretches to equal height */}
           <div className="w-full lg:w-[40%] flex flex-col justify-between h-full space-y-4 sm:space-y-5">
             
-            {/* Category Navigation Buttons (Bigger, spacious category boxes) */}
+            {/* Category Navigation Buttons */}
             <div className="space-y-2.5">
               <div className="flex items-center gap-2 pb-1">
-                <span className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-[#A68A4E]">
+                <span className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-[#C5A059]">
                   Select Category
                 </span>
-                <div className="h-[1px] flex-1 bg-[#B99A59]/20" />
+                <div className="h-[1px] flex-1 bg-[#E5E5E5]" />
               </div>
 
-              {/* 8 Category Boxes with larger dimensions & comfortable padding */}
+              {/* 8 Category Boxes with Premium Luxury Styling & Fluid Animations */}
               <div className="grid grid-cols-2 gap-2.5 sm:gap-3 w-full">
                 {categories.map((cat) => {
                   const Icon = cat.icon;
@@ -259,16 +258,50 @@ export default function LocationConnectivity() {
                     <button
                       key={cat.id}
                       onClick={() => handleCategoryChange(cat.id)}
-                      className={`flex items-center gap-3 px-3.5 py-3 sm:px-4 sm:py-3.5 min-h-[50px] sm:min-h-[54px] text-left transition-all duration-200 cursor-pointer border rounded-none ${
+                      className={`group relative overflow-hidden flex items-center justify-between px-3.5 py-3 sm:px-4 sm:py-3.5 min-h-[52px] sm:min-h-[56px] text-left transition-all duration-300 ease-out cursor-pointer rounded-none border ${
                         isActive
-                          ? 'bg-[#B99A59]/15 border-[#B99A59] text-[#A68A4E] shadow-xs'
-                          : 'bg-white/70 hover:bg-white border-[#DFD1B7]/80 text-[#665A49] hover:border-[#B99A59]/60'
+                          ? 'bg-[#111111] border-[#111111] text-white shadow-[0_6px_20px_rgba(0,0,0,0.18)] -translate-y-0.5'
+                          : 'bg-white hover:bg-[#FAF8F5] border-[#E8E8E8] hover:border-[#C5A059]/70 text-[#444444] hover:text-[#111111] hover:-translate-y-0.5 hover:shadow-[0_4px_16px_rgba(197,160,89,0.14)]'
                       }`}
                     >
-                      <Icon className={`w-4.5 h-4.5 sm:w-5 sm:h-5 stroke-[1.6] shrink-0 ${isActive ? 'text-[#B99A59]' : 'text-[#A68A4E]/75'}`} />
-                      <span className="text-xs sm:text-[14px] font-medium tracking-wide truncate">
-                        {cat.label}
-                      </span>
+                      {/* Left Accent Bar */}
+                      <span 
+                        className={`absolute left-0 top-0 bottom-0 w-[3.5px] transition-all duration-300 ease-out ${
+                          isActive 
+                            ? 'bg-[#C5A059] opacity-100' 
+                            : 'bg-[#C5A059] opacity-0 group-hover:opacity-100'
+                        }`} 
+                      />
+
+                      {/* Icon & Label Container */}
+                      <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 pr-1">
+                        {/* Elegant Icon Badge */}
+                        <div className={`w-8 h-8 rounded-none flex items-center justify-center shrink-0 transition-all duration-300 ${
+                          isActive
+                            ? 'bg-[#C5A059]/20 text-[#D4B675]'
+                            : 'bg-[#F5F5F5] text-[#777777] group-hover:bg-[#C5A059]/12 group-hover:text-[#C5A059]'
+                        }`}>
+                          <Icon className="w-4 h-4 stroke-[1.7] transition-transform duration-300 group-hover:scale-110" />
+                        </div>
+
+                        {/* Label */}
+                        <span className={`text-xs sm:text-[13.5px] tracking-wide truncate transition-colors duration-300 ${
+                          isActive 
+                            ? 'font-medium text-white' 
+                            : 'font-normal text-[#333333] group-hover:text-[#111111] group-hover:font-medium'
+                        }`}>
+                          {cat.label}
+                        </span>
+                      </div>
+
+                      {/* Right Indicator (Active gold dot or hover arrow) */}
+                      <div className="shrink-0 flex items-center pl-1">
+                        {isActive ? (
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059] shadow-[0_0_8px_rgba(197,160,89,0.9)]" />
+                        ) : (
+                          <ChevronRight className="w-3.5 h-3.5 text-[#C5A059] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                        )}
+                      </div>
                     </button>
                   );
                 })}
@@ -278,37 +311,37 @@ export default function LocationConnectivity() {
             {/* Dynamic Landmark List Display (Flexes to fill remaining height perfectly) */}
             <div 
               ref={listRef}
-              className="flex-1 flex flex-col justify-between bg-white/70 border border-[#DFD1B7]/80 p-5 sm:p-6 rounded-none shadow-2xs mt-3 sm:mt-4 min-h-[260px]"
+              className="flex-1 flex flex-col justify-between bg-white border border-[#E8E8E8] shadow-[0_4px_24px_rgba(0,0,0,0.03)] p-5 sm:p-6 rounded-none mt-3 sm:mt-4 min-h-[260px]"
             >
               <div>
                 {/* Active Category Header */}
-                <div className="flex items-center justify-between pb-3 sm:pb-3.5 border-b border-[#B99A59]/30 mb-3">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-[#A68A4E]">
+                <div className="flex items-center justify-between pb-3 sm:pb-3.5 border-b border-[#EAEAEA] mb-3">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="px-2.5 py-1 bg-[#111111] text-white text-[11px] sm:text-xs font-semibold tracking-[0.16em] uppercase rounded-none">
                       {activeCategory.label}
                     </span>
-                    <span className="text-xs text-[#665A49]/50">•</span>
-                    <span className="text-xs sm:text-[13px] text-[#665A49]/80 font-light italic">
+                    <span className="text-xs text-[#888888]">•</span>
+                    <span className="text-xs sm:text-[13px] text-[#666666] font-light italic">
                       {activeCategory.subtitle}
                     </span>
                   </div>
-                  <div className="flex items-center gap-1.5 text-xs font-medium text-[#A68A4E]">
-                    <Clock className="w-3.5 h-3.5" />
+                  <div className="flex items-center gap-1.5 text-xs font-medium text-[#C5A059] shrink-0">
+                    <Clock className="w-3.5 h-3.5 text-[#C5A059]" />
                     <span>Drive Time</span>
                   </div>
                 </div>
 
-                {/* Landmark Items with Thin Golden Divider Lines */}
-                <div className="space-y-1">
+                {/* Landmark Items with Smooth Hover Transitions */}
+                <div className="space-y-1.5">
                   {activeCategory.landmarks.map((landmark, idx) => (
                     <div
                       key={idx}
-                      className="flex items-center justify-between py-3 sm:py-3.5 border-b border-[#B99A59]/15 last:border-b-0 hover:bg-white/60 px-1.5 transition-colors"
+                      className="group flex items-center justify-between py-3 px-3 border border-transparent hover:border-[#E8E8E8] hover:border-l-[3px] hover:border-l-[#C5A059] hover:bg-[#FAF8F5] transition-all duration-200"
                     >
-                      <span className="text-sm sm:text-base font-medium text-[#29221F] leading-snug pr-4">
+                      <span className="text-sm sm:text-[15px] font-medium text-[#222222] group-hover:text-[#111111] leading-snug pr-4 transition-colors">
                         {landmark.name}
                       </span>
-                      <span className="shrink-0 text-xs sm:text-sm font-semibold tracking-wide text-[#A68A4E] bg-[#B99A59]/10 px-3 py-1.5 border border-[#B99A59]/25 rounded-none whitespace-nowrap">
+                      <span className="shrink-0 text-xs sm:text-[13px] font-semibold tracking-wide text-[#C5A059] bg-[#C5A059]/10 px-3 py-1.5 border border-[#C5A059]/30 rounded-none whitespace-nowrap transition-all duration-200 group-hover:bg-[#C5A059] group-hover:text-white">
                         {landmark.time}
                       </span>
                     </div>
@@ -317,22 +350,26 @@ export default function LocationConnectivity() {
               </div>
 
               {/* Footnote */}
-              <p className="text-[11px] text-[#665A49]/65 font-light italic pt-3 border-t border-[#DFD1B7]/50 mt-4">
+              <p className="text-[11px] text-[#888888] font-light italic pt-3 border-t border-[#EAEAEA] mt-4">
                 *All travel times are approximate and subject to traffic conditions as stated in the brochure.
               </p>
             </div>
 
-            {/* View Location on Google Maps Button Below Connectivity Box (Left Column) */}
+            {/* View Location on Google Maps Button with Smooth Sliding Gold Layer */}
             <div className="pt-2 sm:pt-3">
               <a
                 href="https://www.google.com/maps/search/?api=1&query=United+Orchid+Heights+Vrindavan+Yojna+Lucknow"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 border border-[#B99A59] bg-[#B99A59]/10 hover:bg-[#B99A59] text-[#A68A4E] hover:text-white transition-all duration-300 font-medium text-xs sm:text-[13px] tracking-[0.16em] uppercase rounded-none cursor-pointer shadow-2xs"
+                className="relative overflow-hidden group inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#111111] text-white font-medium text-xs sm:text-[13px] tracking-[0.18em] uppercase rounded-none transition-colors duration-400 cursor-pointer shadow-xs w-full sm:w-auto"
               >
-                <MapPin className="w-3.5 h-3.5 text-[#B99A59] group-hover:text-white" />
-                <span>View Location on Google Maps</span>
-                <ExternalLink className="w-3 h-3 ml-0.5 opacity-80" />
+                {/* Sliding Golden Fill Layer */}
+                <span className="absolute inset-0 bg-[#C5A059] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-400 ease-out z-0" />
+                <span className="relative z-10 flex items-center gap-2 group-hover:text-[#111111] transition-colors duration-400">
+                  <MapPin className="w-3.5 h-3.5 text-[#C5A059] group-hover:text-[#111111] transition-colors duration-300" />
+                  <span>View Location on Google Maps</span>
+                  <ExternalLink className="w-3.5 h-3.5 ml-0.5 opacity-80" />
+                </span>
               </a>
             </div>
 
@@ -341,20 +378,20 @@ export default function LocationConnectivity() {
           {/* Right Side: Original Location Map (60% desktop) - Stretches to equal height */}
           <div className="w-full lg:w-[60%] flex flex-col justify-between h-full">
             <div ref={mapWrapperRef} className="relative w-full flex-1 flex flex-col group pb-3 pl-3 sm:pb-4 sm:pl-4">
-              {/* Subtle Offset Golden Frame Outline (shifted down-left, bounded inside container) */}
+              {/* Subtle Offset Golden Frame Outline */}
               <div
                 ref={outlineRef}
-                className="absolute top-3 left-0 sm:top-4 right-3 sm:right-4 bottom-0 border border-[#B99A59]/45 pointer-events-none z-0"
+                className="absolute top-3 left-0 sm:top-4 right-3 sm:right-4 bottom-0 border border-[#C5A059]/40 pointer-events-none z-0"
               />
 
-              {/* Map Image Container (Square Corners, Full Height Expansion) */}
-              <div className="relative z-10 w-full flex-1 flex items-center justify-center overflow-hidden rounded-none border border-[#DFD1B7]/70 bg-white/70 p-2 sm:p-3 shadow-xs">
+              {/* Map Image Container */}
+              <div className="relative z-10 w-full flex-1 flex items-center justify-center overflow-hidden rounded-none border border-[#E5E5E5] bg-[#F5F5F5] p-2 sm:p-3 shadow-xs">
                 
                 {/* Full-screen Lightbox Trigger Button */}
                 <button
                   onClick={() => setIsZoomOpen(true)}
                   aria-label="Expand Map Fullscreen"
-                  className="absolute top-5 right-5 z-20 p-2 bg-white/90 hover:bg-[#B99A59] text-[#A68A4E] hover:text-white border border-[#B99A59]/40 shadow-xs transition-colors duration-200 cursor-pointer"
+                  className="absolute top-5 right-5 z-20 p-2 bg-white hover:bg-[#111111] text-[#111111] hover:text-[#C5A059] border border-[#E5E5E5] hover:border-[#C5A059] shadow-xs transition-colors duration-200 cursor-pointer"
                   title="Expand Map"
                 >
                   <Maximize2 className="w-4 h-4" />
@@ -378,7 +415,7 @@ export default function LocationConnectivity() {
 
             {/* Address Details Below Map (Right Column) */}
             <div className="pt-2 sm:pt-3 flex items-center justify-start sm:justify-end">
-              <span className="text-xs text-[#665A49]/80 font-light italic">
+              <span className="text-xs text-[#777777] font-light italic">
                 Sector 6, Vrindavan Yojna, Raebareli Road, Lucknow
               </span>
             </div>
@@ -388,15 +425,15 @@ export default function LocationConnectivity() {
         </div>
 
         {/* 3. Original Floral Emblem at Bottom Center */}
-        <div className="pt-1 sm:pt-2 flex flex-col items-center justify-center">
+        <div className="pt-2 sm:pt-3 flex flex-col items-center justify-center">
           <div className="flex items-center justify-center gap-4 w-full max-w-xs">
-            <div className="h-[1px] flex-1 bg-[#B99A59]/30" />
+            <div className="h-[1px] flex-1 bg-[#E5E5E5]" />
             <img
               src="/images/orchid-emblem.webp"
               alt="United Orchid Heights"
-              className="w-9 h-9 sm:w-10 sm:h-10 object-contain opacity-45 hover:opacity-80 transition-opacity duration-300"
+              className="w-8 h-8 sm:w-9 sm:h-9 object-contain opacity-40 hover:opacity-75 transition-opacity duration-300"
             />
-            <div className="h-[1px] flex-1 bg-[#B99A59]/30" />
+            <div className="h-[1px] flex-1 bg-[#E5E5E5]" />
           </div>
         </div>
 
@@ -409,22 +446,22 @@ export default function LocationConnectivity() {
           onClick={() => setIsZoomOpen(false)}
         >
           <div 
-            className="relative max-w-6xl w-full bg-[#F6F0E6] border border-[#B99A59]/50 shadow-2xl p-4 sm:p-6 flex flex-col max-h-[92vh]"
+            className="relative max-w-6xl w-full bg-white border border-[#E5E5E5] shadow-2xl p-4 sm:p-6 flex flex-col max-h-[92vh]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="flex items-center justify-between pb-3 border-b border-[#B99A59]/30 mb-3">
+            <div className="flex items-center justify-between pb-3 border-b border-[#E5E5E5] mb-3">
               <div>
-                <h4 className="font-serif font-medium text-lg sm:text-xl text-[#29221F]">
+                <h4 className="font-serif font-medium text-lg sm:text-xl text-[#111111]">
                   United Orchid Heights — Location & Connectivity Map
                 </h4>
-                <p className="text-xs text-[#A68A4E] font-medium">
+                <p className="text-xs text-[#C5A059] font-medium">
                   Vrindavan Yojna, Lucknow • Page 7 Architectural Map
                 </p>
               </div>
               <button
                 onClick={() => setIsZoomOpen(false)}
-                className="p-1.5 border border-[#B99A59]/40 hover:bg-[#B99A59] hover:text-white text-[#A68A4E] transition-colors cursor-pointer"
+                className="p-1.5 border border-[#E5E5E5] hover:bg-[#111111] hover:text-[#C5A059] text-[#111111] transition-colors cursor-pointer"
                 title="Close Lightbox"
               >
                 <X className="w-5 h-5" />
@@ -432,7 +469,7 @@ export default function LocationConnectivity() {
             </div>
 
             {/* Modal Map Image */}
-            <div className="w-full flex-1 overflow-auto flex items-center justify-center p-2 bg-white/50">
+            <div className="w-full flex-1 overflow-auto flex items-center justify-center p-2 bg-[#F5F5F5]">
               <img
                 src="/images/orchid-location-map.webp"
                 alt="United Orchid Heights Location Map Fullscreen"

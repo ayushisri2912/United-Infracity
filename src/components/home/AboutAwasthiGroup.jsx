@@ -163,7 +163,7 @@ export default function AboutAwasthiGroup() {
     <section
       ref={sectionRef}
       id="about-awasthi-group"
-      className="pt-4 sm:pt-6 pb-6 sm:pb-8 bg-[#F6F0E6] relative overflow-hidden"
+      className="pt-5 sm:pt-6 lg:pt-8 pb-10 sm:pb-12 lg:pb-14 bg-white border-b border-[#E5E5E5] relative overflow-hidden"
     >
       {/* Subtle background ambient floral emblem (~2.5% opacity) */}
       <div
@@ -186,32 +186,32 @@ export default function AboutAwasthiGroup() {
           {/* ─────────────────────────────────────────────────────────────
               LEFT COLUMN — LOGO AND LEGACY COUNTER (~28-30% Width)
              ───────────────────────────────────────────────────────────── */}
-          <div className="w-full lg:w-[29%] flex flex-col items-center justify-center text-center py-4 lg:pr-8 xl:pr-10">
+          <div className="w-full lg:w-[29%] flex flex-col items-center justify-center text-center py-1 lg:py-2 lg:pr-8 xl:pr-10">
             
             {/* Transparent High-Res Awasthi Group Logo */}
-            <div className="gsap-awasthi-logo flex items-center justify-center mb-1">
+            <div className="gsap-awasthi-logo flex items-center justify-center mb-1 group">
               <img
                 src="/images/awasthi-group-logo.png"
                 alt="Awasthi Group"
-                className="w-40 sm:w-44 lg:w-48 h-auto object-contain mx-auto"
+                className="w-40 sm:w-44 lg:w-48 h-auto object-contain mx-auto transition-transform duration-500 group-hover:scale-105"
               />
             </div>
 
-            {/* Thin Golden Decorative Separator across column */}
-            <div className="w-full max-w-[200px] sm:max-w-[240px] h-[1px] bg-[#D9C8A7] my-5 sm:my-6 mx-auto" />
+            {/* Thin Decorative Separator across column */}
+            <div className="w-full max-w-[200px] sm:max-w-[240px] h-[1px] bg-[#E5E5E5] my-5 sm:my-6 mx-auto" />
 
-            {/* Large Animated Legacy Counter (Clean 40 without plus) */}
+            {/* Large Animated Legacy Counter */}
             <div className="flex flex-col items-center justify-center">
               <span
                 ref={counterRef}
-                className="font-serif font-normal text-8xl sm:text-9xl lg:text-[112px] text-[#A68A4E] leading-none tracking-tight select-none"
+                className="font-serif font-normal text-8xl sm:text-9xl lg:text-[112px] text-[#C5A059] leading-none tracking-tight select-none"
               >
                 40
               </span>
-              <span className="block text-xs sm:text-[13px] font-medium tracking-[0.25em] uppercase text-[#665A49] mt-3">
+              <span className="block text-xs sm:text-[13px] font-semibold tracking-[0.25em] uppercase text-[#111111] mt-3">
                 YEARS OF LEGACY
               </span>
-              <p className="italic text-xs sm:text-[13.5px] text-[#806435] mt-2 tracking-wide">
+              <p className="font-serif italic text-xs sm:text-[13.5px] text-[#C5A059] mt-2 tracking-wide font-normal">
                 Built on trust. Driven by excellence.
               </p>
             </div>
@@ -222,7 +222,7 @@ export default function AboutAwasthiGroup() {
              ───────────────────────────────────────────────────────────── */}
           <div
             ref={dividerRef}
-            className="hidden lg:block w-[1px] bg-[#D9C8A7] self-stretch mx-2 xl:mx-4"
+            className="hidden lg:block w-[1px] bg-gradient-to-b from-transparent via-[#C5A059]/50 to-transparent self-stretch mx-2 xl:mx-4"
             aria-hidden="true"
           />
 
@@ -231,44 +231,45 @@ export default function AboutAwasthiGroup() {
              ───────────────────────────────────────────────────────────── */}
           <div className="w-full lg:w-[71%] lg:pl-8 xl:pl-10 flex flex-col justify-center">
             
-            {/* Eyebrow Subtitle */}
-            <div className="gsap-awasthi-heading inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#B99A59]/10 border border-[#B99A59]/25 text-[#A68A4E] mb-3 self-start">
-              <span className="text-[11px] sm:text-xs font-semibold tracking-widest uppercase">
+            {/* Eyebrow Subtitle with Thin Golden Line (Matching Hero/About Section) */}
+            <div className="gsap-awasthi-heading inline-flex items-center gap-3 mb-3 self-start">
+              <span className="text-xs font-semibold tracking-[0.25em] text-[#C5A059] uppercase">
                 OUR LEGACY
               </span>
+              <span className="h-[1px] w-12 bg-[#C5A059]" />
             </div>
 
             {/* Exact Original Brochure Heading with Elegant Hierarchy */}
-            <h2 className="gsap-awasthi-heading font-serif font-normal text-2xl sm:text-3xl lg:text-[40px] leading-[1.2] tracking-tight text-[#29221F] mb-3">
+            <h2 className="gsap-awasthi-heading font-serif font-normal text-3xl sm:text-4xl lg:text-[42px] leading-[1.15] tracking-tight text-[#111111] mb-2">
               Awasthi Group
-              <span className="block font-serif text-xl sm:text-2xl lg:text-[30px] text-[#806435] font-light mt-1">
+              <span className="block font-serif italic text-lg sm:text-xl lg:text-[22px] text-[#C5A059] font-normal mt-1.5">
                 A Legacy of Strength and Progress Across Every Venture
               </span>
             </h2>
 
             {/* Decorative golden accent line */}
-            <div className="gsap-awasthi-heading h-[1.5px] w-16 bg-[#B99A59]/60 mb-5" />
+            <div className="gsap-awasthi-heading h-[1.5px] w-14 sm:w-16 bg-[#C5A059] mb-5" />
 
             {/* Complete Original 5 Brochure Paragraphs */}
-            <div className="gsap-awasthi-content space-y-2.5 sm:space-y-3 text-[14px] sm:text-[14.5px] leading-[1.7] text-[#665A49] font-light">
+            <div className="gsap-awasthi-content space-y-3 sm:space-y-3.5 text-[14px] sm:text-[15px] leading-[1.75] text-[#555555] font-normal">
               <p className="gsap-awasthi-para">
                 With a 40-year legacy in the steel industry, Awasthi Group has built its foundation on reliability, precision, quality, and strong work ethics. Today, the Group has diversified into education, hospitality, and real estate.
               </p>
               
               <p className="gsap-awasthi-para">
-                Under the leadership of <strong className="font-medium text-[#29221F]">Shri Shiv Shanker Awasthi</strong>, along with <strong className="font-medium text-[#29221F]">Shri Atul Awasthi</strong> and <strong className="font-medium text-[#29221F]">Shri Anuj Awasthi</strong>, the Group continues to grow as a trusted and diversified business enterprise.
+                Under the leadership of <strong className="font-semibold text-[#111111]">Shri Shiv Shanker Awasthi</strong>, along with <strong className="font-semibold text-[#111111]">Shri Atul Awasthi</strong> and <strong className="font-semibold text-[#111111]">Shri Anuj Awasthi</strong>, the Group continues to grow as a trusted and diversified business enterprise.
               </p>
 
               <p className="gsap-awasthi-para">
-                In education, the Group operates <span className="font-medium text-[#29221F]">Seth M. R. Jaipuria School, Kanpur Road Campus, Lucknow</span>.
+                In education, the Group operates <span className="font-medium text-[#111111]">Seth M. R. Jaipuria School, Kanpur Road Campus, Lucknow</span>.
               </p>
 
               <p className="gsap-awasthi-para">
-                In hospitality, Awasthi Group has successfully commissioned <span className="font-medium text-[#29221F]">Holiday Inn under IHG</span>, with two more internationally associated hotels planned by 2029.
+                In hospitality, Awasthi Group has successfully commissioned <span className="font-medium text-[#111111]">Holiday Inn under IHG</span>, with two more internationally associated hotels planned by 2029.
               </p>
 
               <p className="gsap-awasthi-para">
-                Expanding its presence in real estate, the Group is introducing <span className="font-medium text-[#29221F]">Orchid Heights</span>, a 180-apartment residential project, with a vision to develop sustainable and modern communities while maintaining its commitment to quality, integrity, and customer satisfaction.
+                Expanding its presence in real estate, the Group is introducing <span className="font-medium text-[#111111]">Orchid Heights</span>, a 180-apartment residential project, with a vision to develop sustainable and modern communities while maintaining its commitment to quality, integrity, and customer satisfaction.
               </p>
             </div>
 
@@ -277,26 +278,35 @@ export default function AboutAwasthiGroup() {
         </div>
 
         {/* ─────────────────────────────────────────────────────────────
-            BUSINESS VENTURES STRIP (Full Width Strip Matching 1st Image)
+            BUSINESS VENTURES STRIP (Deep Black Luxury Theme with Gold Accents)
            ───────────────────────────────────────────────────────────── */}
-        <div className="gsap-ventures-strip mt-8 sm:mt-10 pt-6 sm:pt-7 border-t border-[#D9C8A7]">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+        <div className="gsap-ventures-strip mt-10 sm:mt-12 pt-8 sm:pt-10 border-t border-[#E5E5E5]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {businessVentures.map((venture) => {
               const Icon = venture.icon;
               return (
                 <div
                   key={venture.label}
-                  className="gsap-venture-item flex flex-col items-center justify-center text-center group cursor-default"
+                  className="gsap-venture-item group relative flex flex-col items-center justify-center text-center p-5 sm:p-6 rounded-none bg-[#111111] border border-[#222222] hover:border-[#C5A059] shadow-md shadow-black/15 transition-all duration-400 ease-out hover:-translate-y-1.5 hover:shadow-[0_12px_32px_rgba(0,0,0,0.35)] cursor-pointer overflow-hidden"
                 >
-                  {/* Clean Outline Gold Icon with No Box Container */}
-                  <div className="text-[#B99A59] group-hover:text-[#96743B] transition-all duration-300 group-hover:scale-110 mb-2 sm:mb-2.5">
-                    <Icon className="w-8 h-8 sm:w-9 sm:h-9 stroke-[1.4]" />
+                  {/* Top Animated Golden Sweep Accent */}
+                  <span className="absolute top-0 left-0 right-0 h-[2.5px] bg-[#C5A059] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out origin-left pointer-events-none" />
+
+                  {/* Subtle Ambient Radial Gold Glow on Hover */}
+                  <div className="absolute inset-0 bg-radial from-[#C5A059]/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                  {/* Refined Icon Badge in Architectural Dark Frame */}
+                  <div className="relative z-10 w-12 h-12 sm:w-13 sm:h-13 rounded-none bg-[#1C1C1C] border border-[#333333] group-hover:border-[#C5A059] group-hover:bg-[#C5A059]/20 text-[#D4B675] group-hover:text-[#F3E5AB] flex items-center justify-center transition-all duration-300 shadow-inner mb-3">
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.6] transition-transform duration-300 group-hover:scale-110" />
                   </div>
 
-                  {/* Clean Label Directly Beneath Icon */}
-                  <span className="text-[13.5px] sm:text-[14.5px] font-medium tracking-tight text-[#665A49] group-hover:text-[#29221F] transition-colors">
+                  {/* Clean Bold Label in White with Gold Hover */}
+                  <span className="relative z-10 text-xs sm:text-[13px] font-semibold tracking-[0.2em] uppercase text-white/95 group-hover:text-[#D4B675] transition-colors duration-300">
                     {venture.label}
                   </span>
+
+                  {/* Subtle Expanding Gold Line on Hover */}
+                  <span className="relative z-10 h-[1.5px] w-0 group-hover:w-8 bg-[#C5A059] transition-all duration-400 ease-out mt-2" />
                 </div>
               );
             })}

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Search, User, ChevronDown, Menu, X, PhoneCall } from 'lucide-react';
+import { Search, ChevronDown, Menu, X, PhoneCall } from 'lucide-react';
 import { useModal } from '../../context/ModalContext';
 
 export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { openSearch, openUser, openEnquire, setActiveProjectFilter } = useModal();
+  const { openSearch, openEnquire, setActiveProjectFilter } = useModal();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSubmenu, setMobileSubmenu] = useState(null);
@@ -211,15 +211,6 @@ export default function Navbar() {
             >
               <Search className="w-5 h-5 stroke-[1.8] transition-transform duration-300 group-hover:scale-110" />
             </button>
-
-            <button
-              onClick={openUser}
-              className="w-10 h-10 flex items-center justify-center text-white hover:text-[#C5A059] transition-colors duration-300 cursor-pointer focus:outline-none focus-visible:text-[#C5A059] group"
-              title="Patron Portal"
-              aria-label="Patron Portal"
-            >
-              <User className="w-5 h-5 stroke-[1.8] transition-transform duration-300 group-hover:scale-110" />
-            </button>
           </div>
 
           {/* Mobile Menu Toggle & Minimal Action Icons */}
@@ -231,15 +222,6 @@ export default function Navbar() {
               aria-label="Search Projects"
             >
               <Search className="w-4.5 h-4.5 stroke-[1.8]" />
-            </button>
-
-            <button
-              onClick={openUser}
-              className="w-9 h-9 flex items-center justify-center text-white hover:text-[#C5A059] transition-colors duration-300 cursor-pointer focus:outline-none"
-              title="User Account & Enquiry Portal"
-              aria-label="User Account & Enquiry Portal"
-            >
-              <User className="w-4.5 h-4.5 stroke-[1.8]" />
             </button>
 
             <button

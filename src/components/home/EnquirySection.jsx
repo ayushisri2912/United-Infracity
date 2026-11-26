@@ -133,25 +133,28 @@ export default function EnquirySection() {
     <section
       ref={sectionRef}
       id="enquiry-section"
-      className="py-6 sm:py-7 lg:py-8 bg-[#F5EFE5] border-b border-[#B99A59]/20 relative overflow-hidden"
+      className="py-12 sm:py-14 lg:py-16 bg-white border-b border-[#E5E5E5] relative overflow-hidden"
     >
       {/* Maximum Container Width: 1400px */}
       <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Compact Split Panel: Left 35% Image | Right 65% Enquiry */}
-        <div className="flex flex-col md:flex-row items-stretch border border-[#D9C8A7] bg-[#EDE4D3] overflow-hidden rounded-none shadow-[0_4px_24px_rgba(185,154,89,0.06)] min-h-[330px] md:h-[350px] lg:h-[360px]">
+        <div className="group relative flex flex-col md:flex-row items-stretch border border-[#E5E5E5] hover:border-[#C5A059]/60 bg-white overflow-hidden rounded-none shadow-sm hover:shadow-[0_16px_40px_rgba(197,160,89,0.12)] transition-all duration-500 min-h-[330px] md:h-[350px] lg:h-[360px]">
           
+          {/* Animated Top Golden Accent Line on Hover */}
+          <span className="absolute top-0 left-0 right-0 h-[2.5px] bg-[#C5A059] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out origin-left z-20 pointer-events-none" />
+
           {/* ─────────────────────────────────────────────────────────────
               LEFT COLUMN (35% Width): Architectural Building Elevation
              ───────────────────────────────────────────────────────────── */}
           <div
             ref={imageContainerRef}
-            className="w-full md:w-[35%] h-[200px] sm:h-[240px] md:h-full relative overflow-hidden shrink-0 border-b md:border-b-0 md:border-r border-[#D9C8A7] bg-[#DFD3BE]"
+            className="w-full md:w-[35%] h-[200px] sm:h-[240px] md:h-full relative overflow-hidden shrink-0 border-b md:border-b-0 md:border-r border-[#E5E5E5] bg-[#F5F5F5]"
           >
             <img
               src="/images/cta.png"
               alt="United Orchid Heights Architectural Elevation"
-              className="w-full h-full object-cover object-center will-change-transform"
+              className="w-full h-full object-cover object-center will-change-transform transition-transform duration-700 ease-out group-hover:scale-105"
               loading="lazy"
             />
           </div>
@@ -161,25 +164,28 @@ export default function EnquirySection() {
              ───────────────────────────────────────────────────────────── */}
           <div
             ref={contentRef}
-            className="w-full md:w-[65%] p-5 sm:p-6 lg:p-7 xl:p-8 flex flex-col justify-between bg-[#EDE4D3]"
+            className="w-full md:w-[65%] p-5 sm:p-6 lg:p-7 xl:p-8 flex flex-col justify-between bg-white"
           >
             {/* Top: Header Typography */}
             <div>
-              {/* Small Uppercase Subtitle */}
-              <span className="gsap-enquiry-reveal block text-[10.5px] sm:text-xs font-semibold tracking-[0.22em] text-[#A68A4E] uppercase mb-1">
-                BEGIN YOUR JOURNEY
-              </span>
+              {/* Small Uppercase Subtitle with Golden Line */}
+              <div className="gsap-enquiry-reveal inline-flex items-center gap-2 mb-1.5">
+                <span className="text-[10.5px] sm:text-xs font-semibold tracking-[0.25em] text-[#C5A059] uppercase">
+                  BEGIN YOUR JOURNEY
+                </span>
+                <span className="h-[1px] w-8 bg-[#C5A059]" />
+              </div>
 
               {/* Main Heading: Line 1 dark serif, Line 2 italic champagne gold */}
-              <h2 className="gsap-enquiry-reveal font-serif text-2xl sm:text-3xl lg:text-[34px] xl:text-[36px] text-[#30271F] font-normal leading-[1.12] tracking-tight">
+              <h2 className="gsap-enquiry-reveal font-serif text-2xl sm:text-3xl lg:text-[34px] xl:text-[36px] text-[#111111] font-normal leading-[1.14] tracking-tight">
                 Your Dream Home.
-                <span className="italic font-serif text-[#B99A59] block sm:inline sm:ml-2">
+                <span className="italic font-serif text-[#C5A059] block sm:inline sm:ml-2 font-normal">
                   One Step Closer.
                 </span>
               </h2>
 
               {/* Description */}
-              <p className="gsap-enquiry-reveal text-xs sm:text-[13px] text-[#665A49] font-light mt-1">
+              <p className="gsap-enquiry-reveal text-xs sm:text-[13.5px] text-[#666666] font-light mt-1">
                 Discover a life of elegance at United Orchid Heights.
               </p>
             </div>
@@ -201,11 +207,11 @@ export default function EnquirySection() {
                     onFocus={() => setFocusedField('fullName')}
                     onBlur={() => setFocusedField(null)}
                     placeholder="Full Name"
-                    className="w-full bg-transparent py-1.5 text-xs sm:text-[13px] text-[#30271F] placeholder-[#8C7E6D] border-b border-[#C9B58C] focus:border-[#B99A59] focus:outline-none transition-colors duration-300"
+                    className="w-full bg-transparent py-1.5 text-xs sm:text-[13px] text-[#111111] placeholder-[#999999] border-b border-[#E5E5E5] focus:border-[#C5A059] focus:outline-none transition-colors duration-300"
                   />
                   {/* Animated Focus Accent Line */}
                   <span
-                    className={`absolute bottom-0 left-0 h-[1.5px] bg-[#B99A59] transition-all duration-300 ${
+                    className={`absolute bottom-0 left-0 h-[1.5px] bg-[#C5A059] transition-all duration-300 ${
                       focusedField === 'fullName' ? 'w-full' : 'w-0'
                     }`}
                   />
@@ -227,11 +233,11 @@ export default function EnquirySection() {
                     onFocus={() => setFocusedField('phone')}
                     onBlur={() => setFocusedField(null)}
                     placeholder="Phone Number (+91)"
-                    className="w-full bg-transparent py-1.5 text-xs sm:text-[13px] text-[#30271F] placeholder-[#8C7E6D] border-b border-[#C9B58C] focus:border-[#B99A59] focus:outline-none transition-colors duration-300"
+                    className="w-full bg-transparent py-1.5 text-xs sm:text-[13px] text-[#111111] placeholder-[#999999] border-b border-[#E5E5E5] focus:border-[#C5A059] focus:outline-none transition-colors duration-300"
                   />
                   {/* Animated Focus Accent Line */}
                   <span
-                    className={`absolute bottom-0 left-0 h-[1.5px] bg-[#B99A59] transition-all duration-300 ${
+                    className={`absolute bottom-0 left-0 h-[1.5px] bg-[#C5A059] transition-all duration-300 ${
                       focusedField === 'phone' ? 'w-full' : 'w-0'
                     }`}
                   />
@@ -258,11 +264,11 @@ export default function EnquirySection() {
                     onFocus={() => setFocusedField('email')}
                     onBlur={() => setFocusedField(null)}
                     placeholder="Email Address"
-                    className="w-full bg-transparent py-1.5 text-xs sm:text-[13px] text-[#30271F] placeholder-[#8C7E6D] border-b border-[#C9B58C] focus:border-[#B99A59] focus:outline-none transition-colors duration-300"
+                    className="w-full bg-transparent py-1.5 text-xs sm:text-[13px] text-[#111111] placeholder-[#999999] border-b border-[#E5E5E5] focus:border-[#C5A059] focus:outline-none transition-colors duration-300"
                   />
                   {/* Animated Focus Accent Line */}
                   <span
-                    className={`absolute bottom-0 left-0 h-[1.5px] bg-[#B99A59] transition-all duration-300 ${
+                    className={`absolute bottom-0 left-0 h-[1.5px] bg-[#C5A059] transition-all duration-300 ${
                       focusedField === 'email' ? 'w-full' : 'w-0'
                     }`}
                   />
@@ -282,21 +288,21 @@ export default function EnquirySection() {
                     onChange={handleChange}
                     onFocus={() => setFocusedField('configuration')}
                     onBlur={() => setFocusedField(null)}
-                    className="w-full bg-transparent py-1.5 text-xs sm:text-[13px] text-[#30271F] border-b border-[#C9B58C] focus:border-[#B99A59] focus:outline-none transition-colors duration-300 cursor-pointer"
+                    className="w-full bg-transparent py-1.5 text-xs sm:text-[13px] text-[#111111] border-b border-[#E5E5E5] focus:border-[#C5A059] focus:outline-none transition-colors duration-300 cursor-pointer"
                   >
-                    <option value="" className="bg-[#EDE4D3] text-[#8C7E6D]">
+                    <option value="" className="bg-white text-[#999999]">
                       Select Configuration
                     </option>
-                    <option value="3 BHK" className="bg-[#EDE4D3] text-[#30271F]">
+                    <option value="3 BHK" className="bg-white text-[#111111]">
                       3 BHK
                     </option>
-                    <option value="3 BHK+S" className="bg-[#EDE4D3] text-[#30271F]">
+                    <option value="3 BHK+S" className="bg-white text-[#111111]">
                       3 BHK+S
                     </option>
                   </select>
                   {/* Animated Focus Accent Line */}
                   <span
-                    className={`absolute bottom-0 left-0 h-[1.5px] bg-[#B99A59] transition-all duration-300 ${
+                    className={`absolute bottom-0 left-0 h-[1.5px] bg-[#C5A059] transition-all duration-300 ${
                       focusedField === 'configuration' ? 'w-full' : 'w-0'
                     }`}
                   />
@@ -309,19 +315,23 @@ export default function EnquirySection() {
 
               </div>
 
-              {/* Row 3: Submit Button & Feedback State */}
+              {/* Row 3: Submit Button with Sliding Gold Fill Effect & Feedback State */}
               <div className="gsap-enquiry-reveal pt-2 flex flex-wrap items-center justify-between gap-3">
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center gap-2 px-6 h-[42px] sm:h-[44px] bg-[#A68A4E] hover:bg-[#B99A59] text-white text-[11.5px] sm:text-xs font-semibold tracking-wider uppercase transition-all duration-300 group cursor-pointer rounded-none shadow-xs"
+                  className="relative overflow-hidden group inline-flex items-center justify-center gap-2.5 px-7 h-[44px] sm:h-[46px] bg-[#111111] text-white text-[11.5px] sm:text-xs font-semibold tracking-[0.18em] uppercase transition-colors duration-400 cursor-pointer rounded-none shadow-xs"
                 >
-                  <span>Request a Site Visit</span>
-                  <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  {/* Sliding Golden Fill Layer */}
+                  <span className="absolute inset-0 bg-[#C5A059] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-400 ease-out z-0" />
+                  <span className="relative z-10 flex items-center gap-2 group-hover:text-[#111111] transition-colors duration-400">
+                    <span>Request a Site Visit</span>
+                    <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </span>
                 </button>
 
                 {isSubmitted && (
-                  <div className="inline-flex items-center gap-1.5 text-xs font-medium text-[#29221F]">
-                    <CheckCircle2 className="w-4 h-4 text-[#B99A59]" />
+                  <div className="inline-flex items-center gap-1.5 text-xs font-medium text-[#111111]">
+                    <CheckCircle2 className="w-4 h-4 text-[#C5A059]" />
                     <span>Thank you. Our sales advisory team will reach out shortly.</span>
                   </div>
                 )}

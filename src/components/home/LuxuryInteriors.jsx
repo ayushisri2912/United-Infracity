@@ -163,11 +163,11 @@ export default function LuxuryInteriors() {
     <section
       ref={sectionRef}
       id="luxury-interiors"
-      className="relative pt-4 sm:pt-5 lg:pt-6 pb-4 sm:pb-6 lg:pb-7 bg-[#F6F0E6] border-b border-[#B99A59]/20 overflow-hidden"
+      className="relative py-12 sm:py-14 lg:py-16 bg-white border-b border-[#E5E5E5] overflow-hidden"
     >
       {/* Subtle Background Watermark Emblem */}
       <div 
-        className="absolute left-[-30px] top-1/4 w-72 sm:w-80 h-72 sm:h-80 pointer-events-none select-none opacity-[0.04] z-0"
+        className="absolute left-[-30px] top-1/4 w-72 sm:w-80 h-72 sm:h-80 pointer-events-none select-none opacity-[0.025] z-0"
         aria-hidden="true"
       >
         <img
@@ -181,44 +181,42 @@ export default function LuxuryInteriors() {
       <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14 relative z-10">
         
         {/* 1. Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-5 space-y-1.5 sm:space-y-2">
-          {/* Small Uppercase Label */}
-          <div className="gsap-header-item inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#B99A59]/10 border border-[#B99A59]/25 text-[#A07828]">
-            <svg className="w-3.5 h-3.5 text-[#B99A59]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M12 2C12 2 8 6 8 10C8 13 10 15 12 15C14 15 16 13 16 10C16 6 12 2 12 2Z" fill="#B99A59" fillOpacity="0.2" />
-              <path d="M12 15V22" strokeLinecap="round" />
-            </svg>
-            <span className="text-xs font-semibold tracking-widest uppercase text-[#A07828]">
+        <div className="text-center max-w-3xl mx-auto mb-5 sm:mb-6 space-y-1.5 sm:space-y-2">
+          {/* Eyebrow Label with Thin Golden Lines */}
+          <div className="gsap-header-item inline-flex items-center justify-center gap-2.5 sm:gap-3 mb-1">
+            <span className="h-[1px] w-7 sm:w-10 bg-[#C5A059]" />
+            <span className="text-xs sm:text-sm font-semibold tracking-[0.25em] text-[#C5A059] uppercase block">
               THE ART OF REFINED LIVING
             </span>
+            <span className="h-[1px] w-7 sm:w-10 bg-[#C5A059]" />
           </div>
 
-          {/* Main Heading: Matching 2nd image (Designed Around the Way You Live) font size and style */}
-          <h2 className="gsap-header-item font-serif font-medium text-3xl sm:text-4xl md:text-5xl text-[#29221F] leading-tight tracking-tight">
+          {/* Main Heading: Matching About Section Heading Font Size & Style */}
+          <h2 className="gsap-header-item font-serif font-normal text-3xl sm:text-4xl lg:text-[40px] text-[#111111] leading-[1.15] tracking-tight">
             Explore Our Luxury Interiors
           </h2>
 
           {/* Thin Decorative Champagne Gold Line */}
-          <div className="gsap-header-item h-[1.5px] w-20 sm:w-28 bg-[#B99A59]/60 mx-auto my-2 sm:my-2.5" />
+          <div className="gsap-header-item h-[1.5px] w-14 sm:w-18 bg-[#C5A059] mx-auto mt-2 sm:mt-2.5" />
 
         </div>
 
         {/* 2. Interactive Room Navigation (Clean Horizontal Tabs with Animated Underline) */}
-        <div className="gsap-header-item flex items-center justify-center gap-6 sm:gap-10 border-b border-[#B99A59]/25 max-w-3xl mx-auto mb-4 sm:mb-5 overflow-x-auto no-scrollbar py-1">
+        <div className="gsap-header-item flex items-center justify-center gap-6 sm:gap-10 border-b border-[#E5E5E5] max-w-3xl mx-auto mb-6 sm:mb-8 overflow-x-auto no-scrollbar py-1">
           {rooms.map((room, idx) => {
             const isActive = activeIndex === idx;
             return (
               <button
                 key={room.id}
                 onClick={() => handleRoomChange(idx)}
-                className={`relative pb-3 sm:pb-3.5 text-xs sm:text-sm tracking-[0.2em] uppercase font-semibold transition-colors duration-300 whitespace-nowrap cursor-pointer ${
-                  isActive ? 'text-[#A68A4E]' : 'text-[#665A49]/60 hover:text-[#A68A4E]'
+                className={`relative pb-3 sm:pb-3.5 text-xs sm:text-sm tracking-[0.2em] uppercase font-medium transition-colors duration-300 whitespace-nowrap cursor-pointer ${
+                  isActive ? 'text-[#C5A059]' : 'text-[#777777] hover:text-[#111111]'
                 }`}
                 aria-selected={isActive}
               >
                 <span>{room.tabLabel}</span>
                 {isActive && (
-                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#B99A59] transition-all duration-300" />
+                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#C5A059] transition-all duration-300" />
                 )}
               </button>
             );
@@ -228,16 +226,16 @@ export default function LuxuryInteriors() {
         {/* 3. Main Architectural Image Showcase - 100% Unobstructed Full Width */}
         <div className="gsap-showcase-entrance relative w-full mb-6 sm:mb-8">
           <div className="relative w-full pb-3 pl-3 sm:pb-4 sm:pl-4 group">
-            {/* Subtle Offset Golden Frame Outline (shifted down-left, bounded inside container) */}
+            {/* Subtle Offset Golden Frame Outline */}
             <div
               ref={outlineRef}
-              className="absolute top-3 left-0 sm:top-4 right-3 sm:right-4 bottom-0 border border-[#B99A59]/45 pointer-events-none z-0"
+              className="absolute top-3 left-0 sm:top-4 right-3 sm:right-4 bottom-0 border border-[#C5A059]/40 pointer-events-none z-0"
             />
 
             {/* Main Architectural Image Container */}
             <div 
               ref={imageDisplayRef}
-              className="relative z-10 w-full overflow-hidden rounded-none border border-[#DFD1B7]/60 bg-[#EDE3D1]/50 h-[360px] sm:h-[480px] lg:h-[580px] xl:h-[600px]"
+              className="relative z-10 w-full overflow-hidden rounded-none border border-[#E5E5E5] bg-[#F5F5F5] h-[360px] sm:h-[480px] lg:h-[580px] xl:h-[600px]"
             >
               <img
                 ref={imgRef}
@@ -253,15 +251,15 @@ export default function LuxuryInteriors() {
         {/* 4. Dynamic Content Below Image (Centered, Flanked by Minimal Circular Arrow Buttons) */}
         <div 
           ref={contentDisplayRef}
-          className="relative w-full max-w-4xl mx-auto mt-3 sm:mt-4 mb-2 sm:mb-3 px-2 sm:px-4"
+          className="relative w-full max-w-4xl mx-auto mt-4 sm:mt-5 mb-3 sm:mb-4 px-2 sm:px-4"
         >
           <div className="flex items-center justify-between gap-4 sm:gap-6">
             
-            {/* Previous Arrow Button (Minimal circular with thin gold border) */}
+            {/* Previous Arrow Button */}
             <button
               onClick={handlePrev}
               aria-label="Previous Room"
-              className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-[#B99A59]/50 flex items-center justify-center text-[#A68A4E] hover:bg-[#B99A59] hover:text-white transition-all duration-300 cursor-pointer shadow-xs"
+              className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-[#E5E5E5] hover:border-[#C5A059] bg-white hover:bg-[#111111] text-[#111111] hover:text-[#C5A059] flex items-center justify-center transition-all duration-300 cursor-pointer shadow-xs"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
@@ -269,31 +267,31 @@ export default function LuxuryInteriors() {
             {/* Centered Editorial Content */}
             <div className="text-center flex-1 space-y-1.5 sm:space-y-2 min-h-[90px] sm:min-h-[105px] flex flex-col justify-center">
               {/* Room Category & Slide Counter */}
-              <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs font-semibold tracking-[0.22em] uppercase text-[#A68A4E]">
+              <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs font-semibold tracking-[0.22em] uppercase text-[#C5A059]">
                 <span>0{activeIndex + 1} / {currentRoom.category}</span>
-                <span className="text-[#B99A59]/40">•</span>
+                <span className="text-[#C5A059]/40">•</span>
                 <span className="tracking-widest">0{activeIndex + 1} / 04</span>
               </div>
 
               {/* Large Elegant Serif Heading */}
-              <h3 className="font-serif font-medium text-2xl sm:text-3xl md:text-4xl lg:text-[42px] leading-[1.12] tracking-tight text-[#A68A4E]">
+              <h3 className="font-serif font-normal text-2xl sm:text-3xl lg:text-[34px] leading-tight tracking-tight text-[#111111]">
                 {currentRoom.heading}
               </h3>
 
               {/* Thin Champagne Gold Decorative Line */}
-              <div className="h-[1.5px] w-16 sm:w-20 bg-[#B99A59]/70 mx-auto my-1.5 sm:my-2" />
+              <div className="h-[1.5px] w-14 sm:w-16 bg-[#C5A059] mx-auto my-1.5 sm:my-2" />
 
-              {/* Short Description (max 650px width, 16-18px) */}
-              <p className="text-sm sm:text-base lg:text-[16px] text-[#665A49] font-light leading-relaxed max-w-[650px] mx-auto">
+              {/* Short Description */}
+              <p className="text-sm sm:text-base text-[#555555] font-light leading-relaxed max-w-[650px] mx-auto">
                 {currentRoom.description}
               </p>
             </div>
 
-            {/* Next Arrow Button (Minimal circular with thin gold border) */}
+            {/* Next Arrow Button */}
             <button
               onClick={handleNext}
               aria-label="Next Room"
-              className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-[#B99A59]/50 flex items-center justify-center text-[#A68A4E] hover:bg-[#B99A59] hover:text-white transition-all duration-300 cursor-pointer shadow-xs"
+              className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-[#E5E5E5] hover:border-[#C5A059] bg-white hover:bg-[#111111] text-[#111111] hover:text-[#C5A059] flex items-center justify-center transition-all duration-300 cursor-pointer shadow-xs"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -302,7 +300,7 @@ export default function LuxuryInteriors() {
         </div>
 
         {/* 5. Architectural Thumbnail Navigation (4 Thumbnails Synced with State) */}
-        <div className="pt-1 sm:pt-2 max-w-4xl mx-auto w-full">
+        <div className="pt-2 sm:pt-3 max-w-4xl mx-auto w-full">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
             {rooms.map((room, idx) => {
               const isActive = activeIndex === idx;
@@ -313,13 +311,13 @@ export default function LuxuryInteriors() {
                   className={`text-left group cursor-pointer transition-all duration-300 relative ${
                     isActive 
                     ? 'opacity-100' 
-                    : 'opacity-60 hover:opacity-90'
+                    : 'opacity-65 hover:opacity-95'
                   }`}
                 >
                   <div className={`relative overflow-hidden rounded-none transition-all duration-300 ${
                     isActive
-                      ? 'border-2 border-[#B99A59] shadow-xs'
-                      : 'border border-[#DFD1B7]/70'
+                      ? 'border-2 border-[#C5A059] shadow-xs'
+                      : 'border border-[#E5E5E5]'
                   }`}>
                     <img
                       src={room.image}
@@ -328,11 +326,11 @@ export default function LuxuryInteriors() {
                       loading="lazy"
                     />
                     {isActive && (
-                      <div className="absolute inset-0 bg-[#B99A59]/10 pointer-events-none" />
+                      <div className="absolute inset-0 bg-[#C5A059]/10 pointer-events-none" />
                     )}
                   </div>
                   <span className={`text-[11px] sm:text-xs font-semibold tracking-wider uppercase block mt-1.5 transition-colors ${
-                    isActive ? 'text-[#A68A4E]' : 'text-[#665A49]'
+                    isActive ? 'text-[#C5A059]' : 'text-[#777777] group-hover:text-[#111111]'
                   }`}>
                     0{idx + 1} — {room.title}
                   </span>
@@ -343,15 +341,15 @@ export default function LuxuryInteriors() {
         </div>
 
         {/* 6. Original Floral Emblem at Bottom Center */}
-        <div className="pt-3 sm:pt-4 flex flex-col items-center justify-center">
+        <div className="pt-4 sm:pt-5 flex flex-col items-center justify-center">
           <div className="flex items-center justify-center gap-4 w-full max-w-xs">
-            <div className="h-[1px] flex-1 bg-[#B99A59]/30" />
+            <div className="h-[1px] flex-1 bg-[#E5E5E5]" />
             <img
               src="/images/orchid-emblem.webp"
               alt="United Orchid Heights"
-              className="w-9 h-9 sm:w-10 sm:h-10 object-contain opacity-45 hover:opacity-80 transition-opacity duration-300"
+              className="w-8 h-8 sm:w-9 sm:h-9 object-contain opacity-40 hover:opacity-75 transition-opacity duration-300"
             />
-            <div className="h-[1px] flex-1 bg-[#B99A59]/30" />
+            <div className="h-[1px] flex-1 bg-[#E5E5E5]" />
           </div>
         </div>
 

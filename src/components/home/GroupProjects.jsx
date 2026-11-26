@@ -195,49 +195,64 @@ export default function GroupProjects() {
     <section
       ref={sectionRef}
       id="group-projects"
-      className="py-10 sm:py-11 lg:py-12 bg-[#F6F0E6] border-b border-[#B99A59]/20 relative overflow-hidden"
+      className="py-12 sm:py-14 lg:py-16 bg-white border-b border-[#E5E5E5] relative overflow-hidden"
     >
+      {/* Subtle Background Watermark Emblem */}
+      <div 
+        className="absolute left-[-40px] top-1/3 w-80 h-80 pointer-events-none select-none opacity-[0.025] z-0" 
+        aria-hidden="true"
+      >
+        <img 
+          src="/images/orchid-emblem.webp" 
+          alt="" 
+          className="w-full h-full object-contain filter contrast-125" 
+        />
+      </div>
+
       {/* Main Container - max-w-[1400px] */}
       <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* ─────────────────────────────────────────────────────────────
-            1. PRESERVED SECTION HEADER (Exact current styling & text)
+            1. SECTION HEADER (Matching Theme & About Section Style)
            ───────────────────────────────────────────────────────────── */}
-        <div className="text-center max-w-2xl mx-auto mb-7 sm:mb-8 space-y-2">
-          {/* Eyebrow Pill Badge */}
-          <div className="gsap-gp-header inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#B99A59]/10 border border-[#B99A59]/25 text-[#A68A4E]">
-            <span className="text-[11px] sm:text-xs font-semibold tracking-widest uppercase">
+        <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8 space-y-1.5 sm:space-y-2">
+          {/* Eyebrow with Thin Golden Lines */}
+          <div className="gsap-gp-header inline-flex items-center justify-center gap-2.5 sm:gap-3 mb-1">
+            <span className="h-[1px] w-7 sm:w-10 bg-[#C5A059]" />
+            <span className="text-xs sm:text-sm font-semibold tracking-[0.25em] text-[#C5A059] uppercase block">
               OUR PORTFOLIO
             </span>
+            <span className="h-[1px] w-7 sm:w-10 bg-[#C5A059]" />
           </div>
 
-          {/* Heading */}
-          <h2 className="gsap-gp-header font-serif font-normal text-3xl sm:text-4xl lg:text-[42px] leading-[1.15] tracking-tight text-[#29221F]">
+          {/* Heading - Equal to About Section */}
+          <h2 className="gsap-gp-header font-serif font-normal text-3xl sm:text-4xl lg:text-[40px] leading-[1.15] tracking-tight text-[#111111]">
             Landmarks of Excellence
           </h2>
 
           {/* Thin decorative golden underline */}
-          <div className="gsap-gp-header h-[1.5px] w-20 sm:w-28 bg-[#B99A59]/60 mx-auto my-2 sm:my-2.5" />
+          <div className="gsap-gp-header h-[1.5px] w-14 sm:w-18 bg-[#C5A059] mx-auto mt-2 sm:mt-2.5" />
         </div>
 
         {/* ─────────────────────────────────────────────────────────────
-            2. FULL-VIEW FEATURED PROJECT SLIDER (Inspired by Prestige Layout)
-               No plus/minus strips; Left: Large Full Image; Right: Details;
-               Autoplay: Swipes automatically every 3-4s (pauses on hover).
+            2. FULL-VIEW FEATURED PROJECT SLIDER (Luxury White & Gold Theme)
            ───────────────────────────────────────────────────────────── */}
         <div
           ref={cardRef}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
-          className="relative bg-[#FAF6F0] border border-[#D9C8A7] rounded-none overflow-hidden shadow-[0_4px_24px_rgba(185,154,89,0.06)]"
+          className="group relative bg-white border border-[#E5E5E5] hover:border-[#C5A059] rounded-none overflow-hidden shadow-sm hover:shadow-[0_12px_36px_rgba(197,160,89,0.12)] transition-all duration-400"
         >
-          {/* Strictly locked height on desktop (480px) to prevent layout shifts or height jumping */}
+          {/* Animated Top Golden Accent Line */}
+          <span className="absolute top-0 left-0 right-0 h-[2.5px] bg-[#C5A059] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out origin-left z-20 pointer-events-none" />
+
+          {/* Locked height on desktop (480px) to prevent layout shifts */}
           <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch h-auto lg:h-[480px]">
             
             {/* ─────────────────────────────────────────────────────────
                 LEFT SIDE (~60%): Large Full Architectural Project Image
                ───────────────────────────────────────────────────────── */}
-            <div className="lg:col-span-7 relative h-[280px] sm:h-[350px] lg:h-full overflow-hidden bg-[#EDE3CF]/40 border-b lg:border-b-0 lg:border-r border-[#D9C8A7]">
+            <div className="lg:col-span-7 relative h-[280px] sm:h-[350px] lg:h-full overflow-hidden bg-[#F5F5F5] border-b lg:border-b-0 lg:border-r border-[#E5E5E5]">
               {/* Full Project Image with smooth crossfade on index change */}
               <img
                 key={currentProject.id}
@@ -249,11 +264,11 @@ export default function GroupProjects() {
               />
 
               {/* Status Badge in Upper Left Corner */}
-              <div className="absolute top-3 left-3 bg-[#29221F]/85 backdrop-blur-xs px-3 py-1 border border-[#B99A59]/40 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-[#F6F0E6] select-none">
+              <div className="absolute top-3.5 left-3.5 bg-[#111111]/90 backdrop-blur-xs px-3.5 py-1.5 border border-[#C5A059]/40 flex items-center gap-1.5 text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-[#D4B675] select-none shadow-sm">
                 {currentProject.isCompleted ? (
-                  <Award className="w-3.5 h-3.5 text-[#B99A59]" />
+                  <Award className="w-3.5 h-3.5 text-[#C5A059]" />
                 ) : (
-                  <Clock className="w-3.5 h-3.5 text-[#B99A59]" />
+                  <Clock className="w-3.5 h-3.5 text-[#C5A059]" />
                 )}
                 <span>{currentProject.category}</span>
               </div>
@@ -264,46 +279,46 @@ export default function GroupProjects() {
                ───────────────────────────────────────────────────────── */}
             <div
               ref={contentRef}
-              className="lg:col-span-5 p-6 sm:p-7 lg:p-8 flex flex-col justify-between h-full min-h-[350px] lg:min-h-0 bg-[#FAF6F0]"
+              className="lg:col-span-5 p-6 sm:p-7 lg:p-8 flex flex-col justify-between h-full min-h-[350px] lg:min-h-0 bg-white"
             >
               {/* Top Details Block */}
               <div className="flex-1 flex flex-col justify-start">
                 {/* Category Pill Tag */}
-                <div className="gsap-slide-text inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-[0.2em] text-[#A68A4E] uppercase mb-1.5">
+                <div className="gsap-slide-text inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-[0.22em] text-[#C5A059] uppercase mb-1.5">
                   <span>{currentProject.category}</span>
                 </div>
 
                 {/* Large Decorative Project Number */}
-                <div className="gsap-slide-text font-serif font-light text-5xl sm:text-6xl text-[#A68A4E] leading-none mb-1 select-none">
+                <div className="gsap-slide-text font-serif font-light text-5xl sm:text-6xl text-[#C5A059] leading-none mb-1 select-none">
                   {currentProject.displayNumber}
                 </div>
 
-                {/* Project Title (Consistent height) */}
-                <h3 className="gsap-slide-text font-serif font-normal text-2xl sm:text-3xl lg:text-[32px] text-[#30271F] leading-tight tracking-tight mt-1 min-h-[36px] lg:min-h-[40px] flex items-center">
+                {/* Project Title */}
+                <h3 className="gsap-slide-text font-serif font-normal text-2xl sm:text-3xl lg:text-[32px] text-[#111111] leading-tight tracking-tight mt-1 min-h-[36px] lg:min-h-[40px] flex items-center">
                   {currentProject.name}
                 </h3>
 
-                {/* Subtitle (Consistent height) */}
-                <p className="gsap-slide-text text-sm font-medium text-[#806435] mt-1 tracking-wide min-h-[22px] flex items-center">
+                {/* Subtitle */}
+                <p className="gsap-slide-text font-serif italic text-sm sm:text-[15px] font-normal text-[#C5A059] mt-1 tracking-wide min-h-[22px] flex items-center">
                   {currentProject.subtitle}
                 </p>
 
                 {/* Thin Champagne Gold Decorative Accent Line */}
-                <div className="gsap-slide-text h-[1.5px] w-16 bg-[#B99A59]/80 my-3" />
+                <div className="gsap-slide-text h-[1.5px] w-14 bg-[#C5A059] my-3" />
 
-                {/* Description (Locked to exactly 3 lines with min-h to prevent height changes) */}
-                <p className="gsap-slide-text text-[13.5px] sm:text-[14px] leading-relaxed text-[#665A49] font-light mb-4 min-h-[60px] line-clamp-3">
+                {/* Description */}
+                <p className="gsap-slide-text text-[13.5px] sm:text-[14px] leading-relaxed text-[#555555] font-light mb-4 min-h-[60px] line-clamp-3">
                   {currentProject.description}
                 </p>
 
-                {/* Key Project Specifications Grid (Consistent height) */}
-                <div className="gsap-slide-text grid grid-cols-3 gap-2 py-3 border-t border-b border-[#D9C8A7]/70 min-h-[58px]">
+                {/* Key Project Specifications Grid */}
+                <div className="gsap-slide-text grid grid-cols-3 gap-2 py-3 border-t border-b border-[#E5E5E5] min-h-[58px]">
                   {currentProject.specs.map((spec, sIdx) => (
                     <div key={sIdx} className="text-left">
-                      <span className="block text-[10px] sm:text-[10.5px] font-semibold uppercase tracking-wider text-[#A68A4E]">
+                      <span className="block text-[10px] sm:text-[10.5px] font-semibold uppercase tracking-wider text-[#C5A059]">
                         {spec.label}
                       </span>
-                      <span className="block text-[12px] sm:text-[13px] font-medium text-[#30271F] mt-0.5 truncate">
+                      <span className="block text-[12px] sm:text-[13px] font-medium text-[#111111] mt-0.5 truncate">
                         {spec.value}
                       </span>
                     </div>
@@ -312,21 +327,21 @@ export default function GroupProjects() {
               </div>
 
               {/* Bottom Controls Row: Counter + Minimal Slider Arrows */}
-              <div className="flex items-center justify-between pt-4 border-t border-[#D9C8A7]/40 mt-4 shrink-0">
+              <div className="flex items-center justify-between pt-4 border-t border-[#E5E5E5] mt-4 shrink-0">
                 
                 {/* Active Slide Counter & Indicators */}
                 <div className="flex items-center gap-3">
                   <div className="flex items-baseline gap-1 font-serif select-none">
-                    <span className="text-lg font-medium text-[#29221F]">
+                    <span className="text-lg font-medium text-[#111111]">
                       {currentProject.number}
                     </span>
-                    <span className="text-xs text-[#A68A4E] font-light">/</span>
-                    <span className="text-xs text-[#665A49]">
+                    <span className="text-xs text-[#C5A059] font-light">/</span>
+                    <span className="text-xs text-[#888888]">
                       0{projectsData.length}
                     </span>
                   </div>
 
-                  {/* Tiny progress dots */}
+                  {/* Progress dots */}
                   <div className="flex items-center gap-1.5 ml-2">
                     {projectsData.map((_, dotIdx) => (
                       <button
@@ -336,21 +351,21 @@ export default function GroupProjects() {
                         onClick={() => setCurrentIndex(dotIdx)}
                         className={`h-1.5 transition-all duration-300 rounded-none cursor-pointer ${
                           currentIndex === dotIdx
-                            ? 'w-6 bg-[#B99A59]'
-                            : 'w-2 bg-[#D9C8A7] hover:bg-[#B99A59]/60'
+                            ? 'w-6 bg-[#C5A059]'
+                            : 'w-2 bg-[#E5E5E5] hover:bg-[#C5A059]/60'
                         }`}
                       />
                     ))}
                   </div>
                 </div>
 
-                {/* Circular Slider Arrows (Just like reference image) */}
+                {/* Circular Slider Arrows with Theme Styling */}
                 <div className="flex items-center gap-2">
                   <button
                     type="button"
                     aria-label="Previous Project"
                     onClick={handlePrev}
-                    className="w-10 h-10 rounded-full border border-[#D9C8A7] hover:border-[#B99A59] bg-white hover:bg-[#B99A59] text-[#665A49] hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-[#B99A59]"
+                    className="w-10 h-10 rounded-full border border-[#E5E5E5] hover:border-[#C5A059] bg-white hover:bg-[#111111] text-[#111111] hover:text-[#C5A059] flex items-center justify-center transition-all duration-300 shadow-xs cursor-pointer focus:outline-none"
                   >
                     <ChevronLeft className="w-5 h-5 stroke-[1.8]" />
                   </button>
@@ -359,7 +374,7 @@ export default function GroupProjects() {
                     type="button"
                     aria-label="Next Project"
                     onClick={handleNext}
-                    className="w-10 h-10 rounded-full border border-[#D9C8A7] hover:border-[#B99A59] bg-white hover:bg-[#B99A59] text-[#665A49] hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-[#B99A59]"
+                    className="w-10 h-10 rounded-full border border-[#E5E5E5] hover:border-[#C5A059] bg-white hover:bg-[#111111] text-[#111111] hover:text-[#C5A059] flex items-center justify-center transition-all duration-300 shadow-xs cursor-pointer focus:outline-none"
                   >
                     <ChevronRight className="w-5 h-5 stroke-[1.8]" />
                   </button>
@@ -377,13 +392,13 @@ export default function GroupProjects() {
            ───────────────────────────────────────────────────────────── */}
         <div className="pt-6 sm:pt-7 flex flex-col items-center justify-center">
           <div className="flex items-center justify-center gap-4 sm:gap-6 w-full max-w-xs">
-            <div className="h-[1px] flex-1 bg-[#D9C8A7]" />
+            <div className="h-[1px] flex-1 bg-[#E5E5E5]" />
             <img
               src="/images/orchid-emblem.webp"
               alt="United Orchid Heights"
-              className="w-8 h-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300"
+              className="w-8 h-8 sm:w-9 sm:h-9 object-contain opacity-40 hover:opacity-75 transition-opacity duration-300"
             />
-            <div className="h-[1px] flex-1 bg-[#D9C8A7]" />
+            <div className="h-[1px] flex-1 bg-[#E5E5E5]" />
           </div>
         </div>
 
