@@ -264,7 +264,7 @@ export default function Footer() {
               title="Code Crafter"
             >
               <img
-                src="/images/ccwslogo.png"
+                src="/images/ccwslogo.webp"
                 alt="Code Crafter"
                 className="h-9 sm:h-10 md:h-11 w-auto object-contain inline-block drop-shadow-sm brightness-110"
               />

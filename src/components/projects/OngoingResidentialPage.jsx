@@ -1,66 +1,159 @@
 import React, { useState } from 'react';
-import { MapPin, ArrowUpRight, BedDouble, Maximize2, ShieldCheck, Sparkles, Building2, ChevronRight, Download, Calendar, CheckCircle2, Car, Dumbbell, Waves, Users, ShoppingBag, Shield, Zap, Flame, Trees, Layers, Compass, HardHat } from 'lucide-react';
+import {
+  MapPin,
+  ArrowUpRight,
+  BedDouble,
+  Maximize2,
+  ShieldCheck,
+  Sparkles,
+  Building2,
+  ChevronRight,
+  Download,
+  Calendar,
+  CheckCircle2,
+  Car,
+  Dumbbell,
+  Waves,
+  Users,
+  ShoppingBag,
+  Shield,
+  Zap,
+  Flame,
+  Trees,
+  Layers,
+  Compass,
+  HardHat,
+  Award,
+  Phone,
+  Clock,
+  ArrowRight
+} from 'lucide-react';
 
 export default function OngoingResidentialPage({ onOpenEnquire, onNavigateHome }) {
-  const [selectedProjectModal, setSelectedProjectModal] = useState(null);
   const [activeTab, setActiveTab] = useState('overview');
 
   const orchidHeightsDetails = {
     id: 100,
     title: 'United Orchid Heights',
+    subtitle: 'The Finest Expression of Modern Living',
     developer: 'M/s United Infracity Private Limited (UIPL - Awasthi Group)',
-    location: 'Land No. 6C/GH-2, Vrindavan Yojna Phase-1, Sector 6, Lucknow',
-    tag: 'Flagship Residential Landmark',
-    scale: '180 Luxury Flats in 1 High-Rise Tower',
-    configs: '2 BHK, 3 BHK & 3 BHK + Study Apartments',
+    reraNumber: 'UPRERAPRJ593231/11/2026',
+    cin: 'U70102UP2012PTC050901',
+    location: 'Plot No. 6C/GH-2, Vrindavan Yojana Phase-1, Lucknow',
+    tag: 'Flagship Residential Development',
+    scale: '180 Premium Apartments',
+    storeys: '15 Storeys (1st to 15th Floor)',
+    configs: '2 BHK, 3 BHK & 3 BHK + Study',
     possession: 'Projected FY 2031-32 (June 31)',
     price: 'On Request / RERA Registered',
-    image: '/images/hero_luxury_tower.jpg',
+    image: '/images/herosec-full.webp',
+    showcaseImage: '/images/cta.webp',
     architect: 'The Architect Studio - ABHIKARM',
     structural: 'M/s SBC Structures',
     compliance: '100% RERA & UP Awas Evam Vikas Parishad Compliant',
-    overview: 'United Orchid Heights is an exclusive residential landmark unveiled by M/s United Infracity Private Limited (Awasthi Group). Spanning 180 luxury apartments in a single grand tower, each residence features expansive bedrooms, extra-large panoramic windows for superior cross-ventilation, modern attached bathrooms, and sunlit private balconies for maximum comfort.',
+    overview:
+      'United Orchid Heights is an exclusive residential development unveiled by M/s United Infracity Private Limited (Awasthi Group). Thoughtfully conceived across 180 premium apartments, each residence is designed with expansive master bedrooms, extra-large panoramic windows for abundant natural daylight, superior cross-ventilation, modern attached bathrooms, and scenic private balconies for an elevated urban lifestyle.',
     landmarks: [
-      { name: 'Delhi Public School (DPS)', distance: '1 Km' },
-      { name: 'Shaheed Path Corridor', distance: '3 Km' },
-      { name: 'SGPGI Hospital', distance: '4 Km' },
-      { name: 'Charbagh Railway Station', distance: '9 Km' },
-      { name: 'Chaudhary Charan Singh Airport', distance: '10 Km' }
+      { name: 'Delhi Public School (DPS)', distance: '1 Km', time: '3 Mins' },
+      { name: 'Shaheed Path Corridor', distance: '3 Km', time: '5 Mins' },
+      { name: 'SGPGI Hospital', distance: '4 Km', time: '7 Mins' },
+      { name: 'Charbagh Railway Station', distance: '9 Km', time: '20 Mins' },
+      { name: 'CCS Lucknow Airport', distance: '10 Km', time: '15 Mins' }
     ],
     amenities: [
-      { icon: Users, title: 'Community Club', desc: 'State-of-the-art club for organizing events & gatherings' },
-      { icon: Waves, title: 'Swimming Pool', desc: 'Temperature-controlled lap pool with sun lounge deck' },
-      { icon: Dumbbell, title: 'Fully Equipped Gymnasium', desc: 'Modern fitness suite with advanced workout equipment' },
-      { icon: Building2, title: 'Dedicated Banquet Hall', desc: 'Spacious air-conditioned hall for celebrations' },
-      { icon: Sparkles, title: 'Kids Play Area', desc: 'Safe, dedicated outdoor & indoor play park for children' },
-      { icon: ShoppingBag, title: 'Stilt Grocery Shops', desc: 'Convenience daily-needs retail outlets on stilt floor' },
-      { icon: Shield, title: '24/7 Security & CCTV', desc: 'Complete multi-tier CCTV surveillance & security guards' },
-      { icon: ChevronRight, title: 'High-Speed Branded Lifts', desc: 'Passenger & stretcher elevators of reputed brand' },
-      { icon: Zap, title: '100% Power Backup', desc: 'Sufficient power backup support for all common areas & flats' },
-      { icon: Flame, title: 'NBC Compliant Fire System', desc: 'Complete fire-fighting system per National Building Code' },
-      { icon: Car, title: 'Stack & Norm Parking', desc: 'Stack parking and ample bays per Awas Vikas norms' },
-      { icon: Trees, title: 'Landscaped CC Roads', desc: 'Rich green belts, CC roads & grand ornamental entrance gate' }
+      {
+        icon: Waves,
+        title: 'Swimming Pool & Sun Deck',
+        desc: 'Temperature-controlled lap pool with sun loungers for wellness & leisure.'
+      },
+      {
+        icon: Users,
+        title: 'Community Club & Banquet Hall',
+        desc: 'Spacious air-conditioned venue curated for private family functions & gatherings.'
+      },
+      {
+        icon: Dumbbell,
+        title: 'Fully Equipped Gymnasium',
+        desc: 'Modern fitness suite with advanced cardio and strength-training equipment.'
+      },
+      {
+        icon: Sparkles,
+        title: "Kids' Play Zone",
+        desc: 'Dedicated safe indoor and outdoor activity area with child-friendly flooring.'
+      },
+      {
+        icon: ShoppingBag,
+        title: 'Stilt Daily-Needs Retail',
+        desc: 'Convenient on-campus retail outlets catering to daily grocery essentials.'
+      },
+      {
+        icon: Shield,
+        title: '24/7 Security & CCTV',
+        desc: 'Multi-tier manned security perimeter with complete high-definition CCTV coverage.'
+      },
+      {
+        icon: ChevronRight,
+        title: 'High-Speed Branded Lifts',
+        desc: 'High-speed passenger and dedicated stretcher elevators with power backup.'
+      },
+      {
+        icon: Zap,
+        title: '100% Power Backup',
+        desc: 'Uninterrupted power backup for all apartments, elevators, and common utilities.'
+      },
+      {
+        icon: Flame,
+        title: 'NBC-Compliant Fire Safety',
+        desc: 'Comprehensive fire-fighting infrastructure strictly adhering to National Building Code.'
+      },
+      {
+        icon: Car,
+        title: 'Stilt & Stack Parking',
+        desc: 'Ample resident and guest parking bays designed per UP Awas Vikas norms.'
+      },
+      {
+        icon: Trees,
+        title: 'Landscaped Greens & CC Roads',
+        desc: 'Lush tree-lined green belts, wide internal concrete roads, and grand entrance arch.'
+      },
+      {
+        icon: ShieldCheck,
+        title: 'Rainwater Harvesting',
+        desc: 'Sustainable ground-water recharging systems and eco-friendly rainwater catchment.'
+      }
     ],
     specifications: [
       {
-        area: 'Living / Dining / Corridors / Bedrooms / Study / Kitchen',
-        spec: 'Premium Vitrified Tiles of reputed brand'
+        area: 'Living / Dining / Corridors / Bedrooms / Study',
+        spec: 'Premium Vitrified Tiles of reputed national brand'
       },
       {
-        area: 'Toilets',
-        spec: 'Quality Ceramic Tiles on Floor & Walls'
+        area: 'Master & Additional Toilets',
+        spec: 'Quality Anti-Skid Ceramic Floor & Designer Ceramic Wall Tiles'
+      },
+      {
+        area: 'Kitchen Finishes',
+        spec: 'Granite Countertop with Stainless Steel Sink & Ceramic Wall Tiles up to 2 ft'
       },
       {
         area: 'Wall & Ceiling Finishes',
-        spec: 'Acrylic Emulsion Paint / OBD on walls & ceiling respectively'
+        spec: 'Oil-Bound Distemper / Acrylic Emulsion Paint in elegant neutral tones'
       },
       {
-        area: 'Lift Lobbies / Architrave Work Staircase',
-        spec: 'Stone & Tile work and AEP/OBD on walls & ceiling'
+        area: 'Balconies & Open Sit-Outs',
+        spec: 'Durable Anti-Skid Ceramic Flooring with safety architectural railings'
+      },
+      {
+        area: 'Lift Lobbies & Staircase',
+        spec: 'Polished Stone / Vitrified Tile Architraves & AEP wall finishes'
+      },
+      {
+        area: 'Electrical Systems',
+        spec: 'Concealed copper wiring with modular switches & television/phone points'
       },
       {
         area: 'External Façade',
-        spec: 'Weather-resistant External Cement-based Paint'
+        spec: 'All-weather architectural exterior cement-based paint treatment'
       }
     ]
   };
@@ -71,306 +164,443 @@ export default function OngoingResidentialPage({ onOpenEnquire, onNavigateHome }
       title: 'Aura Grande Residency',
       location: 'Golf Course Extension, Prime Sector 65',
       price: 'Starting ₹1.95 Cr*',
-      statusBadge: 'Under Construction 2027',
-      statusColor: 'bg-amber-500/10 text-amber-800 border-amber-500/30',
+      statusBadge: 'Under Construction',
       specs: '3 & 4 BHK Ultra-Luxury Condos',
       area: '2,450 - 3,900 Sq. Ft.',
-      image: '/images/united_residences.jpg',
-      tag: 'Flagship Sky Living',
-      description: 'Ultra-luxurious high-rise residences featuring private elevator foyers, temperature-controlled rooftop infinity pool, and panoramic golf course views.'
+      image: '/images/united_residences.webp',
+      tag: 'Upcoming Landmark',
+      description:
+        'Ultra-luxurious high-rise residences featuring private elevator foyers, temperature-controlled rooftop infinity pool, and panoramic golf course views.'
     },
     {
       id: 102,
       title: 'The Celestial Villas',
       location: 'Expressway Golf Enclave Sector 128',
       price: 'Starting ₹3.50 Cr*',
-      statusBadge: 'Under Construction 2026',
-      statusColor: 'bg-amber-500/10 text-amber-800 border-amber-500/30',
+      statusBadge: 'Planning & Design',
       specs: '4 & 5 BHK Independent Luxury Villas',
       area: '4,200 - 6,500 Sq. Ft.',
-      image: '/images/hero_luxury_tower.jpg',
-      tag: 'Bespoke Villas',
-      description: 'Private estate villas featuring private plunge pools, home automation systems, manicured rooftop sun decks, and personal basement parking.'
+      image: '/images/hero_luxury_tower.webp',
+      tag: 'Bespoke Enclave',
+      description:
+        'Private estate villas featuring private plunge pools, home automation systems, manicured rooftop sun decks, and dedicated basement parking.'
     },
     {
       id: 103,
       title: 'United Grand Sky Condos',
       location: 'Central Metro Tech Corridor',
       price: 'Starting ₹1.45 Cr*',
-      statusBadge: 'Possession Q3 2026',
-      statusColor: 'bg-[#D4AF37]/20 text-[#997B20] border-[#D4AF37]/40',
+      statusBadge: 'Upcoming',
       specs: '2 & 3 BHK Smart Residences',
       area: '1,350 - 2,100 Sq. Ft.',
-      image: '/images/aura_tower_facade.jpg',
+      image: '/images/aura_tower_facade.webp',
       tag: 'Smart Urban Living',
-      description: 'Next-generation smart apartments equipped with voice-activated climate control, biometric security access, and 5-tier concierge services.'
+      description:
+        'Next-generation smart apartments equipped with voice-activated climate control, biometric security access, and 5-tier concierge services.'
     }
   ];
 
   return (
-    <div className="bg-[#FDFBF7] text-[#1A1A1A] animate-in fade-in duration-500">
-      
-      {/* Hero Header Banner */}
-      <div className="relative w-full h-[260px] sm:h-[340px] md:h-[380px] overflow-hidden bg-stone-950 flex items-center justify-center border-b border-[#D4AF37]/30">
+    <div className="bg-[#FFFFFF] text-[#141414] font-montserrat antialiased selection:bg-[#C49D55] selection:text-white">
+      {/* ───────────────────────────────────────────────────────────────────
+          HERO BANNER HEADER
+          - Exactly matching Brand Page: reduced overlay darkness so the architectural
+            tower is clearly visible, refined golden eyebrow and serif typography.
+         ─────────────────────────────────────────────────────────────────── */}
+      <div className="relative w-full h-[260px] sm:h-[340px] md:h-[380px] overflow-hidden bg-stone-950 flex items-center justify-center border-b border-[#C49D55]/30">
         <img
-          src="/images/united_residences.jpg"
+          src="/images/herosec-full.webp"
           alt="Ongoing Residential Banner"
           className="absolute inset-0 w-full h-full object-cover object-center scale-105"
         />
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/60" />
+
+        {/* Soft, balanced overlays identical to Brand Page */}
+        <div className="absolute inset-0 bg-black/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-black/35" />
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto space-y-3 animate-in fade-in duration-700">
-          <span className="text-xs sm:text-sm font-bold tracking-[0.3em] text-[#D4AF37] uppercase block">
-            Official Project Portfolio
+          <span className="text-xs sm:text-sm font-semibold tracking-[0.3em] text-[#C49D55] uppercase block">
+            OFFICIAL PROJECT PORTFOLIO
           </span>
-          <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl font-bold tracking-[0.2em] text-white uppercase drop-shadow-2xl">
+          <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-normal tracking-[0.15em] text-white uppercase drop-shadow-2xl">
             ONGOING RESIDENTIAL
           </h1>
-          <p className="text-[#D4AF37] text-xs sm:text-sm font-semibold tracking-widest uppercase">
-            United Orchid Heights & Luxury Sky Sanctuaries
+          <p className="text-[#C49D55] text-xs sm:text-sm font-medium tracking-widest uppercase mt-1">
+            United Orchid Heights & Luxury Living
           </p>
-          <div className="w-20 h-[3px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto rounded-full mt-2" />
+          <div className="w-20 h-[2px] bg-gradient-to-r from-transparent via-[#C49D55] to-transparent mx-auto rounded-full mt-2" />
         </div>
       </div>
 
-      {/* Main Section */}
-      <section className="py-12 lg:py-16">
-        <div className="max-w-[1550px] w-full mx-auto px-6 sm:px-10 lg:px-14 space-y-14">
-          
+      {/* ───────────────────────────────────────────────────────────────────
+          MAIN SECTION
+          - Width matching Navbar: max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14
+          - Sharp corners, luxury champagne gold (#C49D55), ivory (#F8F6F1)
+         ─────────────────────────────────────────────────────────────────── */}
+      <section className="py-10 sm:py-14 lg:py-16 bg-[#F8F6F1]">
+        <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14 space-y-12 sm:space-y-16">
+
           {/* FLAGSHIP SHOWCASE: UNITED ORCHID HEIGHTS */}
-          <div className="bg-white rounded-3xl border-2 border-[#D4AF37]/40 shadow-xl overflow-hidden relative">
-            <div className="bg-gradient-to-r from-stone-950 via-stone-900 to-stone-950 text-white p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#D4AF37]/30">
-              <div className="space-y-1">
-                <span className="px-3.5 py-1 rounded-full bg-[#D4AF37]/20 text-[#D4AF37] text-xs font-bold uppercase tracking-widest border border-[#D4AF37]/40 inline-block">
-                  ✦ Flagship Residential Landmark
-                </span>
-                <h2 className="font-serif text-3xl sm:text-5xl font-bold text-white mt-1">
-                  {orchidHeightsDetails.title}
-                </h2>
-                <p className="text-sm text-stone-300 font-medium flex items-center gap-1.5 pt-0.5">
-                  <MapPin className="w-4 h-4 text-[#D4AF37]" />
-                  <span>{orchidHeightsDetails.location}</span>
-                </p>
+          <div className="bg-white border border-[#C49D55]/30 shadow-sm">
+            
+            {/* Editorial Header Banner */}
+            <div className="bg-[#141414] text-white p-6 sm:p-8 lg:p-10 border-b border-[#C49D55]/30">
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                <div className="space-y-2">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="text-xs font-semibold tracking-[0.25em] text-[#C49D55] uppercase">
+                      ✦ FLAGSHIP RESIDENTIAL DEVELOPMENT
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/5 border border-[#C49D55]/30 text-[#C49D55] text-[11px] font-semibold tracking-wider uppercase">
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#C49D55]" />
+                      RERA: {orchidHeightsDetails.reraNumber}
+                    </span>
+                  </div>
+
+                  <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-white">
+                    United Orchid Heights
+                  </h2>
+
+                  <p className="text-sm text-[#B5B5B5] flex items-center gap-2">
+                    <MapPin className="w-4 h-4 text-[#C49D55] shrink-0" />
+                    <span>{orchidHeightsDetails.location}</span>
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-3 shrink-0">
+                  <button
+                    onClick={onOpenEnquire}
+                    className="px-7 py-3.5 bg-[#C49D55] hover:bg-[#b08b46] text-[#141414] font-semibold text-xs uppercase tracking-widest transition-all duration-300 shadow-md cursor-pointer flex items-center gap-2"
+                  >
+                    <span>Enquire Project Desk</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-3">
-                <button
-                  onClick={onOpenEnquire}
-                  className="px-6 py-3 bg-[#D4AF37] hover:bg-[#B38F24] text-stone-950 text-xs font-bold uppercase tracking-widest rounded-xl shadow-lg transition-all cursor-pointer"
-                >
-                  Enquire Project Desk
-                </button>
+              {/* Sub-navigation Tabs */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-8 mt-6 border-t border-[#C49D55]/20">
+                {[
+                  { id: 'overview', label: '01 — Overview' },
+                  { id: 'amenities', label: '02 — Amenities' },
+                  { id: 'connectivity', label: '03 — Connectivity' },
+                  { id: 'specifications', label: '04 — Specifications' }
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`py-3 px-4 text-xs font-semibold uppercase tracking-widest text-center transition-all cursor-pointer border ${
+                      activeTab === tab.id
+                        ? 'bg-[#C49D55] text-[#141414] border-[#C49D55]'
+                        : 'bg-white/5 text-[#E5E5E5] border-white/10 hover:border-[#C49D55]/50 hover:text-white'
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
               </div>
             </div>
 
-            <div className="p-6 sm:p-8 lg:p-10 space-y-10">
+            {/* TAB CONTENT AREA */}
+            <div className="p-6 sm:p-8 lg:p-10">
               
-              {/* Top Overview & Hero Image Card */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                
-                <div className="lg:col-span-7 space-y-5">
-                  <div className="p-4 rounded-2xl bg-[#FDFBF7] border border-[#D4AF37]/30 space-y-1">
-                    <span className="text-xs uppercase font-bold tracking-wider text-[#997B20] block">
-                      Developer & Group Legacy
-                    </span>
-                    <p className="text-base font-bold text-stone-900">
-                      {orchidHeightsDetails.developer}
-                    </p>
-                  </div>
-
-                  <p className="text-stone-700 text-base sm:text-lg leading-relaxed font-light">
-                    {orchidHeightsDetails.overview}
-                  </p>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <div className="p-3.5 rounded-xl bg-[#FDFBF7] border border-stone-200 text-center">
-                      <span className="text-[10px] uppercase font-bold text-stone-500 block">Structure</span>
-                      <span className="font-bold text-sm text-stone-900 block mt-0.5">{orchidHeightsDetails.scale}</span>
-                    </div>
-                    <div className="p-3.5 rounded-xl bg-[#FDFBF7] border border-stone-200 text-center">
-                      <span className="text-[10px] uppercase font-bold text-stone-500 block">Configurations</span>
-                      <span className="font-bold text-sm text-stone-900 block mt-0.5">{orchidHeightsDetails.configs}</span>
-                    </div>
-                    <div className="p-3.5 rounded-xl bg-[#FDFBF7] border border-stone-200 text-center">
-                      <span className="text-[10px] uppercase font-bold text-stone-500 block">Possession</span>
-                      <span className="font-bold text-sm text-[#D4AF37] block mt-0.5">{orchidHeightsDetails.possession}</span>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                    <div className="p-3.5 rounded-xl bg-white border border-[#D4AF37]/30 space-y-1">
-                      <span className="text-[10px] uppercase font-bold text-[#997B20] block flex items-center gap-1">
-                        <Compass className="w-3.5 h-3.5" /> Architectural Partner
-                      </span>
-                      <p className="text-xs font-bold text-stone-900">{orchidHeightsDetails.architect}</p>
-                    </div>
-
-                    <div className="p-3.5 rounded-xl bg-white border border-[#D4AF37]/30 space-y-1">
-                      <span className="text-[10px] uppercase font-bold text-[#997B20] block flex items-center gap-1">
-                        <HardHat className="w-3.5 h-3.5" /> Structural Engineer
-                      </span>
-                      <p className="text-xs font-bold text-stone-900">{orchidHeightsDetails.structural}</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="lg:col-span-5">
-                  <div className="relative rounded-2xl overflow-hidden shadow-xl border-2 border-white group h-[380px] sm:h-[440px]">
-                    <img
-                      src={orchidHeightsDetails.image}
-                      alt="United Orchid Heights"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+              {/* TAB 1: OVERVIEW */}
+              {activeTab === 'overview' && (
+                <div className="space-y-10 animate-in fade-in duration-300">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                     
-                    <div className="absolute bottom-5 left-5 right-5 p-4 bg-white/95 backdrop-blur-md rounded-xl border border-white/50 shadow-lg">
-                      <span className="text-xs uppercase font-bold tracking-widest text-[#D4AF37] block">
-                        RERA & LEGAL NORMS
-                      </span>
-                      <p className="text-xs text-stone-800 font-semibold mt-0.5">
-                        {orchidHeightsDetails.compliance}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-              {/* LOCATION CONNECTIVITY STRIP */}
-              <div className="space-y-4 pt-4 border-t border-stone-200">
-                <div className="flex items-center justify-between">
-                  <h4 className="font-serif font-bold text-xl sm:text-2xl text-stone-900">
-                    Location Connectivity & <span className="text-[#D4AF37] italic font-serif">Proximity Map</span>
-                  </h4>
-                  <span className="text-xs font-bold text-[#997B20] uppercase tracking-widest">
-                    Sector 6 Vrindavan Yojna
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-                  {orchidHeightsDetails.landmarks.map((lm, idx) => (
-                    <div key={idx} className="p-4 rounded-2xl bg-[#FDFBF7] border border-[#D4AF37]/30 text-center space-y-1 hover:border-[#D4AF37] transition-all">
-                      <span className="font-serif font-bold text-2xl text-[#D4AF37] block">{lm.distance}</span>
-                      <span className="text-xs text-stone-700 font-semibold block">{lm.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* AMENITIES GRID */}
-              <div className="space-y-6 pt-4 border-t border-stone-200">
-                <div className="space-y-1">
-                  <span className="text-xs uppercase font-bold tracking-widest text-[#997B20]">
-                    WORLD-CLASS INFRASTRUCTURE
-                  </span>
-                  <h4 className="font-serif font-bold text-xl sm:text-2xl text-stone-900">
-                    Amenities & <span className="text-[#D4AF37] italic font-serif">Facilities Grid</span>
-                  </h4>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {orchidHeightsDetails.amenities.map((item, idx) => {
-                    const IconComp = item.icon;
-                    return (
-                      <div key={idx} className="p-4.5 rounded-2xl bg-[#FDFBF7] border border-stone-200 flex items-start gap-3 hover:border-[#D4AF37] transition-all">
-                        <div className="w-10 h-10 rounded-xl bg-[#D4AF37]/15 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] shrink-0">
-                          <IconComp className="w-5 h-5" />
-                        </div>
-                        <div className="space-y-0.5">
-                          <h5 className="font-serif font-bold text-sm text-stone-900">{item.title}</h5>
-                          <p className="text-xs text-stone-600 font-light leading-relaxed">{item.desc}</p>
+                    {/* Left Column: Image */}
+                    <div className="lg:col-span-6">
+                      <div className="relative border border-[#C49D55]/30 overflow-hidden bg-stone-900 group h-[340px] sm:h-[400px]">
+                        <img
+                          src={orchidHeightsDetails.showcaseImage}
+                          alt="United Orchid Heights Architectural Elevation"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                        
+                        <div className="absolute bottom-4 left-4 right-4 p-4 bg-[#141414]/90 backdrop-blur-sm border border-[#C49D55]/40 flex items-center justify-between text-white">
+                          <div>
+                            <span className="text-[10px] font-semibold text-[#C49D55] uppercase tracking-widest block">
+                              STATUTORY APPROVAL
+                            </span>
+                            <span className="text-xs font-medium text-stone-200">
+                              UP Awas Evam Vikas Parishad & RERA Approved
+                            </span>
+                          </div>
+                          <ShieldCheck className="w-5 h-5 text-[#C49D55] shrink-0" />
                         </div>
                       </div>
-                    );
-                  })}
-                </div>
-              </div>
+                    </div>
 
-              {/* SPECIFICATIONS TABLE */}
-              <div className="space-y-4 pt-4 border-t border-stone-200">
-                <div className="space-y-1">
-                  <span className="text-xs uppercase font-bold tracking-widest text-[#997B20]">
-                    MATERIALS & FINISHES
-                  </span>
-                  <h4 className="font-serif font-bold text-xl sm:text-2xl text-stone-900">
-                    Official Furnishing <span className="text-[#D4AF37] italic font-serif">Specifications</span>
-                  </h4>
-                </div>
+                    {/* Right Column: Key Details */}
+                    <div className="lg:col-span-6 space-y-6">
+                      <div className="space-y-2">
+                        <span className="text-xs font-semibold tracking-[0.25em] text-[#C49D55] uppercase block">
+                          DESIGNED FOR ELEVATED LIVING
+                        </span>
+                        <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#141414]">
+                          A Vision for Modern Urban Living
+                        </h3>
+                        <p className="text-sm sm:text-base text-[#65605A] font-light leading-relaxed pt-1">
+                          {orchidHeightsDetails.overview}
+                        </p>
+                      </div>
 
-                <div className="bg-[#FDFBF7] rounded-2xl border border-[#D4AF37]/30 overflow-hidden shadow-sm">
-                  <div className="divide-y divide-stone-200">
+                      {/* Metric Strips */}
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div className="p-4 bg-[#F8F6F1] border border-[#C49D55]/20 text-center">
+                          <span className="text-[10px] uppercase font-bold text-[#65605A] tracking-wider block">Scale</span>
+                          <span className="font-serif font-bold text-lg text-[#141414] block mt-0.5">
+                            {orchidHeightsDetails.scale}
+                          </span>
+                        </div>
+                        <div className="p-4 bg-[#F8F6F1] border border-[#C49D55]/20 text-center">
+                          <span className="text-[10px] uppercase font-bold text-[#65605A] tracking-wider block">Typology</span>
+                          <span className="font-serif font-bold text-sm text-[#141414] block mt-1">
+                            {orchidHeightsDetails.configs}
+                          </span>
+                        </div>
+                        <div className="p-4 bg-[#F8F6F1] border border-[#C49D55]/20 text-center">
+                          <span className="text-[10px] uppercase font-bold text-[#65605A] tracking-wider block">Possession</span>
+                          <span className="font-serif font-bold text-sm text-[#C49D55] block mt-1">
+                            {orchidHeightsDetails.possession}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Technical Partners */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div className="p-4 bg-white border border-[#C49D55]/30 flex items-start gap-3">
+                          <div className="w-9 h-9 bg-[#141414] text-[#C49D55] flex items-center justify-center shrink-0">
+                            <Compass className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <span className="text-[10px] uppercase font-semibold text-[#C49D55] tracking-wider block">
+                              Architectural Partner
+                            </span>
+                            <p className="text-xs font-semibold text-[#141414] mt-0.5">
+                              {orchidHeightsDetails.architect}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="p-4 bg-white border border-[#C49D55]/30 flex items-start gap-3">
+                          <div className="w-9 h-9 bg-[#141414] text-[#C49D55] flex items-center justify-center shrink-0">
+                            <HardHat className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <span className="text-[10px] uppercase font-semibold text-[#C49D55] tracking-wider block">
+                              Structural Consultant
+                            </span>
+                            <p className="text-xs font-semibold text-[#141414] mt-0.5">
+                              {orchidHeightsDetails.structural}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+              )}
+
+              {/* TAB 2: AMENITIES */}
+              {activeTab === 'amenities' && (
+                <div className="space-y-6 animate-in fade-in duration-300">
+                  <div className="border-b border-[#C49D55]/20 pb-4">
+                    <span className="text-xs font-semibold tracking-[0.25em] text-[#C49D55] uppercase block">
+                      WORLD-CLASS INFRASTRUCTURE
+                    </span>
+                    <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#141414] mt-1">
+                      Amenities & Curated Lifestyle Experiences
+                    </h3>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {orchidHeightsDetails.amenities.map((item, idx) => {
+                      const IconComp = item.icon;
+                      return (
+                        <div
+                          key={idx}
+                          className="p-5 bg-[#F8F6F1] border border-[#C49D55]/25 hover:border-[#C49D55] transition-all duration-300 flex items-start gap-4 group"
+                        >
+                          <div className="w-10 h-10 bg-[#141414] text-[#C49D55] group-hover:bg-[#C49D55] group-hover:text-[#141414] transition-colors flex items-center justify-center shrink-0">
+                            <IconComp className="w-5 h-5" />
+                          </div>
+                          <div className="space-y-1">
+                            <h4 className="font-serif font-bold text-sm text-[#141414]">
+                              {item.title}
+                            </h4>
+                            <p className="text-xs text-[#65605A] font-light leading-relaxed">
+                              {item.desc}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* TAB 3: LOCATION & CONNECTIVITY */}
+              {activeTab === 'connectivity' && (
+                <div className="space-y-8 animate-in fade-in duration-300">
+                  <div className="border-b border-[#C49D55]/20 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div>
+                      <span className="text-xs font-semibold tracking-[0.25em] text-[#C49D55] uppercase block">
+                        PRIME SECTOR 6 VRINDAVAN YOJANA
+                      </span>
+                      <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#141414] mt-1">
+                        Location Connectivity & Proximity
+                      </h3>
+                    </div>
+                    <span className="text-xs font-medium text-[#65605A]">
+                      Direct access from Amar Shaheed Path Corridor
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                    {orchidHeightsDetails.landmarks.map((lm, idx) => (
+                      <div
+                        key={idx}
+                        className="p-5 bg-[#F8F6F1] border border-[#C49D55]/25 hover:border-[#C49D55] text-center space-y-1.5 transition-all"
+                      >
+                        <span className="font-serif font-bold text-2xl sm:text-3xl text-[#C49D55] block">
+                          {lm.distance}
+                        </span>
+                        <span className="text-xs text-[#141414] font-semibold block">
+                          {lm.name}
+                        </span>
+                        <span className="text-[10px] text-[#65605A] font-medium block">
+                          Approx. {lm.time}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="p-6 bg-[#141414] text-white border border-[#C49D55]/30 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div className="space-y-1">
+                      <span className="text-xs font-semibold tracking-wider text-[#C49D55] uppercase block">
+                        SITE ADDRESS & COORDINATES
+                      </span>
+                      <p className="font-serif text-lg text-white">
+                        {orchidHeightsDetails.location}
+                      </p>
+                      <p className="text-xs text-[#B5B5B5]">
+                        Strategic connectivity to SGPGI, Airport, Ekana Stadium, Medanta Hospital & Lucknow City Centre.
+                      </p>
+                    </div>
+
+                    <button
+                      onClick={onOpenEnquire}
+                      className="px-6 py-3 bg-[#C49D55] hover:bg-[#b08b46] text-[#141414] font-semibold text-xs uppercase tracking-widest transition-all shrink-0 cursor-pointer"
+                    >
+                      Request Location Brochure
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* TAB 4: SPECIFICATIONS */}
+              {activeTab === 'specifications' && (
+                <div className="space-y-6 animate-in fade-in duration-300">
+                  <div className="border-b border-[#C49D55]/20 pb-4">
+                    <span className="text-xs font-semibold tracking-[0.25em] text-[#C49D55] uppercase block">
+                      ARCHITECTURAL FINISHES & MATERIALS
+                    </span>
+                    <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#141414] mt-1">
+                      Official Project Specifications
+                    </h3>
+                  </div>
+
+                  <div className="border border-[#C49D55]/30 divide-y divide-[#C49D55]/20 bg-[#F8F6F1]">
                     {orchidHeightsDetails.specifications.map((row, idx) => (
-                      <div key={idx} className="p-4 sm:p-5 grid grid-cols-1 sm:grid-cols-12 gap-2 items-center hover:bg-white transition-colors">
-                        <div className="sm:col-span-5 font-serif font-bold text-sm text-stone-900 flex items-center gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-[#D4AF37] shrink-0" />
+                      <div
+                        key={idx}
+                        className="p-4 sm:p-5 grid grid-cols-1 sm:grid-cols-12 gap-3 items-center hover:bg-white transition-colors"
+                      >
+                        <div className="sm:col-span-5 font-serif font-bold text-sm text-[#141414] flex items-center gap-2.5">
+                          <CheckCircle2 className="w-4 h-4 text-[#C49D55] shrink-0" />
                           <span>{row.area}</span>
                         </div>
-                        <div className="sm:col-span-7 text-xs sm:text-sm text-stone-700 font-medium pl-6 sm:pl-0">
+                        <div className="sm:col-span-7 text-xs sm:text-sm text-[#65605A] font-medium pl-6 sm:pl-0">
                           {row.spec}
                         </div>
                       </div>
                     ))}
                   </div>
                 </div>
-              </div>
+              )}
 
             </div>
           </div>
 
-          {/* OTHER ONGOING RESIDENTIAL SANCTUARIES */}
-          <div className="space-y-8 pt-8">
+          {/* ───────────────────────────────────────────────────────────────────
+              OTHER ONGOING RESIDENTIAL SANCTUARIES (Clean Editorial Cards)
+             ─────────────────────────────────────────────────────────────────── */}
+          <div className="space-y-8 pt-4">
             <div className="text-center max-w-3xl mx-auto space-y-2">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#D4AF37]/10 text-[#997B20] text-xs font-bold uppercase tracking-widest border border-[#D4AF37]/30">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Additional Developments</span>
-              </div>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1A1A1A]">
-                Explore Other <span className="text-[#D4AF37] italic font-serif">Residential Sanctuaries</span>
+              <span className="text-xs font-semibold tracking-[0.25em] text-[#C49D55] uppercase block">
+                ADDITIONAL DEVELOPMENTS
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#141414]">
+                Explore Other Residential Sanctuaries
               </h2>
+              <div className="w-16 h-[2px] bg-gradient-to-r from-transparent via-[#C49D55] to-transparent mx-auto mt-2" />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {otherResidentialProjects.map((project) => (
                 <div
                   key={project.id}
-                  className="group bg-white rounded-2xl overflow-hidden border border-[#D4AF37]/20 shadow-md hover:shadow-2xl hover:border-[#D4AF37] transition-all duration-300 flex flex-col justify-between"
+                  className="group bg-white border border-[#C49D55]/30 hover:border-[#C49D55] transition-all duration-300 flex flex-col justify-between"
                 >
-                  <div className="relative h-60 overflow-hidden">
+                  <div className="relative h-64 overflow-hidden bg-stone-900">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
 
                     <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 bg-[#1A1A1A]/90 text-[#D4AF37] font-bold text-[10px] uppercase rounded-full border border-[#D4AF37]/30">
+                      <span className="px-3 py-1 bg-[#141414]/90 text-[#C49D55] font-semibold text-[10px] uppercase tracking-wider border border-[#C49D55]/30">
                         {project.tag}
                       </span>
                     </div>
 
                     <div className="absolute bottom-4 left-4 right-4 text-white">
                       <div className="flex items-center gap-1.5 text-xs text-stone-300 mb-1">
-                        <MapPin className="w-3.5 h-3.5 text-[#D4AF37]" />
+                        <MapPin className="w-3.5 h-3.5 text-[#C49D55]" />
                         <span>{project.location}</span>
                       </div>
-                      <h3 className="font-serif font-bold text-xl text-white group-hover:text-[#D4AF37] transition-colors">
+                      <h3 className="font-serif font-normal text-xl text-white group-hover:text-[#C49D55] transition-colors">
                         {project.title}
                       </h3>
                     </div>
                   </div>
 
-                  <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
-                    <p className="text-sm text-stone-600 leading-relaxed font-light">
-                      {project.description}
-                    </p>
+                  <div className="p-6 space-y-4 flex-1 flex flex-col justify-between bg-white">
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between text-xs text-[#65605A] border-b border-stone-100 pb-2">
+                        <span>{project.specs}</span>
+                        <span className="font-semibold text-[#141414]">{project.area}</span>
+                      </div>
+                      <p className="text-xs sm:text-sm text-[#65605A] leading-relaxed font-light">
+                        {project.description}
+                      </p>
+                    </div>
 
-                    <div className="flex items-center justify-between pt-2 border-t border-stone-100">
-                      <span className="font-serif font-bold text-[#D4AF37] text-sm">{project.price}</span>
+                    <div className="flex items-center justify-between pt-4 border-t border-stone-200">
+                      <div>
+                        <span className="text-[10px] text-[#65605A] uppercase tracking-wider block">Price</span>
+                        <span className="font-serif font-bold text-[#C49D55] text-base">{project.price}</span>
+                      </div>
                       <button
                         onClick={onOpenEnquire}
-                        className="px-4 py-2 bg-[#1A1A1A] hover:bg-[#D4AF37] text-white hover:text-stone-950 font-bold text-xs uppercase tracking-wider rounded-lg transition-all"
+                        className="px-4 py-2 bg-[#141414] hover:bg-[#C49D55] text-white hover:text-[#141414] font-semibold text-xs uppercase tracking-wider border border-[#C49D55]/40 transition-all cursor-pointer"
                       >
                         Enquire
                       </button>
@@ -383,7 +613,6 @@ export default function OngoingResidentialPage({ onOpenEnquire, onNavigateHome }
 
         </div>
       </section>
-
     </div>
   );
 }

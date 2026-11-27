@@ -191,7 +191,7 @@ export default function AboutAwasthiGroup() {
             {/* Transparent High-Res Awasthi Group Logo */}
             <div className="gsap-awasthi-logo flex items-center justify-center mb-1 group">
               <img
-                src="/images/awasthi-group-logo.png"
+                src="/images/awasthi-group-logo.webp"
                 alt="Awasthi Group"
                 className="w-40 sm:w-44 lg:w-48 h-auto object-contain mx-auto transition-transform duration-500 group-hover:scale-105"
               />

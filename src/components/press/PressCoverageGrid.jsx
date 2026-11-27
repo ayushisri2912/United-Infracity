@@ -13,7 +13,7 @@ export default function PressCoverageGrid({ onSelectArticle }) {
       category: 'Print Media',
       headline: 'United Infracity Awarded "Best Commercial Developer of the Year" at Infra Excellence Summit',
       excerpt: 'Recognizing Aura Business Tower’s iconic glass rotunda engineering, LEED Platinum sustainability rating, and state-of-the-art corporate amenities.',
-      image: '/images/newpaper.jpg'
+      image: '/images/newpaper.webp'
     },
     {
       id: 2,
@@ -22,7 +22,7 @@ export default function PressCoverageGrid({ onSelectArticle }) {
       category: 'National News',
       headline: 'High Demand for Ultra-Luxury Sky Condos as United Grand Residences Nears Top-Out Stage',
       excerpt: 'Buyers and NRI investors flock to United Grand Residences as construction reaches top floor with 85% inventory sold prior to completion.',
-      image: '/images/press4.jpg'
+      image: '/images/press4.webp'
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ export default function PressCoverageGrid({ onSelectArticle }) {
       category: 'Financial Report',
       headline: 'United Infracity Registers 42% Year-on-Year Revenue Growth Driven by Township Launches',
       excerpt: 'Corporate financial disclosure reveals robust expansion in integrated township ecosystems across North India’s premium growth corridors.',
-      image: '/images/press3.jpg'
+      image: '/images/press3.webp'
     },
     {
       id: 4,
@@ -40,7 +40,7 @@ export default function PressCoverageGrid({ onSelectArticle }) {
       category: 'Regional Press',
       headline: 'Government Approves Infrastructure Alignment for United Imperial Township Sector',
       excerpt: 'State infrastructure board praises master plan integration, zero-discharge water treatment plants, and wide 60-meter arterial green avenues.',
-      image: '/images/certificate.jpg'
+      image: '/images/certificate.webp'
     },
     {
       id: 5,
@@ -49,7 +49,7 @@ export default function PressCoverageGrid({ onSelectArticle }) {
       category: 'Regional Press',
       headline: 'United Sovereign Villas Celebrates 100% On-Time Delivery Milestone with VVIP Handover',
       excerpt: 'Residents express delight as United Infracity fulfills possession promises two months ahead of RERA deadline for 5 BHK luxury villas.',
-      image: '/images/press2.jpg'
+      image: '/images/press2.webp'
     },
     {
       id: 6,
@@ -58,7 +58,7 @@ export default function PressCoverageGrid({ onSelectArticle }) {
       category: 'National News',
       headline: 'The Rise of Integrated Grade-A Commercial Parks in Urban NCR Corridor',
       excerpt: 'Thought leadership piece highlighting how United Commercial Square is setting benchmarks for institutional real estate investments.',
-      image: '/images/press5.jpg'
+      image: '/images/press5.webp'
     }
   ];
 

@@ -87,7 +87,7 @@ export default function BrandPage({ onOpenEnquire, onSelectSection, onNavigateHo
       number: '01',
       title: 'Steel Industry',
       highlight: '40 Years of Legacy',
-      image: '/images/steel-ind.jpg',
+      image: '/images/steel-ind.webp',
       description:
         'With a 40-year legacy in the steel industry, Awasthi Group has built its foundation on reliability, precision, quality and strong work ethics.'
     },
@@ -114,7 +114,7 @@ export default function BrandPage({ onOpenEnquire, onSelectSection, onNavigateHo
       number: '04',
       title: 'Real Estate & Infrastructure',
       highlight: 'United Orchid Heights',
-      image: '/images/cta.png',
+      image: '/images/cta.webp',
       description:
         'Expanding its presence in real estate, the Group is introducing Orchid Heights, a 180-apartment residential project with a vision to develop sustainable and modern communities while maintaining its commitment to quality, integrity and customer satisfaction.'
     }
@@ -150,7 +150,7 @@ export default function BrandPage({ onOpenEnquire, onSelectSection, onNavigateHo
       num: '01',
       label: '01 — Overview',
       title: 'Designed for Elevated Living',
-      image: '/images/real-state.jpg',
+      image: '/images/real-state.webp',
       alt: 'United Orchid Heights Exterior',
       fit: 'object-cover'
     },
@@ -432,7 +432,7 @@ export default function BrandPage({ onOpenEnquire, onSelectSection, onNavigateHo
          ─────────────────────────────────────────────────────────────────── */}
       <div className="relative w-full h-[260px] sm:h-[340px] md:h-[380px] overflow-hidden bg-stone-950 flex items-center justify-center border-b border-[#C5A059]/30">
         <img
-          src="/images/brand-story.jpg"
+          src="/images/brand-story.webp"
           alt="United Infracity Brand Profile Banner"
           className="absolute inset-0 w-full h-full object-cover object-center scale-105"
         />
@@ -502,7 +502,7 @@ export default function BrandPage({ onOpenEnquire, onSelectSection, onNavigateHo
             <div className="lg:col-span-6 gsap-sec01-img-wrap">
               <div className="relative h-[380px] sm:h-[420px] lg:h-[450px] w-full overflow-hidden bg-stone-900 border border-[#C5A059]/30 shadow-xl">
                 <img
-                  src="/images/brand-img.jpg"
+                  src="/images/brand-img.webp"
                   alt="The Spirit of United Infracity"
                   className="gsap-sec01-img w-full h-full object-cover object-center"
                 />

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Star, Quote, CheckCircle, Filter } from 'lucide-react';
+import { Star, Quote, CheckCircle } from 'lucide-react';
 
 export default function CustomerStoriesSection() {
   const categories = ['All Stories', 'Residential Estates', 'Luxury Penthouses', 'Commercial Hubs'];
@@ -53,7 +53,7 @@ export default function CustomerStoriesSection() {
       category: 'Residential Estates',
       photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop',
       stars: 5,
-      quote: 'As architects ourselves, we scrutinized every blue print. United Infracity standard of engineering, acoustic isolation, and natural ventilation exceeded our highest benchmarks.',
+      quote: 'As architects ourselves, we scrutinized every blueprint. United Infracity standard of engineering, acoustic isolation, and natural ventilation exceeded our highest benchmarks.',
       location: 'Expressway Tech Corridor',
       residenceType: '4 BHK Grand Residency',
       verified: true
@@ -66,7 +66,7 @@ export default function CustomerStoriesSection() {
       category: 'Luxury Penthouses',
       photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop',
       stars: 5,
-      quote: 'The appreciation value and rental yields on United Infracity properties speak volumes. Beyond luxury, it is a fortress of financial growth.',
+      quote: 'The appreciation value and rental yields on United Infracity properties speak volumes. Beyond luxury, it is a fortress of enduring financial growth.',
       location: 'Township Central Park',
       residenceType: 'Golf View Penthouse',
       verified: true
@@ -91,32 +91,32 @@ export default function CustomerStoriesSection() {
     : customerStories.filter(story => story.category === activeCategory);
 
   return (
-    <section className="py-24 sm:py-32 bg-[#F8F5F0] relative border-t border-[#C6A15B]/15">
-      <div className="max-w-[1550px] w-full mx-auto px-6 sm:px-10 lg:px-14">
+    <section className="pt-4 sm:pt-6 pb-12 sm:pb-16 bg-[#F8F6F1] relative">
+      <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <span className="font-montserrat text-xs font-semibold uppercase tracking-[0.3em] text-[#A88746]">
+        {/* Compact Section Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-2 mb-6 sm:mb-8">
+          <span className="font-montserrat text-xs font-semibold uppercase tracking-[0.25em] text-[#C49D55] block">
             HOMEOWNER TESTIMONIALS
           </span>
-          <h2 className="font-cormorant text-4xl sm:text-5xl lg:text-6xl font-normal text-[#1C1C1A]">
-            Stories of <span className="italic text-[#C6A15B]">Timeless Living</span>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#141414]">
+            Stories of <span className="italic text-[#C49D55]">Timeless Living</span>
           </h2>
-          <p className="font-montserrat text-sm sm:text-base text-stone-600 font-light leading-relaxed max-w-xl mx-auto">
+          <p className="font-montserrat text-xs sm:text-sm text-stone-600 font-light leading-relaxed max-w-xl mx-auto">
             Discover how United Infracity turns luxury visions into enduring legacy addresses for discerning families.
           </p>
         </div>
 
         {/* Filter Navigation Tabs */}
-        <div className="flex items-center justify-center gap-3 mb-16 flex-wrap">
+        <div className="flex items-center justify-center gap-2 sm:gap-3 mb-8 sm:mb-10 flex-wrap">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-5 py-2.5 rounded-full font-montserrat text-xs font-medium tracking-wider transition-all duration-300 cursor-pointer ${
+              className={`px-4 sm:px-5 py-2 font-montserrat text-xs font-medium tracking-wider transition-all duration-300 cursor-pointer ${
                 activeCategory === cat
-                  ? 'bg-[#C6A15B] text-white shadow-lg shadow-[#C6A15B]/20 border border-[#C6A15B]'
-                  : 'bg-white text-stone-600 hover:text-[#1C1C1A] border border-stone-200 hover:border-[#C6A15B]/40'
+                  ? 'bg-[#141414] text-[#C49D55] border border-[#C49D55] shadow-md'
+                  : 'bg-white text-stone-600 hover:text-[#141414] border border-stone-200 hover:border-[#C49D55]/50'
               }`}
             >
               {cat}
@@ -125,63 +125,61 @@ export default function CustomerStoriesSection() {
         </div>
 
         {/* Testimonials Card Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredStories.map((item) => (
             <div
               key={item.id}
-              className="group relative bg-white rounded-2xl p-8 border border-[#C6A15B]/20 shadow-[0_10px_35px_rgba(0,0,0,0.03)] hover:shadow-2xl hover:shadow-[#C6A15B]/15 hover:border-[#C6A15B] hover:-translate-y-2.5 transition-all duration-500 flex flex-col justify-between"
+              className="group relative bg-white p-6 sm:p-7 border border-[#E5E5E5] hover:border-[#C49D55] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
             >
-              {/* Subtle Gold Corner Accent */}
-              <div className="absolute top-0 right-0 w-16 h-16 pointer-events-none overflow-hidden rounded-tr-2xl">
-                <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-[#C6A15B]/10 to-transparent group-hover:from-[#C6A15B]/25 transition-colors" />
-              </div>
+              {/* Subtle Gold Corner Accent Line */}
+              <div className="absolute top-0 right-0 w-12 h-[2px] bg-[#C49D55]/30 group-hover:bg-[#C49D55] transition-colors" />
 
-              <div className="space-y-6">
+              <div className="space-y-4">
                 
                 {/* Header Row: Stars & Quote Icon */}
                 <div className="flex items-center justify-between">
-                  <div className="flex gap-1 text-[#C6A15B]">
+                  <div className="flex gap-1 text-[#C49D55]">
                     {[...Array(item.stars)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-[#C6A15B] stroke-none" />
+                      <Star key={i} className="w-4 h-4 fill-[#C49D55] stroke-none" />
                     ))}
                   </div>
-                  <Quote className="w-8 h-8 text-[#C6A15B]/20 group-hover:text-[#C6A15B]/40 transition-colors" />
+                  <Quote className="w-7 h-7 text-[#C49D55]/30 group-hover:text-[#C49D55]/60 transition-colors" />
                 </div>
 
                 {/* Testimonial Quote */}
-                <p className="font-cormorant text-xl text-[#1C1C1A] leading-relaxed italic font-normal">
+                <p className="font-serif text-base sm:text-lg text-[#141414] leading-relaxed italic font-normal">
                   "{item.quote}"
                 </p>
               </div>
 
               {/* Customer Footer Card Profile */}
-              <div className="pt-6 border-t border-stone-100 mt-8 space-y-4">
+              <div className="pt-5 border-t border-stone-100 mt-6 space-y-3">
                 
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3.5">
                   {/* Customer Photo */}
                   <img
                     src={item.photo}
                     alt={item.name}
-                    className="w-14 h-14 rounded-full object-cover border-2 border-[#C6A15B]/30 group-hover:border-[#C6A15B] transition-colors shadow-sm"
+                    className="w-12 h-12 rounded-full object-cover border border-[#C49D55]/40 group-hover:border-[#C49D55] transition-colors shadow-xs"
                   />
                   <div>
                     <div className="flex items-center gap-1.5">
-                      <h4 className="font-cormorant font-bold text-[#1C1C1A] text-xl">
+                      <h4 className="font-serif font-normal text-[#141414] text-lg">
                         {item.name}
                       </h4>
                       {item.verified && (
-                        <CheckCircle className="w-4 h-4 text-[#C6A15B] fill-[#C6A15B]/10" title="Verified Homeowner" />
+                        <CheckCircle className="w-3.5 h-3.5 text-[#C49D55] fill-[#C49D55]/15" title="Verified Homeowner" />
                       )}
                     </div>
-                    <p className="font-montserrat text-xs text-stone-500 font-medium">
+                    <p className="font-montserrat text-[11px] text-stone-500 font-light">
                       {item.title}
                     </p>
                   </div>
                 </div>
 
                 {/* Project Badge & Residence Details */}
-                <div className="flex flex-wrap items-center justify-between gap-2 pt-2">
-                  <span className="inline-block px-3 py-1 bg-[#F8F5F0] text-[#A88746] border border-[#C6A15B]/30 text-[10px] uppercase font-bold tracking-wider rounded-full">
+                <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
+                  <span className="inline-block px-2.5 py-0.5 bg-[#F8F6F1] text-[#C49D55] border border-[#C49D55]/30 text-[10px] uppercase font-bold tracking-wider">
                     {item.project}
                   </span>
                   <span className="font-montserrat text-[11px] text-stone-400 font-light">

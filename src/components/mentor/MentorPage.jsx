@@ -19,7 +19,7 @@ export default function MentorPage({ onOpenEnquire, onNavigateHome }) {
     age: '67 Years',
     education: 'Master of Arts (M.A.), Bachelor of Laws (LL.B.)',
     experience: 'Over 40 Years of Business Leadership',
-    image: '/images/mentor_sanjoy_seth.jpg',
+    image: '/images/mentor_sanjoy_seth.webp',
     quote: '"Business success is built on an unshakeable foundation of ethics, continuous value addition, and uncompromising commitment to Quality, Timely Delivery, and Client Satisfaction."'
   };
 
@@ -95,7 +95,7 @@ export default function MentorPage({ onOpenEnquire, onNavigateHome }) {
       category: 'FLAGSHIP RESIDENTIAL',
       vertical: 'Real Estate',
       badge: '180 Luxury Units',
-      image: '/images/cta.png',
+      image: '/images/cta.webp',
       route: '/projects/residential',
       summary: '180 luxury apartments in Vrindavan Yojana with private balconies and full UP-RERA compliance.',
       specs: [
@@ -190,7 +190,7 @@ export default function MentorPage({ onOpenEnquire, onNavigateHome }) {
          ───────────────────────────────────────────────────────────── */}
       <div className="relative w-full h-[260px] sm:h-[340px] md:h-[380px] overflow-hidden bg-stone-950 flex items-center justify-center border-b border-[#C5A059]/30">
         <img
-          src="/images/mentor.jpg"
+          src="/images/mentor.webp"
           alt="United Infracity Our Mentor Header"
           className="absolute inset-0 w-full h-full object-cover object-center scale-105"
         />

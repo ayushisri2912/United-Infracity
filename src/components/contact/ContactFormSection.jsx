@@ -107,168 +107,181 @@ export default function ContactFormSection() {
   };
 
   const handleBlur = (field) => {
-    const error = validateField(field, formData[field]);
-    setErrors((prev) => ({ ...prev, [field]: error }));
+    const errorMsg = validateField(field, formData[field]);
+    setErrors((prev) => ({ ...prev, [field]: errorMsg }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
       setSubmitted(true);
-      setErrors({});
     }
   };
 
   return (
-    <div className="space-y-6">
+    <div className="h-full flex flex-col space-y-6">
       
-      <div className="space-y-2">
-        <h2 className="font-cormorant font-bold text-3xl sm:text-4xl text-[#1C1C1A]">
-          Send Us A <span className="italic text-[#C6A15B]">Message</span>
+      {/* Header with strictly matched height & baseline */}
+      <div className="min-h-[72px] sm:min-h-[80px] flex flex-col justify-end space-y-1.5">
+        <h2 className="font-serif text-3xl sm:text-4xl text-[#141414] font-normal leading-tight">
+          Send Us A <span className="italic text-[#C49D55]">Message</span>
         </h2>
-        <p className="font-montserrat text-sm sm:text-base text-stone-600 font-light">
-          Submit your query below and our team will get in touch with you shortly.
+        <p className="font-montserrat text-xs sm:text-sm text-stone-600 font-light leading-relaxed">
+          Submit your enquiry below and our executive team will get in touch with you shortly to assist.
         </p>
       </div>
 
-      {/* Clean White Form Card */}
-      <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#D4AF37]/25 shadow-sm hover:shadow-md transition-shadow duration-300">
+      {/* Form Card - Equal Height & Architectural Accents */}
+      <div className="flex-1 flex flex-col justify-between bg-white p-6 sm:p-8 border border-[#E5E5E5] hover:border-[#C49D55]/60 shadow-sm hover:shadow-xl transition-all duration-500 relative group">
         
+        {/* Subtle Top Gold Accent Line */}
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C49D55]/40 to-transparent group-hover:via-[#C49D55] transition-all duration-500" />
+        
+        {/* Architectural Corner Brackets */}
+        <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-[#C49D55]/40 group-hover:border-[#C49D55] transition-colors" />
+        <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-[#C49D55]/40 group-hover:border-[#C49D55] transition-colors" />
+
         {submitted ? (
-          <div className="py-12 text-center space-y-4">
-            <div className="w-16 h-16 rounded-full bg-[#C6A15B]/20 text-[#C6A15B] border border-[#C6A15B]/40 flex items-center justify-center mx-auto shadow-md">
+          <div className="py-12 my-auto text-center space-y-4">
+            <div className="w-16 h-16 bg-[#C49D55]/10 text-[#C49D55] border border-[#C49D55]/30 flex items-center justify-center mx-auto">
               <CheckCircle2 className="w-8 h-8" />
             </div>
-            <h3 className="font-cormorant font-bold text-2xl text-[#1C1C1A]">
-              Thank You for Reaching Out!
-            </h3>
-            <p className="font-montserrat text-xs sm:text-sm text-stone-600 font-light max-w-sm mx-auto leading-relaxed">
-              Your message has been successfully received by United Infracity. A luxury property consultant will contact you within 24 hours.
-            </p>
+            <div className="space-y-2">
+              <h3 className="font-serif text-2xl font-normal text-[#141414]">
+                Thank You for Contacting Us
+              </h3>
+              <p className="font-montserrat text-xs sm:text-sm text-stone-600 font-light max-w-md mx-auto leading-relaxed">
+                Your message has been received. Our senior relationship manager will contact you within 24 business hours.
+              </p>
+            </div>
             <button
               onClick={() => {
                 setSubmitted(false);
                 setFormData({ fullName: '', phone: '', email: '', subject: '', message: '' });
                 setErrors({});
               }}
-              className="px-6 py-2.5 bg-[#1C1C1A] text-white font-montserrat text-xs uppercase font-bold tracking-wider rounded-xl hover:bg-[#C6A15B] transition-colors cursor-pointer"
+              className="px-6 py-2.5 bg-[#141414] text-[#C49D55] border border-[#C49D55] font-montserrat text-xs uppercase font-bold tracking-wider hover:bg-[#C49D55] hover:text-white transition-colors cursor-pointer"
             >
               Send Another Enquiry
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} noValidate className="space-y-4">
+          <form onSubmit={handleSubmit} noValidate className="flex-1 flex flex-col justify-between space-y-4">
             
-            {/* Full Name & Phone Number */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-stone-700 mb-1.5 font-montserrat">
-                  Full Name <span className="text-[#C6A15B]">*</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g. Vikramaditya Sharma"
-                  value={formData.fullName}
-                  onChange={handleFullNameChange}
-                  onBlur={() => handleBlur('fullName')}
-                  className={`w-full px-4 py-3 rounded-xl bg-[#FAF8F5] border ${
-                    errors.fullName ? 'border-red-500 focus:border-red-500' : 'border-stone-300 focus:border-[#C6A15B]'
-                  } focus:bg-white outline-none font-montserrat text-xs sm:text-sm text-stone-900 transition-colors`}
-                />
-                {errors.fullName && (
-                  <p className="text-red-500 text-[11px] font-montserrat mt-1">{errors.fullName}</p>
-                )}
+            <div className="space-y-4">
+              {/* Full Name & Phone Number */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-stone-700 mb-1.5 font-montserrat">
+                    Full Name <span className="text-[#C49D55]">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Vikramaditya Sharma"
+                    value={formData.fullName}
+                    onChange={handleFullNameChange}
+                    onBlur={() => handleBlur('fullName')}
+                    className={`w-full px-4 py-3 bg-[#FAF8F5] border ${
+                      errors.fullName ? 'border-red-500 focus:border-red-500' : 'border-[#E5E5E5] focus:border-[#C49D55]'
+                    } focus:bg-white focus:ring-1 focus:ring-[#C49D55]/30 outline-none font-montserrat text-xs sm:text-sm text-stone-900 transition-all`}
+                  />
+                  {errors.fullName && (
+                    <p className="text-red-500 text-[11px] font-montserrat mt-1">{errors.fullName}</p>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-stone-700 mb-1.5 font-montserrat">
+                    Phone Number <span className="text-[#C49D55]">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    placeholder="9876543210"
+                    value={formData.phone}
+                    onChange={handlePhoneChange}
+                    onBlur={() => handleBlur('phone')}
+                    className={`w-full px-4 py-3 bg-[#FAF8F5] border ${
+                      errors.phone ? 'border-red-500 focus:border-red-500' : 'border-[#E5E5E5] focus:border-[#C49D55]'
+                    } focus:bg-white focus:ring-1 focus:ring-[#C49D55]/30 outline-none font-montserrat text-xs sm:text-sm text-stone-900 transition-all`}
+                  />
+                  {errors.phone && (
+                    <p className="text-red-500 text-[11px] font-montserrat mt-1">{errors.phone}</p>
+                  )}
+                </div>
               </div>
 
+              {/* Email Address & Subject */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-stone-700 mb-1.5 font-montserrat">
+                    Email Address <span className="text-[#C49D55]">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    placeholder="patron@domain.com"
+                    value={formData.email}
+                    onChange={handleEmailChange}
+                    onBlur={() => handleBlur('email')}
+                    className={`w-full px-4 py-3 bg-[#FAF8F5] border ${
+                      errors.email ? 'border-red-500 focus:border-red-500' : 'border-[#E5E5E5] focus:border-[#C49D55]'
+                    } focus:bg-white focus:ring-1 focus:ring-[#C49D55]/30 outline-none font-montserrat text-xs sm:text-sm text-stone-900 transition-all`}
+                  />
+                  {errors.email && (
+                    <p className="text-red-500 text-[11px] font-montserrat mt-1">{errors.email}</p>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-stone-700 mb-1.5 font-montserrat">
+                    Subject <span className="text-[#C49D55]">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Site Visit / Project Enquiry"
+                    value={formData.subject}
+                    onChange={handleSubjectChange}
+                    onBlur={() => handleBlur('subject')}
+                    className={`w-full px-4 py-3 bg-[#FAF8F5] border ${
+                      errors.subject ? 'border-red-500 focus:border-red-500' : 'border-[#E5E5E5] focus:border-[#C49D55]'
+                    } focus:bg-white focus:ring-1 focus:ring-[#C49D55]/30 outline-none font-montserrat text-xs sm:text-sm text-stone-900 transition-all`}
+                  />
+                  {errors.subject && (
+                    <p className="text-red-500 text-[11px] font-montserrat mt-1">{errors.subject}</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Message */}
               <div>
                 <label className="block text-[11px] font-bold uppercase tracking-wider text-stone-700 mb-1.5 font-montserrat">
-                  Phone Number <span className="text-[#C6A15B]">*</span>
+                  Message <span className="text-[#C49D55]">*</span>
                 </label>
-                <input
-                  type="tel"
-                  placeholder="9876543210"
-                  value={formData.phone}
-                  onChange={handlePhoneChange}
-                  onBlur={() => handleBlur('phone')}
-                  className={`w-full px-4 py-3 rounded-xl bg-[#FAF8F5] border ${
-                    errors.phone ? 'border-red-500 focus:border-red-500' : 'border-stone-300 focus:border-[#C6A15B]'
-                  } focus:bg-white outline-none font-montserrat text-xs sm:text-sm text-stone-900 transition-colors`}
+                <textarea
+                  rows={4}
+                  placeholder="Share your requirements or questions with us..."
+                  value={formData.message}
+                  onChange={handleMessageChange}
+                  onBlur={() => handleBlur('message')}
+                  className={`w-full px-4 py-3 bg-[#FAF8F5] border ${
+                    errors.message ? 'border-red-500 focus:border-red-500' : 'border-[#E5E5E5] focus:border-[#C49D55]'
+                  } focus:bg-white focus:ring-1 focus:ring-[#C49D55]/30 outline-none font-montserrat text-xs sm:text-sm text-stone-900 transition-all resize-none`}
                 />
-                {errors.phone && (
-                  <p className="text-red-500 text-[11px] font-montserrat mt-1">{errors.phone}</p>
+                {errors.message && (
+                  <p className="text-red-500 text-[11px] font-montserrat mt-1">{errors.message}</p>
                 )}
               </div>
             </div>
 
-            {/* Email Address & Subject */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-stone-700 mb-1.5 font-montserrat">
-                  Email Address <span className="text-[#C6A15B]">*</span>
-                </label>
-                <input
-                  type="email"
-                  placeholder="patron@domain.com"
-                  value={formData.email}
-                  onChange={handleEmailChange}
-                  onBlur={() => handleBlur('email')}
-                  className={`w-full px-4 py-3 rounded-xl bg-[#FAF8F5] border ${
-                    errors.email ? 'border-red-500 focus:border-red-500' : 'border-stone-300 focus:border-[#C6A15B]'
-                  } focus:bg-white outline-none font-montserrat text-xs sm:text-sm text-stone-900 transition-colors`}
-                />
-                {errors.email && (
-                  <p className="text-red-500 text-[11px] font-montserrat mt-1">{errors.email}</p>
-                )}
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-stone-700 mb-1.5 font-montserrat">
-                  Subject <span className="text-[#C6A15B]">*</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g. Site Visit / Project Enquiry"
-                  value={formData.subject}
-                  onChange={handleSubjectChange}
-                  onBlur={() => handleBlur('subject')}
-                  className={`w-full px-4 py-3 rounded-xl bg-[#FAF8F5] border ${
-                    errors.subject ? 'border-red-500 focus:border-red-500' : 'border-stone-300 focus:border-[#C6A15B]'
-                  } focus:bg-white outline-none font-montserrat text-xs sm:text-sm text-stone-900 transition-colors`}
-                />
-                {errors.subject && (
-                  <p className="text-red-500 text-[11px] font-montserrat mt-1">{errors.subject}</p>
-                )}
-              </div>
-            </div>
-
-            {/* Message */}
-            <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider text-stone-700 mb-1.5 font-montserrat">
-                Message <span className="text-[#C6A15B]">*</span>
-              </label>
-              <textarea
-                rows={4}
-                placeholder="Share your requirements or questions with us..."
-                value={formData.message}
-                onChange={handleMessageChange}
-                onBlur={() => handleBlur('message')}
-                className={`w-full px-4 py-3 rounded-xl bg-[#FAF8F5] border ${
-                  errors.message ? 'border-red-500 focus:border-red-500' : 'border-stone-300 focus:border-[#C6A15B]'
-                } focus:bg-white outline-none font-montserrat text-xs sm:text-sm text-stone-900 transition-colors resize-none`}
-              />
-              {errors.message && (
-                <p className="text-red-500 text-[11px] font-montserrat mt-1">{errors.message}</p>
-              )}
-            </div>
-
-            {/* Primary Button */}
-            <div className="pt-2">
+            {/* Primary Submit Button with Shimmer Sweep Animation */}
+            <div className="pt-3 mt-auto">
               <button
                 type="submit"
-                className="inline-flex items-center justify-center gap-3 w-full py-4 bg-[#C6A15B] hover:bg-[#A88746] text-stone-950 font-montserrat font-bold text-xs uppercase tracking-[0.2em] rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer"
+                className="group/btn relative overflow-hidden inline-flex items-center justify-center gap-3 w-full py-4 bg-[#C49D55] hover:bg-[#B38E46] text-white font-montserrat font-bold text-xs uppercase tracking-[0.2em] shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer active:scale-[0.99]"
               >
-                <span>Send Message</span>
-                <ArrowRight className="w-4 h-4" />
+                {/* Shimmer Sweep Animation on Hover */}
+                <div className="absolute inset-0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+                <span className="relative z-10">Send Message</span>
+                <ArrowRight className="w-4 h-4 relative z-10 group-hover/btn:translate-x-1.5 transition-transform duration-300" />
               </button>
             </div>
 

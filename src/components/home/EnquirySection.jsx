@@ -152,7 +152,7 @@ export default function EnquirySection() {
             className="w-full md:w-[35%] h-[200px] sm:h-[240px] md:h-full relative overflow-hidden shrink-0 border-b md:border-b-0 md:border-r border-[#E5E5E5] bg-[#F5F5F5]"
           >
             <img
-              src="/images/cta.png"
+              src="/images/cta.webp"
               alt="United Orchid Heights Architectural Elevation"
               className="w-full h-full object-cover object-center will-change-transform transition-transform duration-700 ease-out group-hover:scale-105"
               loading="lazy"

@@ -49,7 +49,7 @@ export default function TestimonialsPage({ onOpenEnquire, onNavigateHome }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F5F0] text-[#1C1C1A] font-montserrat antialiased selection:bg-[#C6A15B] selection:text-white relative">
+    <div className="min-h-screen bg-[#F8F6F1] text-[#141414] font-montserrat antialiased selection:bg-[#C49D55] selection:text-white relative">
       
       {/* 1. HERO SECTION */}
       <HeroSection onWatchStoriesClick={handleWatchStoriesClick} />
@@ -90,7 +90,7 @@ export default function TestimonialsPage({ onOpenEnquire, onNavigateHome }) {
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-40 w-12 h-12 rounded-full bg-[#1C1C1A] border border-[#C6A15B]/50 text-[#C6A15B] shadow-2xl flex items-center justify-center hover:bg-[#C6A15B] hover:text-[#1C1C1A] hover:border-[#C6A15B] transition-all duration-300 hover:scale-110 cursor-pointer"
+          className="fixed bottom-8 right-8 z-40 w-11 h-11 bg-[#141414] border border-[#C49D55]/50 text-[#C49D55] shadow-2xl flex items-center justify-center hover:bg-[#C49D55] hover:text-[#141414] hover:border-[#C49D55] transition-all duration-300 hover:scale-105 cursor-pointer"
           title="Scroll to top"
         >
           <ArrowUp className="w-5 h-5" />

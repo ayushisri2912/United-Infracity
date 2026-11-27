@@ -47,16 +47,16 @@ export default function VideoModal({ isOpen, onClose, videoStory }) {
       <div className="absolute inset-0" onClick={onClose} />
 
       {/* Modal Container */}
-      <div className="relative w-full max-w-5xl bg-[#1C1C1A] rounded-2xl border border-[#C6A15B]/40 shadow-2xl overflow-hidden z-10 flex flex-col my-auto max-h-[90vh]">
+      <div className="relative w-full max-w-5xl bg-[#141414] border border-[#C49D55]/40 shadow-2xl overflow-hidden z-10 flex flex-col my-auto max-h-[90vh]">
         
         {/* Modal Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-stone-800 bg-[#141413]">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-stone-800 bg-[#141414]">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-[#C6A15B]/20 border border-[#C6A15B]/40 flex items-center justify-center text-[#C6A15B]">
+            <div className="w-8 h-8 rounded-full bg-[#C49D55]/20 border border-[#C49D55]/40 flex items-center justify-center text-[#C49D55]">
               <Sparkles className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="font-cormorant font-bold text-white text-lg sm:text-xl">
+              <h3 className="font-serif font-normal text-white text-lg sm:text-xl">
                 {videoStory.title}
               </h3>
               <p className="font-montserrat text-xs text-stone-400 font-light">

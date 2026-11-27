@@ -22,7 +22,7 @@ export default function ManagementPage({ onOpenEnquire, onNavigateHome }) {
       name: 'Sh. Atul Awasthi',
       designation: 'Director — United Infracity Pvt. Ltd.',
       qualification: 'Graduate from Lucknow University',
-      image: '/images/management_ceo.jpg',
+      image: '/images/management_ceo.webp',
       responsibilities: [
         'Steel Manufacturing Operations',
         'Healthcare Division',
@@ -34,7 +34,7 @@ export default function ManagementPage({ onOpenEnquire, onNavigateHome }) {
       name: 'Sh. Anuj Awasthi',
       designation: 'Director — United Infracity Pvt. Ltd.',
       qualification: 'Biotechnology Graduate from UK',
-      image: '/images/management_director.jpg',
+      image: '/images/management_director.webp',
       responsibilities: [
         'Luxury Hospitality',
         'Education Division'
@@ -215,7 +215,7 @@ export default function ManagementPage({ onOpenEnquire, onNavigateHome }) {
          ─────────────────────────────────────────────────────────────────── */}
       <div className="relative w-full h-[260px] sm:h-[340px] md:h-[380px] overflow-hidden bg-stone-950 flex items-center justify-center border-b border-[#C49D55]/30">
         <img
-          src="/images/managements.jpg"
+          src="/images/managements.webp"
           alt="United Infracity Management Team Header"
           className="gsap-mgmt-hero-img absolute inset-0 w-full h-full object-cover object-center brightness-110"
         />

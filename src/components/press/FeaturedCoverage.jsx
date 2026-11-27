@@ -8,7 +8,7 @@ export default function FeaturedCoverage({ onSelectArticle }) {
     date: 'August 12, 2026',
     headline: 'United Infracity Redefines Luxury Real Estate Landscape with Landmark Integrated Townships',
     excerpt: 'In an exclusive coverage, The Economic Times highlights United Infracity Private Limited’s commitment to sustainable architectural marvels, ultra-luxury residential towers, and grade-A corporate infrastructure across prime tech corridors.',
-    image: '/images/united_residences.jpg',
+    image: '/images/united_residences.webp',
     url: '#'
   };
 

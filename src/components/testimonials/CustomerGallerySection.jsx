@@ -86,20 +86,20 @@ export default function CustomerGallerySection({ onSelectImage }) {
     : galleryItems.filter(item => item.category === activeFilter);
 
   return (
-    <section className="py-24 sm:py-32 bg-[#F8F5F0] relative border-t border-[#C6A15B]/15">
-      <div className="max-w-[1550px] w-full mx-auto px-6 sm:px-10 lg:px-14">
+    <section className="py-10 sm:py-14 lg:py-16 bg-[#F8F6F1] relative border-t border-[#C49D55]/15">
+      <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#C6A15B]/10 border border-[#C6A15B]/20 text-[#A88746] text-xs font-semibold uppercase tracking-[0.25em]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-6">
+          <div className="space-y-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#C49D55]/10 border border-[#C49D55]/30 text-[#C49D55] text-xs font-semibold uppercase tracking-[0.25em]">
               <Sparkles className="w-3.5 h-3.5" />
               <span>VISUAL SHOWCASE</span>
             </div>
-            <h2 className="font-cormorant text-4xl sm:text-5xl lg:text-6xl font-normal text-[#1C1C1A]">
-              The Resident <span className="italic text-[#C6A15B]">Gallery</span>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#141414]">
+              The Resident <span className="italic text-[#C49D55]">Gallery</span>
             </h2>
-            <p className="font-montserrat text-sm text-stone-600 font-light max-w-lg">
+            <p className="font-montserrat text-xs sm:text-sm text-stone-600 font-light max-w-lg">
               A curated visual glimpse into life, landscapes, and architectural luxury across United Infracity developments.
             </p>
           </div>
@@ -110,10 +110,10 @@ export default function CustomerGallerySection({ onSelectImage }) {
               <button
                 key={tab}
                 onClick={() => setActiveFilter(tab)}
-                className={`px-4 py-2 rounded-full font-montserrat text-xs font-semibold tracking-wider transition-all duration-300 whitespace-nowrap cursor-pointer ${
+                className={`px-4 py-2 font-montserrat text-xs font-medium uppercase tracking-wider transition-all duration-300 whitespace-nowrap cursor-pointer ${
                   activeFilter === tab
-                    ? 'bg-[#1C1C1A] text-white shadow-md'
-                    : 'bg-white text-stone-600 hover:text-[#1C1C1A] border border-stone-200 hover:border-[#C6A15B]/40'
+                    ? 'bg-[#141414] text-[#C49D55] border border-[#C49D55] shadow-sm'
+                    : 'bg-white text-stone-600 hover:text-[#141414] border border-stone-200 hover:border-[#C49D55]/40'
                 }`}
               >
                 {tab}
@@ -123,38 +123,38 @@ export default function CustomerGallerySection({ onSelectImage }) {
         </div>
 
         {/* Masonry Style Responsive Image Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
           {filteredItems.map((item) => (
             <div
               key={item.id}
               onClick={() => onSelectImage(item)}
-              className={`group relative rounded-2xl overflow-hidden shadow-lg border border-[#C6A15B]/20 bg-stone-900 cursor-pointer ${item.span || ''}`}
+              className={`group relative overflow-hidden shadow-md border border-[#C49D55]/25 bg-stone-900 cursor-pointer ${item.span || ''}`}
             >
               {/* Image with zoom-on-hover animation */}
               <div className={`w-full h-full relative overflow-hidden ${item.aspect}`}>
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out filter brightness-[0.9] group-hover:brightness-100"
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out filter brightness-[0.92] group-hover:brightness-100"
                 />
                 
                 {/* Gradient Overlay on Hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-500" />
               </div>
 
               {/* Hover Content Overlay */}
-              <div className="absolute inset-0 p-6 flex flex-col justify-between text-white pointer-events-none">
+              <div className="absolute inset-0 p-5 sm:p-6 flex flex-col justify-between text-white pointer-events-none">
                 <div className="flex justify-end">
-                  <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                  <div className="w-9 h-9 bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
                     <Maximize2 className="w-4 h-4" />
                   </div>
                 </div>
 
                 <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                  <span className="inline-block px-3 py-1 bg-[#C6A15B] text-[#1C1C1A] font-montserrat text-[10px] font-bold uppercase tracking-wider rounded-full mb-2 shadow-xs">
+                  <span className="inline-block px-2.5 py-0.5 bg-[#C49D55] text-white font-montserrat text-[10px] font-bold uppercase tracking-wider mb-1.5 shadow-xs">
                     {item.category}
                   </span>
-                  <h3 className="font-cormorant text-2xl font-bold tracking-tight text-white">
+                  <h3 className="font-serif text-xl sm:text-2xl font-normal tracking-tight text-white">
                     {item.title}
                   </h3>
                   <p className="font-montserrat text-xs text-stone-300 font-light mt-0.5">

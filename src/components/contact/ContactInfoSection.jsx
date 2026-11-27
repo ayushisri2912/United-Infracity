@@ -1,32 +1,44 @@
 import React from 'react';
-import { MapPin, Phone, Mail, Clock, Building2, ShieldCheck } from 'lucide-react';
+import { MapPin, Phone, Mail, Building2, ShieldCheck } from 'lucide-react';
 
 export default function ContactInfoSection() {
+  // Authentic contact details synchronized directly with Home Page & Official Footer
   const contactDetails = [
     {
       icon: MapPin,
       title: 'Registered Office',
-      lines: ['560/109, RWS Compound (Near Lal Hospital),', 'Krishna Nagar, Kanpur Road, Lucknow – 226023, UP']
+      lines: [
+        '560/109, RWS Compound (Near Lal Hospital),',
+        'Krishna Nagar, Kanpur Road, Lucknow – 226023, UP'
+      ]
     },
     {
       icon: Building2,
       title: 'Site / Sales Office',
-      lines: ['Land No. 6C/GH-2, Vrindavan Yojna Phase-1,', 'Sector 6, Vrindavan, Lucknow, UP']
+      lines: [
+        'Plot No. 6C/GH-2, Vrindavan Yojna Phase-1,',
+        'Sector 6, Vrindavan, Lucknow, UP'
+      ]
     },
     {
       icon: ShieldCheck,
       title: 'Corporate Identity Number',
-      lines: ['CIN: U70102UP2012PTC050901', 'M/s United Infracity Private Limited (Awasthi Group)']
+      lines: [
+        'CIN: U70102UP2012PTC050901',
+        'M/s United Infracity Private Limited (Awasthi Group)'
+      ]
     },
     {
       icon: Phone,
-      title: 'Phone Number',
-      lines: ['+91 (0522) 4567 890', '+91 98765 43210']
+      title: 'Official Helpline',
+      lines: ['+91 6391579595'],
+      isPhone: true
     },
     {
       icon: Mail,
       title: 'Email Address',
-      lines: ['enquiry@unitedinfracity.com', 'info@unitedinfracity.com']
+      lines: ['uni.infracity12@gmail.com', 'info@unitedinfracity.com'],
+      isMail: true
     }
   ];
 
@@ -70,49 +82,67 @@ export default function ContactInfoSection() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="h-full flex flex-col space-y-6">
       
-      <div className="space-y-2">
-        <h2 className="font-serif font-bold text-3xl sm:text-4xl text-[#1C1C1A]">
-          Get In <span className="italic text-[#D4AF37]">Touch</span>
+      {/* Header with strictly matched height & baseline */}
+      <div className="min-h-[72px] sm:min-h-[80px] flex flex-col justify-end space-y-1.5">
+        <h2 className="font-serif text-3xl sm:text-4xl text-[#141414] font-normal leading-tight">
+          Get In <span className="italic text-[#C49D55]">Touch</span>
         </h2>
-        <p className="text-sm sm:text-base text-stone-600 font-light">
+        <p className="font-montserrat text-xs sm:text-sm text-stone-600 font-light leading-relaxed">
           Connect directly with our luxury real estate advisors, site sales desk, and corporate relations team.
         </p>
       </div>
 
-      {/* Clean White Information Card */}
-      <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#D4AF37]/25 shadow-sm hover:shadow-md transition-shadow duration-300 space-y-6">
+      {/* Clean White Information Card - Equal Height & Architectural Accents */}
+      <div className="flex-1 flex flex-col justify-between bg-white p-6 sm:p-8 border border-[#E5E5E5] hover:border-[#C49D55]/60 shadow-sm hover:shadow-xl transition-all duration-500 relative group">
         
-        {contactDetails.map((item, idx) => {
-          const Icon = item.icon;
-          return (
-            <div key={idx} className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-xl bg-[#FAF8F5] border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] shrink-0">
-                <Icon className="w-5 h-5" />
-              </div>
-              <div className="space-y-1">
-                <h4 className="font-bold text-xs uppercase tracking-wider text-[#1C1C1A]">
-                  {item.title}
-                </h4>
-                {item.lines.map((line, i) => (
-                  <p key={i} className="text-sm sm:text-base text-stone-600 font-light leading-relaxed">
-                    {line}
-                  </p>
-                ))}
-              </div>
-            </div>
-          );
-        })}
+        {/* Subtle Top Gold Accent Line */}
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C49D55]/40 to-transparent group-hover:via-[#C49D55] transition-all duration-500" />
+        
+        {/* Architectural Corner Brackets */}
+        <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-[#C49D55]/40 group-hover:border-[#C49D55] transition-colors" />
+        <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-[#C49D55]/40 group-hover:border-[#C49D55] transition-colors" />
 
-        {/* Divider */}
-        <div className="pt-4 border-t border-stone-100">
-          <h4 className="font-bold text-xs uppercase tracking-widest text-stone-400 mb-3">
-            Follow Our Official Handles
-          </h4>
+        <div className="space-y-4 sm:space-y-5">
+          {contactDetails.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <div key={idx} className="gsap-contact-item flex items-start gap-3.5 sm:gap-4 group/item">
+                <div className="w-10 h-10 bg-[#C49D55]/10 border border-[#C49D55]/30 flex items-center justify-center text-[#C49D55] shrink-0 group-hover/item:scale-105 group-hover/item:bg-[#C49D55] group-hover/item:text-white transition-all duration-300">
+                  <Icon className="w-4 h-4" />
+                </div>
+                <div className="space-y-0.5">
+                  <h4 className="font-montserrat font-bold text-[11px] sm:text-xs uppercase tracking-wider text-[#141414]">
+                    {item.title}
+                  </h4>
+                  {item.lines.map((line, i) => (
+                    <p key={i} className="font-montserrat text-xs sm:text-[13px] text-stone-600 font-light leading-relaxed">
+                      {item.isPhone ? (
+                        <a href={`tel:${line.replace(/\s+/g, '')}`} className="hover:text-[#C49D55] transition-colors font-medium text-stone-800">
+                          {line}
+                        </a>
+                      ) : item.isMail ? (
+                        <a href={`mailto:${line}`} className="hover:text-[#C49D55] transition-colors font-medium text-stone-800">
+                          {line}
+                        </a>
+                      ) : (
+                        line
+                      )}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
 
-          {/* Social Icons */}
-          <div className="flex items-center gap-3">
+        {/* Divider & Social Links */}
+        <div className="pt-4 mt-6 border-t border-[#E5E5E5] flex items-center justify-between">
+          <span className="font-montserrat text-xs font-bold uppercase tracking-wider text-[#C49D55]">
+            Connect With Us
+          </span>
+          <div className="flex items-center gap-2">
             {socialLinks.map((social) => (
               <a
                 key={social.name}
@@ -120,7 +150,8 @@ export default function ContactInfoSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.name}
-                className="w-10 h-10 rounded-xl bg-[#FAF8F5] hover:bg-[#D4AF37] text-[#D4AF37] hover:text-white border border-[#D4AF37]/30 flex items-center justify-center transition-all duration-300 hover:scale-105 shadow-xs"
+                className="w-8 h-8 bg-[#F8F6F1] border border-[#E5E5E5] text-stone-600 hover:bg-[#C49D55] hover:border-[#C49D55] hover:text-white transition-all duration-300 flex items-center justify-center cursor-pointer shadow-2xs hover:scale-105"
+                title={social.name}
               >
                 {social.svg}
               </a>
