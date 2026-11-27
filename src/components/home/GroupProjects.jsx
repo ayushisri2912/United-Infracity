@@ -195,7 +195,7 @@ export default function GroupProjects() {
     <section
       ref={sectionRef}
       id="group-projects"
-      className="py-12 sm:py-14 lg:py-16 bg-white border-b border-[#E5E5E5] relative overflow-hidden"
+      className="pt-5 sm:pt-6 lg:pt-8 pb-4 sm:pb-5 lg:pb-5 bg-white border-b border-[#E5E5E5] relative overflow-hidden"
     >
       {/* Subtle Background Watermark Emblem */}
       <div 
@@ -209,8 +209,8 @@ export default function GroupProjects() {
         />
       </div>
 
-      {/* Main Container - max-w-[1400px] */}
-      <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* Main Container - max-w-[1550px] aligned with Navbar */}
+      <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14 relative z-10">
         
         {/* ─────────────────────────────────────────────────────────────
             1. SECTION HEADER (Matching Theme & About Section Style)
@@ -390,7 +390,7 @@ export default function GroupProjects() {
         {/* ─────────────────────────────────────────────────────────────
             3. MINIMAL ORCHID CREST DIVIDER
            ───────────────────────────────────────────────────────────── */}
-        <div className="pt-6 sm:pt-7 flex flex-col items-center justify-center">
+        <div className="pt-4 sm:pt-5 flex flex-col items-center justify-center">
           <div className="flex items-center justify-center gap-4 sm:gap-6 w-full max-w-xs">
             <div className="h-[1px] flex-1 bg-[#E5E5E5]" />
             <img

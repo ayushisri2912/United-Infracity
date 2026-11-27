@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Building2, Phone, Mail, MapPin, ShieldCheck, ArrowRight } from 'lucide-react';
+import { Building2, Phone, Mail, MapPin, ShieldCheck, ArrowRight, ExternalLink, ArrowUpRight } from 'lucide-react';
 import { useModal } from '../../context/ModalContext';
 
 export default function Footer() {
@@ -10,6 +10,23 @@ export default function Footer() {
   const handleLinkClick = (path) => {
     navigate(path);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleReraLinkClick = (e) => {
+    e.preventDefault();
+    if (window.location.pathname === '/contact') {
+      const element = document.getElementById('rera-details');
+      if (element) {
+        const navbarHeight = 85;
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: elementPosition - navbarHeight,
+          behavior: 'smooth'
+        });
+      }
+    } else {
+      navigate('/contact#rera-details');
+    }
   };
 
   const socialLinks = [
@@ -34,23 +51,23 @@ export default function Footer() {
   ];
 
   return (
-    <footer id="footer" className="bg-[#161513] text-stone-200 border-t-4 border-[#D4AF37] pt-12 pb-8 relative overflow-hidden font-montserrat">
+    <footer id="footer" className="bg-[#161513] text-stone-200 border-t-4 border-[#D4AF37] pt-10 sm:pt-12 pb-4 sm:pb-5 relative overflow-hidden font-montserrat">
       <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14">
         
         {/* PART 1: Top Bar - Branding & Quick Action */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b border-stone-800">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-stone-800">
           <div className="flex flex-wrap items-center gap-4 sm:gap-5">
-            <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-3 group">
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[#D4AF37] p-0.5 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300 shrink-0">
-                <div className="w-full h-full bg-stone-950 rounded-[10px] flex items-center justify-center">
-                  <Building2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4AF37]" />
-                </div>
-              </div>
+            <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-3.5 group">
+              <img
+                src="/images/footerlogo.webp"
+                alt="United Infracity"
+                className="h-10 sm:h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300 shrink-0"
+              />
               <div className="flex flex-col">
-                <span className="font-serif font-bold text-lg sm:text-2xl text-white tracking-tight group-hover:text-[#D4AF37] transition-colors">
+                <span className="font-serif text-xl sm:text-2xl lg:text-[26px] font-medium text-white tracking-[0.06em] leading-tight group-hover:text-[#D4AF37] transition-colors">
                   UNITED INFRACITY
                 </span>
-                <span className="text-[9px] sm:text-[11px] tracking-[0.25em] sm:tracking-[0.3em] uppercase font-bold text-[#D4AF37]">
+                <span className="text-[10px] sm:text-[11.5px] tracking-[0.3em] uppercase font-semibold text-[#D4AF37] mt-0.5">
                   Private Limited
                 </span>
               </div>
@@ -58,10 +75,25 @@ export default function Footer() {
 
             <span className="hidden sm:inline-block w-px h-8 bg-stone-800" />
 
-            <div className="flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-stone-800/80 border border-[#D4AF37]/40 text-xs text-[#D4AF37]">
-              <ShieldCheck className="w-4 h-4 shrink-0" />
-              <span className="font-semibold uppercase tracking-wider text-[11px] sm:text-xs">RERA Registered Developer</span>
-              <span className="text-stone-400 font-light hidden xl:inline">| CIN: U70102UP2012PTC050901</span>
+            {/* RERA Registration & CIN Badges */}
+            <div className="flex flex-wrap items-center gap-2.5">
+              <a
+                href="https://www.up-rera.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/50 text-xs text-[#D4AF37] hover:bg-[#D4AF37] hover:text-stone-950 transition-colors duration-300 group"
+                title="Verify on Official UP-RERA Portal"
+              >
+                <ShieldCheck className="w-4 h-4 shrink-0 text-[#D4AF37] group-hover:text-stone-950" />
+                <span className="font-semibold tracking-wider text-[11px] sm:text-xs">
+                  RERA Reg. No: <strong className="font-bold underline decoration-[#D4AF37]/60 underline-offset-2">UPRERAPRJ593231/11/2026</strong>
+                </span>
+                <ExternalLink className="w-3.5 h-3.5 shrink-0 opacity-70 group-hover:opacity-100" />
+              </a>
+
+              <span className="hidden xl:inline-flex items-center px-3 py-1.5 rounded-full bg-stone-800/80 border border-stone-700 text-stone-400 text-xs">
+                CIN: U70102UP2012PTC050901
+              </span>
             </div>
           </div>
 
@@ -81,8 +113,8 @@ export default function Footer() {
           {/* Col 1: Corporate Profile & Social */}
           <div className="space-y-5">
             <p className="text-stone-300 text-sm sm:text-[15px] leading-relaxed font-light">
-              Pioneers in ultra-luxury residential towers, integrated smart townships, and grade-A commercial real estate developments across India's premier corridors.
-            </p>
+               Thoughtfully designed spac
+                          </p>
             
             <div className="pt-2">
               <span className="text-xs font-bold uppercase tracking-widest text-[#D4AF37] block mb-3">
@@ -103,6 +135,25 @@ export default function Footer() {
                   </a>
                 ))}
               </div>
+            </div>
+
+            <div className="pt-1">
+              <span className="text-xs text-stone-400">
+                Official Portal: <a href="https://www.unitedinfracity.com" target="_blank" rel="noopener noreferrer" className="text-[#D4AF37] hover:underline font-medium">www.unitedinfracity.com</a>
+              </span>
+            </div>
+
+            {/* Minimal RERA & Collection Account Details Link */}
+            <div className="pt-1">
+              <Link
+                to="/contact#rera-details"
+                onClick={handleReraLinkClick}
+                className="inline-flex items-center gap-1.5 text-[14px] text-[#D4AF37] hover:text-[#F3E5AB] transition-colors duration-200 cursor-pointer font-normal group"
+              >
+                <ShieldCheck className="w-4 h-4 shrink-0 text-[#D4AF37] group-hover:text-[#F3E5AB] transition-colors duration-200" />
+                <span>RERA &amp; Collection Account Details</span>
+                <ArrowUpRight className="w-3.5 h-3.5 shrink-0 opacity-80 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
+              </Link>
             </div>
           </div>
 
@@ -161,7 +212,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 4: Corporate Headquarters */}
+          {/* Col 4: Corporate Headquarters & Official Contact */}
           <div className="space-y-4">
             <h4 className="font-serif font-bold text-white text-base sm:text-lg tracking-wider uppercase border-b border-[#D4AF37]/30 pb-2">
               Registered & Site Office
@@ -177,20 +228,20 @@ export default function Footer() {
               <div className="flex items-start gap-2.5">
                 <Building2 className="w-4.5 h-4.5 text-[#D4AF37] shrink-0 mt-0.5" />
                 <span>
-                  <strong className="text-white block font-medium">Site & Sales Office:</strong>
-                  Land No. 6C/GH-2, Vrindavan Yojna Phase-1, Sector 6, Lucknow, UP.
+                  <strong className="text-white block font-medium">Site Address:</strong>
+                  Plot No. 6C/GH-2, Vrindavan Yojana Phase-1, Lucknow.
                 </span>
               </div>
               <div className="flex items-center gap-2.5 pt-1">
                 <Phone className="w-4 h-4 text-[#D4AF37] shrink-0" />
-                <a href="tel:+915224567890" className="hover:text-[#D4AF37] transition-colors">
-                  +91 (0522) 4567 890 / 98765 43210
+                <a href="tel:+916391579595" className="hover:text-[#D4AF37] transition-colors font-medium text-white">
+                  +91 6391579595
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-[#D4AF37] shrink-0" />
-                <a href="mailto:enquiry@unitedinfracity.com" className="hover:text-[#D4AF37] transition-colors">
-                  enquiry@unitedinfracity.com
+                <a href="mailto:uni.infracity12@gmail.com" className="hover:text-[#D4AF37] transition-colors font-medium">
+                  uni.infracity12@gmail.com
                 </a>
               </div>
             </div>
@@ -199,17 +250,29 @@ export default function Footer() {
         </div>
 
         {/* PART 3: Bottom Bar */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-stone-400 font-light text-center sm:text-left">
-          <p>
-            © {new Date().getFullYear()} <strong className="text-stone-200">UNITED INFRACITY PRIVATE LIMITED</strong>. All Rights Reserved.
+        <div className="pt-3.5 sm:pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm sm:text-[14.5px] text-stone-300 font-normal text-center sm:text-left">
+          <p className="tracking-wide text-stone-300">
+            © {new Date().getFullYear()} <strong className="text-white font-semibold">UNITED INFRACITY PRIVATE LIMITED</strong>. All Rights Reserved.
           </p>
-          <p className="text-stone-400 text-xs sm:text-sm">
-            Ultra-Luxury Smart Townships & Grade-A Real Estate Developments
-          </p>
+          <div className="flex items-center gap-2.5 text-sm sm:text-[14.5px] text-stone-300 tracking-wide">
+            <span>Precision Crafted with Digital Intelligence by</span>
+            <a
+              href="https://codecrafter.co.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center hover:opacity-90 transition-opacity"
+              title="Code Crafter"
+            >
+              <img
+                src="/images/ccwslogo.png"
+                alt="Code Crafter"
+                className="h-9 sm:h-10 md:h-11 w-auto object-contain inline-block drop-shadow-sm brightness-110"
+              />
+            </a>
+          </div>
         </div>
 
       </div>
     </footer>
-
   );
 }

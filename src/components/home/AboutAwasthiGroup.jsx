@@ -163,7 +163,7 @@ export default function AboutAwasthiGroup() {
     <section
       ref={sectionRef}
       id="about-awasthi-group"
-      className="pt-5 sm:pt-6 lg:pt-8 pb-10 sm:pb-12 lg:pb-14 bg-white border-b border-[#E5E5E5] relative overflow-hidden"
+      className="pt-5 sm:pt-6 lg:pt-8 pb-5 sm:pb-6 lg:pb-7 bg-white border-b border-[#E5E5E5] relative overflow-hidden"
     >
       {/* Subtle background ambient floral emblem (~2.5% opacity) */}
       <div
@@ -280,33 +280,42 @@ export default function AboutAwasthiGroup() {
         {/* ─────────────────────────────────────────────────────────────
             BUSINESS VENTURES STRIP (Deep Black Luxury Theme with Gold Accents)
            ───────────────────────────────────────────────────────────── */}
-        <div className="gsap-ventures-strip mt-10 sm:mt-12 pt-8 sm:pt-10 border-t border-[#E5E5E5]">
+        <div className="gsap-ventures-strip mt-6 sm:mt-8 pt-6 sm:pt-7 border-t border-[#E5E5E5]">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             {businessVentures.map((venture) => {
               const Icon = venture.icon;
               return (
                 <div
                   key={venture.label}
-                  className="gsap-venture-item group relative flex flex-col items-center justify-center text-center p-5 sm:p-6 rounded-none bg-[#111111] border border-[#222222] hover:border-[#C5A059] shadow-md shadow-black/15 transition-all duration-400 ease-out hover:-translate-y-1.5 hover:shadow-[0_12px_32px_rgba(0,0,0,0.35)] cursor-pointer overflow-hidden"
+                  className="gsap-venture-item group relative flex flex-col items-center justify-center text-center p-5 sm:p-6 rounded-none bg-[#111111] border border-[#222222] hover:border-[#C5A059] shadow-md shadow-black/15 transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-[0_14px_36px_rgba(197,160,89,0.3)] cursor-pointer overflow-hidden"
                 >
-                  {/* Top Animated Golden Sweep Accent */}
-                  <span className="absolute top-0 left-0 right-0 h-[2.5px] bg-[#C5A059] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out origin-left pointer-events-none" />
-
-                  {/* Subtle Ambient Radial Gold Glow on Hover */}
-                  <div className="absolute inset-0 bg-radial from-[#C5A059]/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-                  {/* Refined Icon Badge in Architectural Dark Frame */}
-                  <div className="relative z-10 w-12 h-12 sm:w-13 sm:h-13 rounded-none bg-[#1C1C1C] border border-[#333333] group-hover:border-[#C5A059] group-hover:bg-[#C5A059]/20 text-[#D4B675] group-hover:text-[#F3E5AB] flex items-center justify-center transition-all duration-300 shadow-inner mb-3">
-                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.6] transition-transform duration-300 group-hover:scale-110" />
+                  {/* Slow Vertical Liquid Reveal Animation Layer */}
+                  <div className="absolute inset-0 z-0 translate-y-[102%] group-hover:translate-y-0 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] pointer-events-none">
+                    {/* Liquid Wave Meniscus Crest at Top Edge */}
+                    <div className="absolute -top-3 left-0 right-0 h-3.5 w-full opacity-95">
+                      <svg viewBox="0 0 400 30" preserveAspectRatio="none" className="w-full h-full fill-[#E5C984]">
+                        <path d="M0,15 C80,30 160,0 240,15 C320,30 360,5 400,15 L400,30 L0,30 Z" />
+                      </svg>
+                    </div>
+                    {/* Liquid Gold Core Body */}
+                    <div className="w-full h-full bg-gradient-to-t from-[#9E782F] via-[#C5A059] to-[#E5C984]" />
                   </div>
 
-                  {/* Clean Bold Label in White with Gold Hover */}
-                  <span className="relative z-10 text-xs sm:text-[13px] font-semibold tracking-[0.2em] uppercase text-white/95 group-hover:text-[#D4B675] transition-colors duration-300">
+                  {/* Top Animated Golden Sweep Accent */}
+                  <span className="absolute top-0 left-0 right-0 h-[2.5px] bg-[#C5A059] z-10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out origin-left pointer-events-none" />
+
+                  {/* Refined Icon Badge in Architectural Dark Frame */}
+                  <div className="relative z-10 w-12 h-12 sm:w-13 sm:h-13 rounded-none bg-[#1C1C1C] border border-[#333333] group-hover:border-[#0D0D0D] group-hover:bg-[#0D0D0D] text-[#D4B675] group-hover:text-[#F3E5AB] flex items-center justify-center transition-all duration-500 shadow-inner group-hover:shadow-lg mb-3 group-hover:scale-105">
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.6] transition-transform duration-300" />
+                  </div>
+
+                  {/* Clean Bold Label in White transitioning to Rich Deep Onyx on Gold Liquid */}
+                  <span className="relative z-10 text-xs sm:text-[13px] font-semibold tracking-[0.2em] uppercase text-white/95 group-hover:text-[#0D0D0D] transition-colors duration-500">
                     {venture.label}
                   </span>
 
-                  {/* Subtle Expanding Gold Line on Hover */}
-                  <span className="relative z-10 h-[1.5px] w-0 group-hover:w-8 bg-[#C5A059] transition-all duration-400 ease-out mt-2" />
+                  {/* Subtle Expanding Gold/Dark Line on Hover */}
+                  <span className="relative z-10 h-[1.5px] w-0 group-hover:w-8 bg-[#0D0D0D] transition-all duration-500 ease-out mt-2" />
                 </div>
               );
             })}

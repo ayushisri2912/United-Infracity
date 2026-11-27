@@ -135,14 +135,14 @@ export default function Navbar() {
           </div>
 
           {/* Center: Desktop Nav Items with Architectural Typography & Smooth Left-to-Right Golden Underline */}
-          <div className="hidden lg:flex items-center justify-center gap-6 xl:gap-8 2xl:gap-9">
+          <div className="hidden lg:flex items-stretch justify-center h-full gap-6 xl:gap-8 2xl:gap-9">
             {menuStructure.map((item) => {
               const isActive =
                 location.pathname === item.path ||
                 (item.submenu && item.submenu.some((s) => s.path === location.pathname));
 
               return (
-                <div key={item.name} className="relative group py-5">
+                <div key={item.name} className="relative group flex items-center h-full">
                   <button
                     onClick={() => handleNavClick(item)}
                     className={`relative flex items-center gap-1.5 text-[14px] xl:text-[15px] font-medium tracking-[0.03em] transition-colors duration-300 cursor-pointer whitespace-nowrap py-1 select-none focus:outline-none focus-visible:text-[#C5A059] ${
@@ -170,10 +170,10 @@ export default function Navbar() {
                     />
                   </button>
 
-                  {/* Submenu Dropdown with Opacity and TranslateY Reveal */}
+                  {/* Submenu Dropdown flush to Navbar with zero gap */}
                   {item.submenu && (
-                    <div className="absolute top-full left-0 w-64 pt-2 opacity-0 -translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 ease-out z-50">
-                      <div className="bg-[#1C1C1C] border border-[#333333] shadow-xl p-1.5 rounded-none">
+                    <div className="absolute top-full -mt-px left-0 w-64 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 ease-out z-50 shadow-2xl">
+                      <div className="bg-[#1C1C1C] border border-[#333333] border-t-0 p-1.5 rounded-none shadow-2xl">
                         {item.submenu.map((subItem) => {
                           const isSubActive = location.pathname === subItem.path;
                           return (

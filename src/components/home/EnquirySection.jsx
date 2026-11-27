@@ -133,10 +133,10 @@ export default function EnquirySection() {
     <section
       ref={sectionRef}
       id="enquiry-section"
-      className="py-12 sm:py-14 lg:py-16 bg-white border-b border-[#E5E5E5] relative overflow-hidden"
+      className="pt-5 sm:pt-6 lg:pt-7 pb-10 sm:pb-12 lg:pb-14 bg-white border-b border-[#E5E5E5] relative overflow-hidden"
     >
-      {/* Maximum Container Width: 1400px */}
-      <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      {/* Maximum Container Width: 1550px aligned with Navbar */}
+      <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14 relative z-10">
         
         {/* Compact Split Panel: Left 35% Image | Right 65% Enquiry */}
         <div className="group relative flex flex-col md:flex-row items-stretch border border-[#E5E5E5] hover:border-[#C5A059]/60 bg-white overflow-hidden rounded-none shadow-sm hover:shadow-[0_16px_40px_rgba(197,160,89,0.12)] transition-all duration-500 min-h-[330px] md:h-[350px] lg:h-[360px]">
