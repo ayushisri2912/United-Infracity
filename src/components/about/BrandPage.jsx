@@ -800,8 +800,8 @@ export default function BrandPage({ onOpenEnquire, onSelectSection, onNavigateHo
 
           {/* Desktop Timeline (Horizontal) */}
           <div className="hidden md:block relative pt-4 pb-2">
-            {/* Thin Horizontal Golden Connecting Line */}
-            <div className="gsap-timeline-line-h absolute top-[22px] left-[10%] right-[10%] h-[1.5px] bg-[#C5A059] z-0" />
+            {/* Thin Horizontal Golden Connecting Line - Centered exactly with the circles (top-[38px] = pt-4 (16px) + h-11/2 (22px)) */}
+            <div className="gsap-timeline-line-h absolute top-[38px] left-[10%] right-[10%] h-[1.5px] bg-[#C5A059] z-0" />
 
             {/* 5 Evenly Spaced Milestones */}
             <div className="grid grid-cols-5 gap-3 relative z-10">
@@ -830,8 +830,8 @@ export default function BrandPage({ onOpenEnquire, onSelectSection, onNavigateHo
 
           {/* Mobile Timeline (Vertical) */}
           <div className="md:hidden relative max-w-md mx-auto pl-2 py-2">
-            {/* Thin Vertical Golden Connecting Line */}
-            <div className="gsap-timeline-line-v absolute top-6 bottom-6 left-[27px] w-[1.5px] bg-[#C5A059] z-0" />
+            {/* Thin Vertical Golden Connecting Line - Centered with markers (left-[30px] = pl-2 (8px) + w-11/2 (22px)) */}
+            <div className="gsap-timeline-line-v absolute top-6 bottom-6 left-[30px] w-[1.5px] bg-[#C5A059] z-0" />
 
             {/* Vertical Milestones */}
             <div className="space-y-6 relative z-10">
@@ -926,11 +926,6 @@ export default function BrandPage({ onOpenEnquire, onSelectSection, onNavigateHo
                 </p>
               </div>
 
-              {/* Hover Badge Indicator */}
-              <div className="pt-2 flex items-center gap-1.5 text-xs font-semibold text-[#C5A059] opacity-0 group-hover/partner:opacity-100 transform translate-y-2 group-hover/partner:translate-y-0 transition-all duration-400">
-                <span>Certified Master Architect</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover/partner:translate-x-1.5 transition-transform" />
-              </div>
             </div>
 
             {/* Partner 02: Structural Design & Engineering */}
@@ -962,12 +957,6 @@ export default function BrandPage({ onOpenEnquire, onSelectSection, onNavigateHo
                 <p className="text-stone-400 group-hover/partner:text-stone-300 text-xs sm:text-sm font-light leading-relaxed transition-colors duration-300">
                   Structural design and engineering for resilient building frameworks.
                 </p>
-              </div>
-
-              {/* Hover Badge Indicator */}
-              <div className="pt-2 flex items-center gap-1.5 text-xs font-semibold text-[#C5A059] opacity-0 group-hover/partner:opacity-100 transform translate-y-2 group-hover/partner:translate-y-0 transition-all duration-400">
-                <span>NBC-Compliant Structural Consultant</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover/partner:translate-x-1.5 transition-transform" />
               </div>
             </div>
 

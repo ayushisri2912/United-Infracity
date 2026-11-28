@@ -3,11 +3,11 @@ import { Calendar, Clock, ArrowRight } from 'lucide-react';
 
 export default function LatestArticlesSection({ articles, onSelectArticle }) {
   return (
-    <section className="py-20 sm:py-28 bg-[#FAF8F5]">
+    <section className="pt-8 sm:pt-10 lg:pt-12 pb-14 sm:pb-20 bg-[#FAF8F5]">
       <div className="max-w-[1550px] w-full mx-auto px-6 sm:px-10 lg:px-14">
         
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 border-b border-[#E8DCC8] pb-6 gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-10 border-b border-[#E8DCC8] pb-4 sm:pb-5 gap-4">
           <div>
             <span className="font-montserrat text-xs font-bold uppercase tracking-[0.25em] text-[#C6A15B] block mb-1">
               CURATED READS

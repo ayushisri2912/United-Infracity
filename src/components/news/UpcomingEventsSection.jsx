@@ -30,15 +30,15 @@ export default function UpcomingEventsSection({ onRegisterEvent }) {
   ];
 
   return (
-    <section className="py-20 sm:py-28 bg-[#FAF8F5]">
-      <div className="max-w-5xl mx-auto px-6 lg:px-12">
+    <section className="py-10 sm:py-14 lg:py-16 bg-[#FAF8F5] border-t border-[#E8DCC8]/60">
+      <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14">
         
         {/* Section Header */}
-        <div className="text-center max-w-xl mx-auto space-y-3 mb-16">
+        <div className="text-center max-w-2xl mx-auto space-y-2 mb-8 sm:mb-10">
           <span className="font-montserrat text-xs font-bold uppercase tracking-[0.3em] text-[#C6A15B]">
             MARK YOUR CALENDAR
           </span>
-          <h2 className="font-cormorant text-4xl sm:text-5xl font-normal text-[#1C1C1A]">
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-normal text-[#1C1C1A]">
             Upcoming <span className="italic text-[#C6A15B]">Events & Expos</span>
           </h2>
           <p className="font-montserrat text-xs sm:text-sm text-[#66625A] font-light leading-relaxed">
@@ -51,25 +51,25 @@ export default function UpcomingEventsSection({ onRegisterEvent }) {
           {upcomingEvents.map((evt, idx) => (
             <div
               key={evt.id}
-              className="py-10 border-b border-[#E8DCC8] last:border-b-0 group transition-colors hover:bg-white/60 px-4 sm:px-8 rounded-lg"
+              className="py-6 sm:py-7 border-b border-[#E8DCC8] last:border-b-0 group transition-colors hover:bg-white/70 px-4 sm:px-6 rounded-lg"
             >
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start">
                 
                 {/* Date Column */}
-                <div className="md:col-span-4 space-y-1">
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-[#E8DCC8] text-[#C6A15B] font-montserrat text-[11px] font-bold tracking-wider">
+                <div className="md:col-span-4 lg:col-span-3 space-y-1.5">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-white border border-[#E8DCC8] text-[#C6A15B] font-montserrat text-[11px] font-bold tracking-wider shadow-xs">
                     <Calendar className="w-3.5 h-3.5" />
                     <span>{evt.date}</span>
                   </div>
-                  <p className="font-montserrat text-xs text-[#66625A] font-light flex items-center gap-1 pt-1">
+                  <p className="font-montserrat text-xs text-[#66625A] font-light flex items-center gap-1.5 pt-0.5">
                     <Clock className="w-3 h-3 text-stone-400" />
-                    {evt.time}
+                    <span>{evt.time}</span>
                   </p>
                 </div>
 
                 {/* Event Details Column */}
-                <div className="md:col-span-8 space-y-3">
-                  <h3 className="font-cormorant text-2xl sm:text-3xl font-bold text-[#1C1C1A] group-hover:text-[#C6A15B] transition-colors">
+                <div className="md:col-span-8 lg:col-span-9 space-y-2.5">
+                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1C1C1A] group-hover:text-[#C6A15B] transition-colors leading-snug">
                     {evt.title}
                   </h3>
 
@@ -78,11 +78,11 @@ export default function UpcomingEventsSection({ onRegisterEvent }) {
                     <span>{evt.location}</span>
                   </div>
 
-                  <p className="font-montserrat text-xs sm:text-sm text-[#66625A] font-light leading-relaxed">
+                  <p className="font-montserrat text-xs sm:text-sm text-[#66625A] font-light leading-relaxed max-w-4xl">
                     {evt.description}
                   </p>
 
-                  <div className="pt-2">
+                  <div className="pt-1">
                     <button
                       onClick={() => onRegisterEvent(evt)}
                       className="inline-flex items-center gap-2 font-montserrat text-xs font-bold uppercase tracking-wider text-[#1C1C1A] hover:text-[#C6A15B] transition-colors cursor-pointer"

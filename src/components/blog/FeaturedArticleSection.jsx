@@ -5,7 +5,7 @@ export default function FeaturedArticleSection({ featuredArticle, onSelectArticl
   if (!featuredArticle) return null;
 
   return (
-    <section className="py-16 sm:py-24 bg-[#FAF8F5]">
+    <section className="pt-10 sm:pt-14 pb-8 sm:pb-10 bg-[#FAF8F5]">
       <div className="max-w-[1550px] w-full mx-auto px-6 sm:px-10 lg:px-14">
         
         {/* Section Tagline */}

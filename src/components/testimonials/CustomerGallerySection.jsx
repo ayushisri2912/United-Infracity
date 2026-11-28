@@ -11,8 +11,8 @@ export default function CustomerGallerySection({ onSelectImage }) {
       category: 'Modern Interiors',
       project: 'The Sovereign Estates',
       image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200&auto=format&fit=crop',
-      span: 'col-span-1 md:col-span-2 row-span-2',
-      aspect: 'aspect-[4/3] md:aspect-[16/10]'
+      span: 'col-span-1 md:col-span-2 md:row-span-2',
+      aspect: 'aspect-[4/3] md:aspect-auto md:h-full min-h-[340px]'
     },
     {
       id: 2,
@@ -47,8 +47,8 @@ export default function CustomerGallerySection({ onSelectImage }) {
       category: 'Landscape',
       project: 'United Township Boulevard',
       image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1000&auto=format&fit=crop',
-      span: 'col-span-1 md:col-span-2',
-      aspect: 'aspect-[16/9]'
+      span: 'col-span-1',
+      aspect: 'aspect-[4/3]'
     },
     {
       id: 6,
@@ -66,7 +66,7 @@ export default function CustomerGallerySection({ onSelectImage }) {
       project: 'Grand Sky Residency',
       image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1000&auto=format&fit=crop',
       span: 'col-span-1',
-      aspect: 'aspect-[4/3]'
+      aspect: 'aspect-[4/3] md:h-full'
     },
     {
       id: 8,
@@ -75,7 +75,7 @@ export default function CustomerGallerySection({ onSelectImage }) {
       project: 'The Sovereign Estates',
       image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1000&auto=format&fit=crop',
       span: 'col-span-1 md:col-span-2',
-      aspect: 'aspect-[16/9]'
+      aspect: 'aspect-[4/3] md:aspect-[21/9]'
     }
   ];
 
@@ -124,46 +124,52 @@ export default function CustomerGallerySection({ onSelectImage }) {
 
         {/* Masonry Style Responsive Image Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
-          {filteredItems.map((item) => (
-            <div
-              key={item.id}
-              onClick={() => onSelectImage(item)}
-              className={`group relative overflow-hidden shadow-md border border-[#C49D55]/25 bg-stone-900 cursor-pointer ${item.span || ''}`}
-            >
-              {/* Image with zoom-on-hover animation */}
-              <div className={`w-full h-full relative overflow-hidden ${item.aspect}`}>
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out filter brightness-[0.92] group-hover:brightness-100"
-                />
-                
-                {/* Gradient Overlay on Hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-500" />
-              </div>
+          {filteredItems.map((item) => {
+            const isAll = activeFilter === 'All';
+            const spanClass = isAll ? (item.span || '') : 'col-span-1';
+            const aspectClass = isAll ? item.aspect : 'aspect-[4/3]';
 
-              {/* Hover Content Overlay */}
-              <div className="absolute inset-0 p-5 sm:p-6 flex flex-col justify-between text-white pointer-events-none">
-                <div className="flex justify-end">
-                  <div className="w-9 h-9 bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                    <Maximize2 className="w-4 h-4" />
+            return (
+              <div
+                key={item.id}
+                onClick={() => onSelectImage(item)}
+                className={`group relative overflow-hidden shadow-md border border-[#C49D55]/25 bg-stone-900 cursor-pointer ${spanClass}`}
+              >
+                {/* Image with zoom-on-hover animation */}
+                <div className={`w-full h-full relative overflow-hidden ${aspectClass}`}>
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out filter brightness-[0.92] group-hover:brightness-100"
+                  />
+                  
+                  {/* Gradient Overlay on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-500" />
+                </div>
+
+                {/* Hover Content Overlay */}
+                <div className="absolute inset-0 p-5 sm:p-6 flex flex-col justify-between text-white pointer-events-none">
+                  <div className="flex justify-end">
+                    <div className="w-9 h-9 bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                      <Maximize2 className="w-4 h-4" />
+                    </div>
+                  </div>
+
+                  <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                    <span className="inline-block px-2.5 py-0.5 bg-[#C49D55] text-white font-montserrat text-[10px] font-bold uppercase tracking-wider mb-1.5 shadow-xs">
+                      {item.category}
+                    </span>
+                    <h3 className="font-serif text-xl sm:text-2xl font-normal tracking-tight text-white">
+                      {item.title}
+                    </h3>
+                    <p className="font-montserrat text-xs text-stone-300 font-light mt-0.5">
+                      {item.project}
+                    </p>
                   </div>
                 </div>
-
-                <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                  <span className="inline-block px-2.5 py-0.5 bg-[#C49D55] text-white font-montserrat text-[10px] font-bold uppercase tracking-wider mb-1.5 shadow-xs">
-                    {item.category}
-                  </span>
-                  <h3 className="font-serif text-xl sm:text-2xl font-normal tracking-tight text-white">
-                    {item.title}
-                  </h3>
-                  <p className="font-montserrat text-xs text-stone-300 font-light mt-0.5">
-                    {item.project}
-                  </p>
-                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>

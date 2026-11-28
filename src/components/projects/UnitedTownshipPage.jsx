@@ -584,7 +584,7 @@ export default function UnitedTownshipPage({ onOpenEnquire, onNavigateHome }) {
 
                     {/* Distance & Destination */}
                     <div className="space-y-1">
-                      <span className="font-serif font-bold text-3xl sm:text-4xl text-[#141414] group-hover:text-[#C49D55] transition-colors block">
+                      <span className="font-sans font-bold text-3xl sm:text-4xl text-[#141414] group-hover:text-[#C49D55] transition-colors block tracking-tight">
                         {cp.distance}
                       </span>
                       <h4 className="font-serif font-bold text-sm text-[#141414] leading-snug">

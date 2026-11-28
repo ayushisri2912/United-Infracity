@@ -27,8 +27,8 @@ export default function NewsHeroBanner() {
         </div>
 
         {/* Main Large Heading */}
-        <h1 className="font-cormorant text-3xl sm:text-5xl md:text-6xl font-normal text-white tracking-tight leading-[1.12] max-w-3xl">
-          Stay Updated With Our Latest <span className="italic text-[#C6A15B] font-light">Projects, Launches & Milestones</span>
+        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight text-white leading-[1.1] max-w-4xl">
+          Stay Updated With Our Latest <span className="italic font-normal tracking-wide text-[#C49D55]">Projects, Launches & Milestones</span>
         </h1>
 
         {/* Elegant Gold Divider Line */}

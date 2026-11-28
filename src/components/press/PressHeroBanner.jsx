@@ -28,8 +28,8 @@ export default function PressHeroBanner() {
         </div>
 
         {/* Main Large Heading */}
-        <h1 className="font-cormorant text-3xl sm:text-5xl md:text-6xl font-normal text-white tracking-tight leading-[1.12] max-w-3xl">
-          Recognized Across Leading <span className="italic text-[#C6A15B] font-light">Print, Digital & National Media</span>
+        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight text-white leading-[1.1] max-w-4xl">
+          Recognized Across Leading <span className="italic font-normal tracking-wide text-[#C49D55]">Print, Digital & National Media</span>
         </h1>
 
         {/* Elegant Gold Divider Line */}

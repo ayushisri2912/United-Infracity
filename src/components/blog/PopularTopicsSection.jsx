@@ -2,10 +2,10 @@ import React from 'react';
 
 export default function PopularTopicsSection({ categories, activeCategory, onSelectCategory }) {
   return (
-    <section className="py-8 bg-[#FAF8F5] border-y border-[#E8DCC8]/60">
+    <section className="py-5 sm:py-6 bg-[#FAF8F5] border-y border-[#E8DCC8]/60">
       <div className="max-w-[1550px] w-full mx-auto px-6 sm:px-10 lg:px-14">
         
-        <div className="flex flex-col items-center justify-center space-y-4">
+        <div className="flex flex-col items-center justify-center space-y-3">
           <span className="font-montserrat text-[11px] font-bold uppercase tracking-[0.3em] text-[#66625A]">
             POPULAR TOPICS
           </span>

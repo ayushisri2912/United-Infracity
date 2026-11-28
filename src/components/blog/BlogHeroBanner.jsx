@@ -27,8 +27,8 @@ export default function BlogHeroBanner() {
         </div>
 
         {/* Main Heading */}
-        <h1 className="font-cormorant text-4xl sm:text-6xl md:text-7xl font-normal text-white tracking-tight leading-[1.1]">
-          Stories, Ideas & <span className="italic text-[#C6A15B] font-light">Industry Perspectives</span>
+        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight text-white leading-[1.1]">
+          Stories, Ideas & <span className="italic font-normal tracking-wide text-[#C49D55]">Industry Perspectives</span>
         </h1>
 
         {/* Elegant Gold Divider Line */}
