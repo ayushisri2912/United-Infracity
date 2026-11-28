@@ -51,11 +51,11 @@ export default function Footer() {
   ];
 
   return (
-    <footer id="footer" className="bg-[#161513] text-stone-200 border-t-4 border-[#D4AF37] pt-10 sm:pt-12 pb-4 sm:pb-5 relative overflow-hidden font-montserrat">
+    <footer id="footer" className="bg-[#161513] text-stone-200 border-t-4 border-[#D4AF37] pt-6 sm:pt-7 lg:pt-8 pb-3 sm:pb-3.5 relative overflow-hidden font-montserrat">
       <div className="max-w-[1550px] w-full mx-auto px-4 sm:px-8 lg:px-14">
         
         {/* PART 1: Top Bar - Branding & Quick Action */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-stone-800">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 sm:gap-6 pb-5 sm:pb-6 border-b border-stone-800">
           <div className="flex flex-wrap items-center gap-4 sm:gap-5">
             <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-3.5 group">
               <img
@@ -108,7 +108,7 @@ export default function Footer() {
         </div>
 
         {/* PART 2: Main Content Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 py-8 border-b border-stone-800">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 lg:gap-9 py-5 sm:py-6 border-b border-stone-800">
           
           {/* Col 1: Corporate Profile & Social */}
           <div className="space-y-5">
@@ -220,17 +220,29 @@ export default function Footer() {
             <div className="space-y-3.5 text-sm sm:text-[15px] text-stone-300 font-light leading-relaxed">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4.5 h-4.5 text-[#D4AF37] shrink-0 mt-0.5" />
-                <span>
-                  <strong className="text-white block font-medium">Registered Office:</strong>
+                <a
+                  href="https://maps.google.com/?q=560/109,+RWS+Compound+(Near+Lal+Hospital),+Krishna+Nagar,+Kanpur+Road,+Lucknow+-+226023,+UP"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#D4AF37] transition-colors group cursor-pointer"
+                  title="Open Registered Office in Google Maps"
+                >
+                  <strong className="text-white block font-medium group-hover:text-[#D4AF37] transition-colors">Registered Office:</strong>
                   560/109, RWS Compound (Near Lal Hospital), Krishna Nagar, Kanpur Road, Lucknow – 226023, UP.
-                </span>
+                </a>
               </div>
               <div className="flex items-start gap-2.5">
                 <Building2 className="w-4.5 h-4.5 text-[#D4AF37] shrink-0 mt-0.5" />
-                <span>
-                  <strong className="text-white block font-medium">Site Address:</strong>
+                <a
+                  href="https://maps.google.com/?q=Plot+No.+6C/GH-2,+Vrindavan+Yojana+Phase-1,+Lucknow"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#D4AF37] transition-colors group cursor-pointer"
+                  title="Open Site Address in Google Maps"
+                >
+                  <strong className="text-white block font-medium group-hover:text-[#D4AF37] transition-colors">Site Address:</strong>
                   Plot No. 6C/GH-2, Vrindavan Yojana Phase-1, Lucknow.
-                </span>
+                </a>
               </div>
               <div className="flex items-center gap-2.5 pt-1">
                 <Phone className="w-4 h-4 text-[#D4AF37] shrink-0" />
@@ -250,7 +262,7 @@ export default function Footer() {
         </div>
 
         {/* PART 3: Bottom Bar */}
-        <div className="pt-3.5 sm:pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm sm:text-[14.5px] text-stone-300 font-normal text-center sm:text-left">
+        <div className="pt-3 sm:pt-3.5 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-sm sm:text-[14px] text-stone-300 font-normal text-center sm:text-left">
           <p className="tracking-wide text-stone-300">
             © {new Date().getFullYear()} <strong className="text-white font-semibold">UNITED INFRACITY PRIVATE LIMITED</strong>. All Rights Reserved.
           </p>

@@ -634,23 +634,35 @@ export default function BrandPage({ onOpenEnquire, onSelectSection, onNavigateHo
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-1">
-                  <div className="p-4 bg-[#141414] border border-[#C5A059]/20 hover:border-[#C5A059]/40 transition-colors space-y-1">
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#C5A059] block">
-                      Registered Office
+                  <a
+                    href="https://maps.google.com/?q=560/109,+RWS+Compound+(Near+Lal+Hospital),+Krishna+Nagar,+Kanpur+Road,+Lucknow+-+226023,+UP"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-4 bg-[#141414] border border-[#C5A059]/20 hover:border-[#C5A059] transition-all space-y-1 block group/reg cursor-pointer"
+                    title="Open Registered Office in Google Maps"
+                  >
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#C5A059] block group-hover/reg:underline">
+                      Registered Office ↗
                     </span>
-                    <p className="text-xs sm:text-sm text-stone-300 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-stone-300 group-hover/reg:text-white leading-relaxed transition-colors">
                       560/109, RWS Compound (Near Lal Hospital), Krishna Nagar, Kanpur Road, Lucknow, Uttar Pradesh, India – 226023.
                     </p>
-                  </div>
+                  </a>
 
-                  <div className="p-4 bg-[#141414] border border-[#C5A059]/20 hover:border-[#C5A059]/40 transition-colors space-y-1">
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#C5A059] block">
-                      Project Site Address
+                  <a
+                    href="https://maps.google.com/?q=Plot+No.+6C/GH-2,+Vrindavan+Yojana+Phase-1,+Lucknow"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-4 bg-[#141414] border border-[#C5A059]/20 hover:border-[#C5A059] transition-all space-y-1 block group/site cursor-pointer"
+                    title="Open Project Site Address in Google Maps"
+                  >
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#C5A059] block group-hover/site:underline">
+                      Project Site Address ↗
                     </span>
-                    <p className="text-xs sm:text-sm text-stone-300 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-stone-300 group-hover/site:text-white leading-relaxed transition-colors">
                       Plot No. 6C/GH-2, Vrindavan Yojana Phase-1, Lucknow.
                     </p>
-                  </div>
+                  </a>
 
                   <div className="p-4 bg-[#141414] border border-[#C5A059]/20 hover:border-[#C5A059]/40 transition-colors space-y-1">
                     <span className="text-[11px] font-semibold uppercase tracking-wider text-[#C5A059] block">

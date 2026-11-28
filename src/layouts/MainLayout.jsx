@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../components/common/Navbar';
 import Footer from '../components/common/Footer';
+import ScrollToTop from '../components/common/ScrollToTop';
 import EnquiryModal from '../components/common/EnquiryModal';
 import SearchModal from '../components/common/SearchModal';
 import UserModal from '../components/common/UserModal';
@@ -20,6 +21,9 @@ export default function MainLayout() {
 
       {/* Global Footer */}
       <Footer />
+
+      {/* Global Scroll to Top Button */}
+      <ScrollToTop />
 
       {/* Global Modals Mounted at Root */}
       <EnquiryModal />

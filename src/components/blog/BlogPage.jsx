@@ -165,18 +165,6 @@ export default function BlogPage({ onOpenEnquire, onNavigateHome }) {
         onClose={() => setSelectedArticle(null)}
         article={selectedArticle}
       />
-
-      {/* FLOATING SCROLL TO TOP BUTTON */}
-      {showScrollTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-40 w-12 h-12 rounded-full bg-[#1C1C1A] border border-[#C6A15B]/50 text-[#C6A15B] shadow-2xl flex items-center justify-center hover:bg-[#C6A15B] hover:text-[#1C1C1A] hover:border-[#C6A15B] transition-all duration-300 hover:scale-110 cursor-pointer"
-          title="Scroll to top"
-        >
-          <ArrowUp className="w-5 h-5" />
-        </button>
-      )}
-
     </div>
   );
 }

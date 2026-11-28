@@ -10,7 +10,8 @@ export default function ContactInfoSection() {
       lines: [
         '560/109, RWS Compound (Near Lal Hospital),',
         'Krishna Nagar, Kanpur Road, Lucknow – 226023, UP'
-      ]
+      ],
+      mapUrl: 'https://maps.google.com/?q=560/109,+RWS+Compound+(Near+Lal+Hospital),+Krishna+Nagar,+Kanpur+Road,+Lucknow+-+226023,+UP'
     },
     {
       icon: Building2,
@@ -18,7 +19,8 @@ export default function ContactInfoSection() {
       lines: [
         'Plot No. 6C/GH-2, Vrindavan Yojna Phase-1,',
         'Sector 6, Vrindavan, Lucknow, UP'
-      ]
+      ],
+      mapUrl: 'https://maps.google.com/?q=Plot+No.+6C/GH-2,+Vrindavan+Yojna+Phase-1,+Sector+6,+Vrindavan,+Lucknow'
     },
     {
       icon: ShieldCheck,
@@ -116,21 +118,37 @@ export default function ContactInfoSection() {
                   <h4 className="font-montserrat font-bold text-[11px] sm:text-xs uppercase tracking-wider text-[#141414]">
                     {item.title}
                   </h4>
-                  {item.lines.map((line, i) => (
-                    <p key={i} className="font-montserrat text-xs sm:text-[13px] text-stone-600 font-light leading-relaxed">
-                      {item.isPhone ? (
-                        <a href={`tel:${line.replace(/\s+/g, '')}`} className="hover:text-[#C49D55] transition-colors font-medium text-stone-800">
+                  {item.mapUrl ? (
+                    <a
+                      href={item.mapUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/map block cursor-pointer"
+                      title={`Open ${item.title} in Google Maps`}
+                    >
+                      {item.lines.map((line, i) => (
+                        <p key={i} className="font-montserrat text-xs sm:text-[13px] text-stone-600 group-hover/map:text-[#C49D55] font-light leading-relaxed transition-colors">
                           {line}
-                        </a>
-                      ) : item.isMail ? (
-                        <a href={`mailto:${line}`} className="hover:text-[#C49D55] transition-colors font-medium text-stone-800">
-                          {line}
-                        </a>
-                      ) : (
-                        line
-                      )}
-                    </p>
-                  ))}
+                        </p>
+                      ))}
+                    </a>
+                  ) : (
+                    item.lines.map((line, i) => (
+                      <p key={i} className="font-montserrat text-xs sm:text-[13px] text-stone-600 font-light leading-relaxed">
+                        {item.isPhone ? (
+                          <a href={`tel:${line.replace(/\s+/g, '')}`} className="hover:text-[#C49D55] transition-colors font-medium text-stone-800">
+                            {line}
+                          </a>
+                        ) : item.isMail ? (
+                          <a href={`mailto:${line}`} className="hover:text-[#C49D55] transition-colors font-medium text-stone-800">
+                            {line}
+                          </a>
+                        ) : (
+                          line
+                        )}
+                      </p>
+                    ))
+                  )}
                 </div>
               </div>
             );

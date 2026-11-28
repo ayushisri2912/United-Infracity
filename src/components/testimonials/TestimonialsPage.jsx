@@ -85,18 +85,6 @@ export default function TestimonialsPage({ onOpenEnquire, onNavigateHome }) {
         onClose={() => setSelectedImage(null)}
         selectedImage={selectedImage}
       />
-
-      {/* FLOATING SCROLL TO TOP BUTTON */}
-      {showScrollTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-40 w-11 h-11 bg-[#141414] border border-[#C49D55]/50 text-[#C49D55] shadow-2xl flex items-center justify-center hover:bg-[#C49D55] hover:text-[#141414] hover:border-[#C49D55] transition-all duration-300 hover:scale-105 cursor-pointer"
-          title="Scroll to top"
-        >
-          <ArrowUp className="w-5 h-5" />
-        </button>
-      )}
-
     </div>
   );
 }
