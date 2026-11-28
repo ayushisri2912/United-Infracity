@@ -64,12 +64,12 @@ export default function FeaturedArticleSection({ featuredArticle, onSelectArticl
               </div>
 
               {/* Large Elegant Heading */}
-              <h2 className="font-cormorant text-3xl sm:text-4xl lg:text-4xl font-normal text-[#1C1C1A] leading-tight group-hover:text-[#C6A15B] transition-colors duration-300">
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-[40px] font-normal text-[#111111] leading-tight group-hover:text-[#C5A059] transition-colors duration-300">
                 {featuredArticle.title}
               </h2>
 
               {/* Short 2-3 Line Description */}
-              <p className="font-montserrat text-sm text-[#66625A] font-light leading-relaxed line-clamp-3">
+              <p className="font-montserrat text-sm text-[#555555] font-light leading-relaxed line-clamp-3">
                 {featuredArticle.excerpt}
               </p>
             </div>
@@ -77,8 +77,8 @@ export default function FeaturedArticleSection({ featuredArticle, onSelectArticl
             {/* Author & Read More Button */}
             <div className="pt-6 border-t border-[#E8DCC8]/60 flex items-center justify-between">
               <div>
-                <span className="font-montserrat text-[11px] uppercase tracking-wider text-stone-400 font-medium block">Author</span>
-                <span className="font-cormorant text-base font-bold text-[#1C1C1A]">{featuredArticle.author}</span>
+                <span className="font-montserrat text-[11px] uppercase tracking-wider text-[#777777] font-medium block">Author</span>
+                <span className="font-serif text-base font-medium text-[#111111]">{featuredArticle.author}</span>
               </div>
 
               {/* Gold Read More Button */}

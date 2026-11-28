@@ -1,41 +1,38 @@
 import React from 'react';
-import { Newspaper } from 'lucide-react';
 
 export default function NewsHeroBanner() {
   return (
-    <section className="relative w-full h-[450px] sm:h-[500px] flex items-center justify-center overflow-hidden bg-[#1C1C1A]">
-      {/* High-Resolution Luxury Real Estate Background */}
+    <section className="relative w-full h-[400px] sm:h-[450px] md:h-[480px] flex items-center justify-center overflow-hidden bg-stone-950 border-b border-[#C49D55]/30">
+      {/* High-Resolution Luxury Real Estate Background matching About Page style */}
       <div className="absolute inset-0 z-0">
         <img
           src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2000&auto=format&fit=crop"
           alt="United Infracity Corporate Milestone"
-          className="w-full h-full object-cover object-center transform scale-105 filter brightness-[0.6] contrast-[1.05]"
+          className="w-full h-full object-cover object-center scale-105"
         />
-        {/* Soft Dark Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1C1C1A] via-[#1C1C1A]/65 to-[#1C1C1A]/40" />
+        {/* Balanced Overlays matching About Page Hero */}
+        <div className="absolute inset-0 bg-black/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-black/35" />
       </div>
 
-      {/* Center-aligned Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center flex flex-col items-center justify-center space-y-4 pt-6">
+      {/* Center-aligned Content matching About Page Hero */}
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center justify-center space-y-3 pt-4 animate-in fade-in duration-700">
         
-        {/* Small Gold Label */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1C1C1A]/80 border border-[#C6A15B]/40 backdrop-blur-md">
-          <Newspaper className="w-3.5 h-3.5 text-[#C6A15B]" />
-          <span className="font-montserrat text-[11px] font-bold uppercase tracking-[0.3em] text-[#C6A15B]">
-            NEWS & EVENTS
-          </span>
-        </div>
+        {/* Eyebrow Label matching About Page */}
+        <span className="text-xs sm:text-sm font-semibold tracking-[0.3em] text-[#C49D55] uppercase block drop-shadow">
+          News & Events
+        </span>
 
-        {/* Main Large Heading */}
-        <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight text-white leading-[1.1] max-w-4xl">
-          Stay Updated With Our Latest <span className="italic font-normal tracking-wide text-[#C49D55]">Projects, Launches & Milestones</span>
+        {/* Main Large Heading matching About Page Hero */}
+        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal tracking-[0.15em] text-white uppercase drop-shadow-2xl leading-tight max-w-4xl">
+          Stay Updated With Our Latest <span className="text-[#C49D55]">Projects, Launches & Milestones</span>
         </h1>
 
-        {/* Elegant Gold Divider Line */}
-        <div className="w-20 h-[1px] bg-gradient-to-r from-transparent via-[#C6A15B] to-transparent my-1" />
+        {/* Golden Accent Line matching About Page */}
+        <div className="w-20 h-[2px] bg-gradient-to-r from-transparent via-[#C49D55] to-transparent mx-auto rounded-full my-1.5" />
 
         {/* Short Supporting Description */}
-        <p className="font-montserrat text-xs sm:text-sm text-stone-300 font-light max-w-2xl leading-relaxed tracking-wide">
+        <p className="font-montserrat text-xs sm:text-sm text-stone-200 font-light max-w-2xl leading-relaxed tracking-wide drop-shadow">
           Discover the latest company announcements, project launches, corporate events, achievements, and community initiatives from United Infracity.
         </p>
 

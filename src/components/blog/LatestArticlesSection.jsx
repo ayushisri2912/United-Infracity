@@ -9,14 +9,14 @@ export default function LatestArticlesSection({ articles, onSelectArticle }) {
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-10 border-b border-[#E8DCC8] pb-4 sm:pb-5 gap-4">
           <div>
-            <span className="font-montserrat text-xs font-bold uppercase tracking-[0.25em] text-[#C6A15B] block mb-1">
+            <span className="font-montserrat text-xs sm:text-sm font-semibold tracking-[0.25em] text-[#C5A059] uppercase block mb-1">
               CURATED READS
             </span>
-            <h2 className="font-cormorant text-4xl sm:text-5xl font-normal text-[#1C1C1A]">
-              Latest <span className="italic text-[#C6A15B]">Articles</span>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-normal text-[#111111] leading-[1.15] tracking-tight">
+              Latest <span className="font-serif italic text-[#C5A059]">Articles</span>
             </h2>
           </div>
-          <span className="font-montserrat text-xs font-medium text-[#66625A]">
+          <span className="font-montserrat text-xs font-medium text-[#777777] tracking-wider uppercase">
             Showing {articles.length} Insights
           </span>
         </div>
@@ -27,7 +27,7 @@ export default function LatestArticlesSection({ articles, onSelectArticle }) {
             <div
               key={item.id}
               onClick={() => onSelectArticle(item)}
-              className="group bg-white rounded-xl overflow-hidden border border-[#E8DCC8] shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:shadow-2xl hover:shadow-[#C6A15B]/12 hover:border-[#C6A15B]/60 hover:-translate-y-2 transition-all duration-500 cursor-pointer flex flex-col justify-between"
+              className="group bg-white rounded-none overflow-hidden border border-[#E5E5E5] hover:border-[#C5A059] shadow-xs hover:shadow-[0_16px_40px_rgba(197,160,89,0.12)] hover:-translate-y-1.5 transition-all duration-400 ease-out cursor-pointer flex flex-col justify-between"
             >
               <div>
                 {/* Image Container with Zoom Effect */}
@@ -39,7 +39,7 @@ export default function LatestArticlesSection({ articles, onSelectArticle }) {
                   />
                   {/* Category Pill Overlay */}
                   <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[#1C1C1A] border border-[#E8DCC8] font-montserrat text-[10px] font-bold uppercase tracking-wider shadow-xs">
+                    <span className="px-3 py-1 bg-white/95 backdrop-blur-md text-[#111111] border border-[#E5E5E5] font-montserrat text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] uppercase shadow-xs">
                       {item.category}
                     </span>
                   </div>
@@ -49,25 +49,25 @@ export default function LatestArticlesSection({ articles, onSelectArticle }) {
                 <div className="p-6 space-y-3">
                   
                   {/* Publish Date & Read Time */}
-                  <div className="flex items-center gap-3 text-[11px] font-montserrat text-[#66625A] font-light">
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-3 h-3 text-[#C6A15B]" />
+                  <div className="flex items-center gap-3 text-[11px] sm:text-xs font-montserrat text-[#777777] font-normal">
+                    <span className="flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5 text-[#C5A059]" />
                       {item.date}
                     </span>
                     <span>•</span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3 h-3 text-[#C6A15B]" />
+                    <span className="flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5 text-[#C5A059]" />
                       {item.readTime}
                     </span>
                   </div>
 
-                  {/* Blog Title */}
-                  <h3 className="font-cormorant text-2xl font-bold text-[#1C1C1A] leading-snug group-hover:text-[#C6A15B] transition-colors duration-300">
+                  {/* Blog Title: Home Page Serif Typography */}
+                  <h3 className="font-serif text-xl sm:text-[22px] lg:text-[23px] font-normal text-[#111111] leading-snug tracking-tight group-hover:text-[#C5A059] transition-colors duration-300">
                     {item.title}
                   </h3>
 
                   {/* Two-Line Excerpt */}
-                  <p className="font-montserrat text-xs text-[#66625A] font-light leading-relaxed line-clamp-2">
+                  <p className="font-montserrat text-xs sm:text-[13px] text-[#555555] font-light leading-relaxed line-clamp-2">
                     {item.excerpt}
                   </p>
                 </div>
@@ -75,11 +75,11 @@ export default function LatestArticlesSection({ articles, onSelectArticle }) {
 
               {/* Card Footer: Read Article Link */}
               <div className="px-6 pb-6 pt-2 border-t border-stone-100 mt-2 flex items-center justify-between">
-                <span className="font-montserrat text-[11px] text-[#66625A] font-medium">
+                <span className="font-montserrat text-xs text-[#777777] font-medium tracking-wide">
                   {item.author}
                 </span>
 
-                <div className="inline-flex items-center gap-1.5 font-montserrat text-xs font-bold text-[#C6A15B] group-hover:text-[#1C1C1A] transition-colors">
+                <div className="inline-flex items-center gap-1.5 font-montserrat text-xs font-semibold uppercase tracking-wider text-[#C5A059] group-hover:text-[#111111] transition-colors">
                   <span>Read Article</span>
                   <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform duration-300" />
                 </div>

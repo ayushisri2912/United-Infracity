@@ -192,7 +192,7 @@ export default function LocationConnectivity() {
     <section
       ref={sectionRef}
       id="location-connectivity"
-      className="relative pt-10 sm:pt-12 lg:pt-14 pb-4 sm:pb-5 lg:pb-6 bg-white border-b border-[#E5E5E5] overflow-hidden"
+      className="relative pt-10 sm:pt-12 lg:pt-14 pb-4 sm:pb-5 lg:pb-6 bg-[#F9F7F2] border-b border-[#E8E2D5] overflow-hidden"
     >
       {/* Subtle Background Watermark Emblem */}
       <div 
@@ -385,7 +385,7 @@ export default function LocationConnectivity() {
               />
 
               {/* Map Image Container */}
-              <div className="relative z-10 w-full flex-1 flex items-center justify-center overflow-hidden rounded-none border border-[#E5E5E5] bg-[#F5F5F5] p-2 sm:p-3 shadow-xs">
+              <div className="relative z-10 w-full flex-1 flex items-center justify-center overflow-hidden rounded-none border border-[#E8E2D5] bg-white p-2 sm:p-3 shadow-xs">
                 
                 {/* Full-screen Lightbox Trigger Button */}
                 <button
@@ -427,13 +427,13 @@ export default function LocationConnectivity() {
         {/* 3. Original Floral Emblem at Bottom Center */}
         <div className="pt-2 sm:pt-3 flex flex-col items-center justify-center">
           <div className="flex items-center justify-center gap-4 w-full max-w-xs">
-            <div className="h-[1px] flex-1 bg-[#E5E5E5]" />
+            <div className="h-[1px] flex-1 bg-[#DCD4C4]" />
             <img
               src="/images/orchid-emblem.webp"
               alt="United Orchid Heights"
               className="w-8 h-8 sm:w-9 sm:h-9 object-contain opacity-40 hover:opacity-75 transition-opacity duration-300"
             />
-            <div className="h-[1px] flex-1 bg-[#E5E5E5]" />
+            <div className="h-[1px] flex-1 bg-[#DCD4C4]" />
           </div>
         </div>
 

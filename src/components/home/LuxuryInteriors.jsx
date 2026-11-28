@@ -299,48 +299,7 @@ export default function LuxuryInteriors() {
           </div>
         </div>
 
-        {/* 5. Architectural Thumbnail Navigation (4 Thumbnails Synced with State) */}
-        <div className="pt-2 sm:pt-3 max-w-4xl mx-auto w-full">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-            {rooms.map((room, idx) => {
-              const isActive = activeIndex === idx;
-              return (
-                <button
-                  key={room.id}
-                  onClick={() => handleRoomChange(idx)}
-                  className={`text-left group cursor-pointer transition-all duration-300 relative ${
-                    isActive 
-                    ? 'opacity-100' 
-                    : 'opacity-65 hover:opacity-95'
-                  }`}
-                >
-                  <div className={`relative overflow-hidden rounded-none transition-all duration-300 ${
-                    isActive
-                      ? 'border-2 border-[#C5A059] shadow-xs'
-                      : 'border border-[#E5E5E5]'
-                  }`}>
-                    <img
-                      src={room.image}
-                      alt={room.title}
-                      className="w-full h-18 sm:h-22 object-cover rounded-none block group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                    {isActive && (
-                      <div className="absolute inset-0 bg-[#C5A059]/10 pointer-events-none" />
-                    )}
-                  </div>
-                  <span className={`text-[11px] sm:text-xs font-semibold tracking-wider uppercase block mt-1.5 transition-colors ${
-                    isActive ? 'text-[#C5A059]' : 'text-[#777777] group-hover:text-[#111111]'
-                  }`}>
-                    0{idx + 1} — {room.title}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* 6. Original Floral Emblem at Bottom Center */}
+        {/* Original Floral Emblem at Bottom Center */}
         <div className="pt-4 sm:pt-5 flex flex-col items-center justify-center">
           <div className="flex items-center justify-center gap-4 w-full max-w-xs">
             <div className="h-[1px] flex-1 bg-[#E5E5E5]" />

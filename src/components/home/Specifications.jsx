@@ -201,7 +201,7 @@ function SpecificationItem({ item, isOpen, onToggle }) {
 
   return (
     <div
-      className={`group relative overflow-hidden border transition-all duration-300 rounded-none mb-2 last:mb-0 ${
+      className={`group/item relative overflow-hidden border transition-all duration-300 rounded-none mb-2 last:mb-0 ${
         isOpen
           ? 'bg-[#FAF5ED] border-[#C5A059]/70 shadow-xs'
           : 'bg-white hover:bg-[#FAF8F4] border-[#E8E1D3] hover:border-[#C5A059]/50'
@@ -212,7 +212,7 @@ function SpecificationItem({ item, isOpen, onToggle }) {
         className={`absolute left-0 top-0 bottom-0 w-[3.5px] transition-all duration-300 ease-out z-10 ${
           isOpen 
             ? 'bg-[#C5A059] opacity-100 scale-y-100' 
-            : 'bg-[#C5A059] opacity-0 group-hover:opacity-100 scale-y-0 group-hover:scale-y-100'
+            : 'bg-[#C5A059] opacity-0 group-hover/item:opacity-100 scale-y-0 group-hover/item:scale-y-100'
         }`} 
       />
 
@@ -230,15 +230,15 @@ function SpecificationItem({ item, isOpen, onToggle }) {
           <div className={`w-8 h-8 rounded-none flex items-center justify-center shrink-0 transition-all duration-300 ${
             isOpen 
               ? 'bg-[#C5A059] text-[#111111] shadow-xs' 
-              : 'bg-[#111111] text-[#D4B675] group-hover:bg-[#C5A059] group-hover:text-[#111111]'
+              : 'bg-[#111111] text-[#D4B675] group-hover/item:bg-[#C5A059] group-hover/item:text-[#111111]'
           }`}>
-            <Icon className="w-4 h-4 stroke-[1.8] transition-transform duration-300 group-hover:scale-110" />
+            <Icon className="w-4 h-4 stroke-[1.8] transition-transform duration-300 group-hover/item:scale-110" />
           </div>
 
           {/* Category Heading */}
           <span
             className={`text-[14px] sm:text-[14.5px] tracking-tight truncate transition-colors duration-250 ${
-              isOpen ? 'text-[#111111] font-semibold' : 'text-[#222222] font-medium group-hover:text-[#111111]'
+              isOpen ? 'text-[#111111] font-semibold' : 'text-[#222222] font-medium group-hover/item:text-[#111111]'
             }`}
           >
             {item.category}
@@ -250,7 +250,7 @@ function SpecificationItem({ item, isOpen, onToggle }) {
           className={`w-6 h-6 rounded-none flex items-center justify-center shrink-0 transition-all duration-300 ${
             isOpen
               ? 'text-white bg-[#111111] rotate-45 scale-105 shadow-xs'
-              : 'text-[#777777] bg-[#F2EDE4] group-hover:bg-[#C5A059] group-hover:text-[#111111] rotate-0'
+              : 'text-[#777777] bg-[#F2EDE4] group-hover/item:bg-[#C5A059] group-hover/item:text-[#111111] rotate-0'
           }`}
           aria-hidden="true"
         >
@@ -306,10 +306,10 @@ function SpecificationItem({ item, isOpen, onToggle }) {
 // ─────────────────────────────────────────────────────────────────────────────
 function SpecificationPanel({ group, activeItemId, onToggleItem }) {
   return (
-    <div className="gsap-spec-panel group relative bg-white border border-[#E2DAC8] hover:border-[#C5A059] shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_40px_rgba(197,160,89,0.15)] transition-all duration-400 ease-out rounded-none flex flex-col justify-between hover:-translate-y-1.5 overflow-hidden">
+    <div className="gsap-spec-panel group/panel relative bg-white border border-[#E2DAC8] hover:border-[#C5A059] shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_40px_rgba(197,160,89,0.15)] transition-all duration-400 ease-out rounded-none flex flex-col justify-between hover:-translate-y-1.5 overflow-hidden">
       
       {/* Animated Top Golden Border Accent */}
-      <span className="absolute top-0 left-0 right-0 h-[3px] bg-[#C5A059] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out origin-left z-20 pointer-events-none" />
+      <span className="absolute top-0 left-0 right-0 h-[3px] bg-[#C5A059] transform scale-x-0 group-hover/panel:scale-x-100 transition-transform duration-500 ease-out origin-left z-20 pointer-events-none" />
 
       {/* Top Header Section of Panel with Distinct Luxury Band */}
       <div className="p-5 sm:p-6 pb-4 bg-gradient-to-b from-[#FAF8F4] to-white border-b border-[#EAE3D5] relative">
@@ -329,7 +329,7 @@ function SpecificationPanel({ group, activeItemId, onToggleItem }) {
         </h3>
 
         {/* Short Golden Decorative Underline with Hover Expansion */}
-        <div className="h-[2px] w-12 group-hover:w-20 bg-[#C5A059] mt-2.5 transition-all duration-400 ease-out" />
+        <div className="h-[2px] w-12 group-hover/panel:w-20 bg-[#C5A059] mt-2.5 transition-all duration-400 ease-out" />
       </div>
 
       {/* Accordion Rows Container */}

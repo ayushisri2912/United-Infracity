@@ -84,17 +84,17 @@ export default function ArticleDetailModal({ isOpen, onClose, article, onSelectR
               </span>
             </div>
 
-            <h1 className="font-cormorant text-3xl sm:text-5xl font-bold text-[#1C1C1A] leading-tight">
+            <h1 className="font-serif text-3xl sm:text-5xl font-normal text-[#111111] leading-tight">
               {article.title}
             </h1>
 
             {/* Author Profile Bar */}
             <div className="flex items-center gap-4 pt-2 border-y border-[#E8DCC8]/60 py-4">
-              <div className="w-11 h-11 rounded-full bg-[#C6A15B]/20 border border-[#C6A15B]/40 flex items-center justify-center text-[#C6A15B] font-serif font-bold text-lg">
+              <div className="w-11 h-11 rounded-full bg-[#C5A059]/20 border border-[#C5A059]/40 flex items-center justify-center text-[#C5A059] font-serif font-bold text-lg">
                 {article.author ? article.author.charAt(0) : 'U'}
               </div>
               <div>
-                <h4 className="font-cormorant font-bold text-[#1C1C1A] text-lg">
+                <h4 className="font-serif font-medium text-[#111111] text-lg">
                   {article.author || 'United Editorial Team'}
                 </h4>
                 <p className="font-montserrat text-xs text-[#66625A] font-light">
@@ -125,15 +125,15 @@ export default function ArticleDetailModal({ isOpen, onClose, article, onSelectR
 
             {/* Editorial Pull Quote Box */}
             <blockquote className="my-8 p-8 rounded-xl bg-white border-l-4 border-[#C6A15B] shadow-xs space-y-2">
-              <p className="font-cormorant text-2xl sm:text-3xl text-[#1C1C1A] italic leading-snug">
+              <p className="font-serif text-2xl sm:text-3xl text-[#111111] italic leading-snug">
                 "Real estate excellence is no longer measured solely by square footage, but by spatial harmony, structural longevity, and sustainable engineering."
               </p>
-              <cite className="block font-montserrat text-xs font-bold text-[#C6A15B] uppercase tracking-wider not-italic pt-2">
+              <cite className="block font-montserrat text-xs font-bold text-[#C5A059] uppercase tracking-wider not-italic pt-2">
                 — {article.author}
               </cite>
             </blockquote>
 
-            <h3 className="font-cormorant text-2xl sm:text-3xl font-bold text-[#1C1C1A] pt-4">
+            <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#111111] pt-4">
               Structural Innovation & Timeless Value
             </h3>
 
